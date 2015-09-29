@@ -1,10 +1,8 @@
 package com.umi.healthy.utils;
 
-import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -15,31 +13,57 @@ import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Map.Entry;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.Response.Status;
+
+import com.umi.healthy.data.persist.EnvironmentConfig;
+import com.umi.healthy.utils.EncodingUtil;
 
 import lombok.extern.java.Log;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.Header;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-
-import com.google.appengine.api.files.FileServicePb.FileContentType.ContentType;
-import com.google.appengine.repackaged.org.apache.http.Consts;
 @Log
 public class NetworkUtils {
 	private static final Long HASH_EXPERATION_TIME = 60000L; // 1 minute
 	public static final String SECRET_KEY = "aC=l745$key";
 	public static final String USER_AGENT = "agentIM";
+	public static Boolean sendMail(String email,String description) throws UnsupportedEncodingException{
+		Boolean flag = true;
+		 Properties props = new Properties();
+	        Session session = Session.getDefaultInstance(props, null);
 
+	        try {
+	            Message msg = new MimeMessage(session);
+	            msg.setFrom(new InternetAddress(EnvironmentConfig.getInstance().getEmail(), "OzTees"));
+	            msg.addRecipient(Message.RecipientType.TO,
+	            		new InternetAddress(EnvironmentConfig.getInstance().getEmail_to(),"Offer I."));
+ 	            msg.addRecipient(Message.RecipientType.TO,
+	                             new InternetAddress(email, email));
+	           
+	            msg.setSubject(" Order (this email come from oztees that hosted on google)");
+	            msg.setText(description);
+	            Transport.send(msg);
+
+	        } catch (AddressException e) {
+	        	throw new CustomException(Status.INTERNAL_SERVER_ERROR, "AddressException: "+e.getMessage());
+	        } catch (MessagingException e) {
+	        	throw new CustomException(Status.INTERNAL_SERVER_ERROR, "MessagingException: "+e.getMessage());
+	        }
+		
+		return true;
+	}
 	public static String addHashQuery(String query) {
 		String result = "";
 		if (query != null) {
@@ -323,6 +347,34 @@ public class NetworkUtils {
 			log.info("url is empty");
 		}
 		return urlParamsMap;
+	}
+
+
+	public static void removeCookie(String string, HttpServletResponse response) {
+	
+	}
+
+	public static String readCookieValue(String key, HttpServletRequest request) {
+		String value = null;
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null ){
+			for(Cookie cookie:cookies){
+				if(cookie.getName().equals(key)){
+					value = cookie.getValue();
+				}
+			}
+		 
+		}
+		return value;
+	}
+
+	public static void writeCookie(HttpServletResponse response,
+			String key, String value) {
+		String tmp = EncodingUtil.MD5( value + EnvironmentConfig.SECRET_KEY);
+		Cookie myCookie = new Cookie(key, tmp);
+		  myCookie.setMaxAge(60 * 60);
+		  myCookie.setPath("/");
+		response.addCookie(myCookie );
 	}
 
 }

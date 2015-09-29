@@ -8,7 +8,6 @@ import lombok.extern.java.Log;
 
 import com.google.appengine.labs.repackaged.com.google.common.collect.Lists;
 import com.umi.healthy.data.Item;
-import com.umi.healthy.data.Item;
 import com.umi.healthy.data.persist.DBService;
 import com.umi.healthy.utils.StringUtil;
 

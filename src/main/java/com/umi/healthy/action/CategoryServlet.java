@@ -16,7 +16,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
@@ -24,7 +23,9 @@ import javax.ws.rs.core.Response.Status;
 import lombok.extern.java.Log;
 
 import com.umi.healthy.data.Category;
+import com.umi.healthy.data.Item;
 import com.umi.healthy.services.CategoryService;
+import com.umi.healthy.services.ItemService;
 import com.umi.healthy.utils.CustomException;
 
 @Path("/category")
@@ -40,7 +41,7 @@ public class CategoryServlet {
 	@Path("/{slug}")
 	@GET
 	public void view( @DefaultValue("") @PathParam("slug") String slug ) {
-		
+		log.info("Start view");
 		if(slug.length() <=0 ){
 			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
 		}
@@ -53,19 +54,21 @@ public class CategoryServlet {
 		}
 		
 		List<Category> categories =  categoryService.loadCategories(); 
-		
+		ItemService itemService = new ItemService(); 
+		List<Item>  items = itemService.loadItems(16);
 		
 		try {
 			
-			request.setAttribute("category_name", category.getName());
-			request.setAttribute("category_slug", category.getSlug());
+			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
+			request.setAttribute("items", items);
 			request.getRequestDispatcher("/category.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
+		log.info("End view");
 	}
 
 	@Path("/e/{slug}")

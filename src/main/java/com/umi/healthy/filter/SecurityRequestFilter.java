@@ -16,18 +16,14 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.PreMatching;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Cookie;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.ResponseBuilder;
-import javax.ws.rs.core.Response.Status;
-import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.Provider;
 
+import lombok.extern.java.Log;
+
 import com.umi.healthy.data.persist.EnvironmentConfig;
 import com.umi.healthy.utils.EncodingUtil;
-
-import lombok.extern.java.Log;
 
 @PreMatching
 @Provider

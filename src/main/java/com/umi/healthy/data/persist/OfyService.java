@@ -12,7 +12,7 @@ public class OfyService
 	static {
 		factory().register(Item.class);
 		factory().register(Category.class);
-		factory().register(X_CategoryItem.class);
+		factory().register(Article.class);
     }
 
     public static Objectify ofy() {

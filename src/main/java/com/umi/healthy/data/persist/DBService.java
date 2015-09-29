@@ -5,7 +5,6 @@ import static com.umi.healthy.data.persist.OfyService.ofy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.lang.Iterable;
 
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Result;

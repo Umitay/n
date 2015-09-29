@@ -10,16 +10,23 @@ import com.umi.healthy.data.persist.DBService;
 import com.umi.healthy.utils.StringUtil;
 
 @Log
-public class CategoryService {
+public class CategoryService  extends DBService{
 	
-	DBService db = new DBService();
+	public List<Category> loadCategories() {
+		return loadAll(Category.class,"priority");
+	}
+	
+	public Category loadCategory(String slug) {
+		return load(Category.class,slug);
+	}
+	
 	
 	public Category saveCategory( Category newcategory ){
 		Category  category =  null;
 		
 		try{
 			
-			category = db.load( Category.class , newcategory.getSlug() );
+			category = load( Category.class , newcategory.getSlug() );
 			
 			if(category == null){
 				category = new Category();
@@ -33,7 +40,7 @@ public class CategoryService {
 			category.setDateModified(System.currentTimeMillis() );
 			category.setPriority(newcategory.getPriority());
 			category.setActive(newcategory.getActive());
-			category = db.save(category);
+			category = save(category);
 			
 		}catch(Exception e ) {
 			log.severe("newcategory.getcategory_name(): " + newcategory.getName());
@@ -42,47 +49,17 @@ public class CategoryService {
 		
 		return category;
 	}
-	
-	public Category loadCategory( String slug ){
 
-		Category  category = null;
-		
-		try{
-			
-			if(slug != null){
-				category = db.load( Category.class , slug );
-			}
-		
-		}catch(Exception e ) {
-			log.severe(StringUtil.exceptionFormat( e ));
-		}
-		
-		return category;
-	}
-	public List<Category> loadCategories(){
-
-		List<Category>  categories = Lists.newArrayList() ;
-		
-		try{
-			
-			categories = db.load( Category.class,"active", true,"priority");
-		
-		}catch(Exception e ) {
-			log.severe(StringUtil.exceptionFormat( e ));
-		}
-		
-		return categories;
-	}
 
 	public void saveCategories(List<Category> categories) {
 		try{
 			
-			db.save(categories);
+			save(categories);
 			
 		}catch(Exception e){
 			log.severe(StringUtil.exceptionFormat( e ));
 			for(Category category:categories){
-				db.save(category);
+				save(category);
 			}
 		}
 		
