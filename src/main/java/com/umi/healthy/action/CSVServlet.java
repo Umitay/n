@@ -58,7 +58,7 @@ public class CSVServlet  {
 			throw new CustomException(Status.BAD_REQUEST, "Field 'filename' is missing.");
 		}
 		
-		ItemService ps = new ItemService();
+		ItemService itemService = new ItemService();
 		Csv csvManager = new Csv();
 		
 		csvManager.setUrl(filename);
@@ -70,7 +70,7 @@ public class CSVServlet  {
 			throw new CustomException(Status.INTERNAL_SERVER_ERROR,  e.getMessage() );
 		}
 		
-	//	ps.loadToDatastroge( content , filename );
+		itemService.loadToDatastroge( content , filename );
 		
 		return "Data from the file: "+filename+" was loaded to data store";
 	}

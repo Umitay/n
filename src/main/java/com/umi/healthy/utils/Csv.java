@@ -42,7 +42,7 @@ public class Csv {
 	}
 	public void setUrl(String filename) {
 		try {
-			this.url = new URL( CLOUD_DATA_STORAGE + filename) ;
+			this.url = new URL(filename) ;
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

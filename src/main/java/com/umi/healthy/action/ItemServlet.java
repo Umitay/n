@@ -57,15 +57,17 @@ public class ItemServlet {
 		
 		CategoryService categoryService = new CategoryService(); 
 		List<Category> categories =  categoryService.loadTopCategories(); 
+		List<Category> all_categories =  categoryService.loadAllCategories(); 
 		List<Category> item_categories =  Lists.newArrayList();
 		
-		for (Category cat : categories) {
-			if(cat){
+		for (Category cat : all_categories) {
+			if(item.getRecipeCategory().contains(cat)){
 				item_categories.add(cat);
 			}
 		}
 		
 		try {
+			request.setAttribute("categories", categories);
 			request.setAttribute("item_categories", item_categories);
 			request.setAttribute("item", item);
 			request.getRequestDispatcher("/item.jsp").forward(request, response);

@@ -2,6 +2,7 @@ package com.umi.healthy.services;
 
 import static com.umi.healthy.data.persist.OfyService.ofy;
 
+import java.util.Arrays;
 import java.util.List;
 
 import lombok.extern.java.Log;
@@ -71,7 +72,7 @@ public class ItemService extends DBService{
 		List<Item>  items = Lists.newArrayList() ;
 		
 		try{
-		 items = ofy().load().type(Item.class).filter("active", true).order("-datePublished").limit(limit).list();
+		 items = ofy().load().type(Item.class).filter("active", true).order("-dateCreated").limit(limit).list();
 		
 		}catch(Exception e ) {
 			log.severe(StringUtil.exceptionFormat( e ));
@@ -105,6 +106,58 @@ public class ItemService extends DBService{
 			}
 		}
 		
+	}
+
+	public void loadToDatastroge(List<String[]> content, String filename) {
+		log.info("Start uploadCsvtoDataStore");
+		
+		String[] line= null;
+		List<Item> itemList =  Lists.newArrayList();
+		String[] header = content.get(0);
+		
+		for (int rowIndex= 1; rowIndex < content.size(); rowIndex++) {
+			line = content.get(rowIndex);
+			Item item = new Item();
+			
+			for(int colIndex = 0; colIndex < line.length; colIndex++){
+				
+				if(line[colIndex] != null && header[colIndex] !=null){
+					
+					switch (header[colIndex]) {
+						case "name": item.setName(line[colIndex]); break;
+						case "slug": item.setSlug(line[colIndex]); break;
+						case "thumbnailUrl": item.setThumbnailUrl(line[colIndex]); break;
+						case "about": item.setAbout(line[colIndex]); break;
+						case "description": item.setDescription(line[colIndex]); break;
+						case "recipeCategory": 
+							String[] array = line[colIndex].split(",");
+							List<String> recipeCategory = Arrays.asList(array);
+							item.setRecipeCategory(recipeCategory); 
+							break;
+						case "totalTime": item.setTotalTime(line[colIndex]); break;
+						case "recipeYield": item.setRecipeYield(line[colIndex]); break;
+						case "ingredients": item.setIngredients(line[colIndex]); break;
+						case "nutrition": item.setNutrition(line[colIndex]); break;
+						case "priority": item.setPriority(Integer.valueOf(line[colIndex])); break;
+						case "dateCreated": item.setDateCreated(System.currentTimeMillis()); break;
+						default:log.info("unregistered column "+header[colIndex]); break;
+					}
+					
+				}// end of if
+				
+			}// end of loop by colindex
+			
+			if(!item.getName().isEmpty()){
+				 item.setActive(true);
+				itemList.add(item);
+			}
+		}// end of cycle
+		
+		
+		if(!itemList.isEmpty()){
+			 save(itemList);
+		}
+		 log.info("end uploadCsv toDataStore");
 	}
 
 }
