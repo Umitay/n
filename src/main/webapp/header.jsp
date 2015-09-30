@@ -26,7 +26,7 @@
 <title>Полезные рецепты </title>
 <meta name="description" content="Полезные рецепты | Откройте для себя полезные, легкие и вкусные рецепты"/>
 <link rel="canonical" href="http://ur-recipe.com" />
-<link rel="publisher" href="http://google.com/+UmitayTurdykulov"/>
+<link rel="publisher" href="https://plus.google.com/+Urrecipe1/posts"/>
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Полезные рецепты | Откройте для себя полезные, легкие и вкусные рецепты" />

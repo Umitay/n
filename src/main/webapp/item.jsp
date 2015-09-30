@@ -30,7 +30,7 @@
 			</c:if>
 			<div>Опубликовано:  <time datetime="${item.datePublished}" itemprop="datePublished">${item.datePublished}</time></div>
 		 	<div itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-		 	Автор: <a href="//plus.google.com/u/0/110204310495545191121"><span itemprop="name">Умитай Турдыкулова</span></a>
+		 	Автор: <a href="https://plus.google.com/+Urrecipe1/posts"><span itemprop="name">Умитай Турдыкулова</span></a>
      		</div>
 		 </div>
 		</div>
@@ -59,7 +59,7 @@
 	</div>
 	<!-- /.col-xs-12 col-sm-8 col-md-8 -->
 	<div class="col-sm-4 col-md-4">
-	<c:if test="${empty unvisible}">
+	
 		<!-- Вставьте этот тег в заголовке страницы или непосредственно перед закрывающим тегом основной части. -->
 	<script src="https://apis.google.com/js/platform.js" async defer>
 	  {lang: 'ru'}
@@ -67,7 +67,7 @@
 	
 	<!-- Поместите этот тег туда, где должна отображаться виджет. -->
 	<div class="g-page" data-href="//plus.google.com/u/0/102501925985129905212" data-rel="publisher"></div>
-	
+	<c:if test="${empty unvisible}">
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<!-- recipe-side -->
 	<ins class="adsbygoogle"
