@@ -76,7 +76,7 @@ public class CategoryServlet {
 	@Produces(MediaType.APPLICATION_JSON)
 	@RolesAllowed({"ADMIN", "API"})
 	public void edit( @DefaultValue("") @PathParam("slug") String slug ) {
-
+		response.setContentType("text/html; charset=utf-8");
 		Category category =  categoryService.loadCategory(slug); 
 		try {
 			request.setAttribute("category", category);
@@ -115,7 +115,7 @@ public class CategoryServlet {
 		}
 		
 		newCategory.setDescription(description);
-		newCategory.setName(name);
+		newCategory.setName(new String(name.getBytes("utf-8"),"utf-8" ));
 		newCategory.setSlug(slug);
 		newCategory.setPriority(priority);
 		categoryService.saveCategory(newCategory);
