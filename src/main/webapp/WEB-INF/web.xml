@@ -12,6 +12,10 @@
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>com.umi.healthy.action; com.fasterxml.jackson.jaxrs.json </param-value>
         </init-param>
+          <init-param>
+            <param-name>jersey.config.server.provider.classnames</param-name>
+            <param-value>com.umi.healthy.filter.CharsetResponseFilter</param-value>
+        </init-param>
         <init-param>
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
             <param-value>true</param-value>

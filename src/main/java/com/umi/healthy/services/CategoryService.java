@@ -1,5 +1,7 @@
 package com.umi.healthy.services;
 
+import static com.umi.healthy.data.persist.OfyService.ofy;
+
 import java.util.List;
 
 import lombok.extern.java.Log;
@@ -12,8 +14,12 @@ import com.umi.healthy.utils.StringUtil;
 @Log
 public class CategoryService  extends DBService{
 	
-	public List<Category> loadCategories() {
+	public List<Category> loadAllCategories() {
 		return loadAll(Category.class,"priority");
+	}
+	public List<Category> loadTopCategories() {
+		
+		return ofy().load().type(Category.class).filter( "parent ==","").order("priority").list();
 	}
 	
 	public Category loadCategory(String slug) {
@@ -34,7 +40,7 @@ public class CategoryService  extends DBService{
 				category.setDateCreated( System.currentTimeMillis() );
 				category.setDatePublished(System.currentTimeMillis() );
 			}
-			
+			category.setParent( newcategory.getParent() );
 			category.setDescription(newcategory.getDescription());
 			category.setName(newcategory.getName());
 			category.setDateModified(System.currentTimeMillis() );

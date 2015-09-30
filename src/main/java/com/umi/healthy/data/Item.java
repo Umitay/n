@@ -1,5 +1,7 @@
 package com.umi.healthy.data;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,7 +42,7 @@ public class Item {
 	@Index
 	@Getter
 	@Setter
-	public String recipeCategory;
+	public List<String> recipeCategory;
 	
 	@Index
 	@Getter

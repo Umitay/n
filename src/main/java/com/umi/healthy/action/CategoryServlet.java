@@ -22,6 +22,7 @@ import javax.ws.rs.core.Response.Status;
 
 import lombok.extern.java.Log;
 
+import com.google.appengine.repackaged.com.google.api.client.util.Lists;
 import com.umi.healthy.data.Category;
 import com.umi.healthy.data.Item;
 import com.umi.healthy.services.CategoryService;
@@ -45,17 +46,19 @@ public class CategoryServlet {
 		if(slug.length() <=0 ){
 			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
 		}
-		
+		if(request.getServerName().contains("appspot.com")){
+			request.setAttribute("unvisible", true);
+		}
 		CategoryService categoryService = new CategoryService(); 
 		
 		Category category =  categoryService.loadCategory(slug); 
 		if( category == null ){
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
-		
-		List<Category> categories =  categoryService.loadCategories(); 
 		ItemService itemService = new ItemService(); 
 		List<Item>  items = itemService.loadItems(16);
+		
+		List<Category> categories =  categoryService.loadTopCategories(); 
 		
 		try {
 			
@@ -96,7 +99,8 @@ public class CategoryServlet {
 			@DefaultValue("") @FormParam("slug") String  slug,
 			@DefaultValue("") @FormParam("name") String  name,
 			@DefaultValue("") @FormParam("description") String  description,
-			@DefaultValue("1000000") @FormParam("priority") Integer  priority ) throws IOException {
+			@DefaultValue("1000000") @FormParam("priority") Integer  priority,
+			@DefaultValue("0") @FormParam("parent") String  parent) throws IOException {
 		
 		log.info("Start save ");
 		
@@ -118,6 +122,7 @@ public class CategoryServlet {
 		newCategory.setName(new String(name.getBytes("utf-8"),"utf-8" ));
 		newCategory.setSlug(slug);
 		newCategory.setPriority(priority);
+		newCategory.setParent(parent);
 		categoryService.saveCategory(newCategory);
 		response.sendRedirect("/category/e/"+slug);
 		log.info("End save ");

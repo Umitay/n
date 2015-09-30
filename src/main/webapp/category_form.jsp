@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -20,6 +21,10 @@
 		<div class="form-group">
 		<label>Priority</label>
 			<input type="text" value="${category.priority}" name="priority" class="form-control">
+		</div>
+		<div class="form-group">
+		<label>Parent</label>
+			<input type="text" value="${category.parent}" name="parent" class="form-control">
 		</div>
 		<input type="submit" class="btn btn-primary"> 
 		</form>

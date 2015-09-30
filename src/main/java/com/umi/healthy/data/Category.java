@@ -26,10 +26,16 @@ public class Category {
 	@Getter
 	@Setter
 	public String description;
+	
 	@Index
 	@Getter
 	@Setter
 	public Integer priority;
+	
+	@Index
+	@Getter
+	@Setter
+	public String parent;
 	
 	@Index
 	@Getter

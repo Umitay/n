@@ -1,6 +1,7 @@
 package com.umi.healthy.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -21,7 +22,10 @@ import javax.ws.rs.core.Response.Status;
 
 import lombok.extern.java.Log;
 
+import com.google.appengine.repackaged.com.google.api.client.util.Lists;
+import com.umi.healthy.data.Category;
 import com.umi.healthy.data.Item;
+import com.umi.healthy.services.CategoryService;
 import com.umi.healthy.services.ItemService;
 import com.umi.healthy.utils.CustomException;
 
@@ -42,16 +46,27 @@ public class ItemServlet {
 		if(slug.length() <=0 ){
 			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
 		}
-		
+		if(request.getServerName().contains("appspot.com")){
+			request.setAttribute("unvisible", true);
+		}
 		Item item =  itemService.loadItem(slug); 
 		
 		if( item == null ){
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
 		
+		CategoryService categoryService = new CategoryService(); 
+		List<Category> categories =  categoryService.loadTopCategories(); 
+		List<Category> item_categories =  Lists.newArrayList();
 		
+		for (Category cat : categories) {
+			if(cat){
+				item_categories.add(cat);
+			}
+		}
 		
 		try {
+			request.setAttribute("item_categories", item_categories);
 			request.setAttribute("item", item);
 			request.getRequestDispatcher("/item.jsp").forward(request, response);
 			

@@ -34,12 +34,16 @@ public class HomepageServlet{
 		log.info("Start index");
 		try {
 			CategoryService categoryService = new CategoryService(); 
-			List<Category> categories =  categoryService.loadCategories(); 
+			List<Category> categories =  categoryService.loadTopCategories(); 
 			Category category =  categoryService.loadCategory("recipes");
 			
 			ItemService itemService = new ItemService(); 
 			List<Item>  items = itemService.loadItems(16);
 			
+			if(request.getServerName().contains("appspot.com")){
+				request.setAttribute("unvisible", true);
+			}
+		
 			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
 			request.setAttribute("items", items);
@@ -54,7 +58,7 @@ public class HomepageServlet{
 	public void  n(){
 		try {
 			CategoryService categoryService = new CategoryService(); 
-			List<Category> categories =  categoryService.loadCategories(); 
+			List<Category> categories =  categoryService.loadAllCategories(); 
 			ItemService itemService = new ItemService(); 
 			List<Item>  items = itemService.loadItems(20);
 			ArticleService articleService = new ArticleService(); 
