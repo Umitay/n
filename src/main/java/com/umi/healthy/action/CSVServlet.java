@@ -70,7 +70,7 @@ public class CSVServlet  {
 			throw new CustomException(Status.INTERNAL_SERVER_ERROR,  e.getMessage() );
 		}
 		
-		itemService.loadToDatastroge( content , filename );
+		itemService.loadToDatastroge( content );
 		
 		return "Data from the file: "+filename+" was loaded to data store";
 	}

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +20,7 @@
 
 <title>Admin</title>
 <style type="text/css">
-body{ padding-top: 5%}
+body{ padding-top: 10%}
 .navbar > div {
     padding-top: 0px;
 }
@@ -25,21 +28,30 @@ body{ padding-top: 5%}
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="/n" class="navbar-brand">Admin</a>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar">
-          <ul class="nav navbar-nav">
-			<li><a href="/csv"><b>Upload Csv</b></a>  </li>
-		 </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Меню</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" rel="home" href="/">Рецепты</a>
+    </div>
+     <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+      <li><a href="/n"><b>Admin</b></a>  </li>
+      <li><a href="/csv"><b>Upload Csv</b></a>  </li>
+      
+         <c:if test="${!empty categories}">
+		    <c:forEach items="${categories}" var="category">
+		    	<li><a  style="display: inline;" href="/category/l/${category.slug}">${category.name}</a><a style="display: inline;"href="/category/e/${category.slug}">(edit)</a></li>
+		    </c:forEach>
+		   </c:if>
+
+      </ul>
+     </div><!-- /.navbar-collapse -->
+  </div><!-- /.container -->
+</nav>

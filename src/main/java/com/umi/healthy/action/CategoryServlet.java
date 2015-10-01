@@ -56,7 +56,7 @@ public class CategoryServlet {
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
 		ItemService itemService = new ItemService(); 
-		List<Item>  items = itemService.loadItems(16);
+		List<Item>  items = itemService.loadItemsByCategory(slug,20,0);
 		
 		List<Category> categories =  categoryService.loadTopCategories(); 
 		
@@ -74,6 +74,40 @@ public class CategoryServlet {
 		log.info("End view");
 	}
 
+	@Path("/l/{slug}")
+	@GET
+	public void n_view( @DefaultValue("") @PathParam("slug") String slug ) {
+		log.info("Start view");
+		if(slug.length() <=0 ){
+			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
+		}
+		
+		CategoryService categoryService = new CategoryService(); 
+		Category category =  categoryService.loadCategory(slug); 
+		
+		
+		if( category == null ){
+			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
+		}
+		
+		List<Category> categories =  categoryService.loadTopCategories(); 
+		ItemService itemService = new ItemService(); 
+		List<Item>  items = itemService.loadItemsByCategory(slug,20,0);
+		
+		try {
+			
+			request.setAttribute("category", category);
+			request.setAttribute("categories", categories);
+			request.setAttribute("items", items);
+			request.getRequestDispatcher("/n_category.jsp").forward(request, response);
+			
+		} catch (ServletException | IOException e) {
+			log.severe(e.getMessage());
+			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
+		}
+		log.info("End view");
+	}
+	
 	@Path("/e/{slug}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -81,8 +115,11 @@ public class CategoryServlet {
 	public void edit( @DefaultValue("") @PathParam("slug") String slug ) {
 		response.setContentType("text/html; charset=utf-8");
 		Category category =  categoryService.loadCategory(slug); 
+		List<Category> categories =  categoryService.loadAllCategories(); 
+		
 		try {
 			request.setAttribute("category", category);
+			request.setAttribute("categories", categories);
 			request.getRequestDispatcher("/category_form.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@include file="header.jsp" %>
+
 <div class="container">
 	<div class="row">	
 	<div class="col-xs-12 col-sm-8 col-md-8">
@@ -21,6 +22,22 @@
 		  </div>
 		  <div class="col-xs-6 col-md-8">
 		 	<div>${item.about}</div>
+		 	<div>
+				Время приготовления:
+				<time content="PT${item.totalTime} min" itemprop="totalTime">${item.totalTime} мин</time>
+			</div>
+			<c:if test="${!empty item.recipeYield}">
+			<div>
+				Количество порций:
+				<span  itemprop="recipeYield">${item.recipeYield} порции</span>
+			</div>
+			</c:if>
+			<c:if test="${!empty item.nutrition}">
+			<div itemprop="nutrition"    itemscope itemtype="http://schema.org/NutritionInformation">
+			    Пищевая ценность:
+			    <span itemprop="calories">${item.nutrition} калорий</span>
+			  </div>
+ 			 </c:if>
 		 	<c:if test="${!empty item_categories}">
 			 	<div>Категорий: 
 				 	<c:forEach items="${item_categories}" var="category">
@@ -28,7 +45,7 @@
 					</c:forEach>
 				</div>
 			</c:if>
-			<div>Опубликовано:  <time datetime="${item.datePublished}" itemprop="datePublished">${item.datePublished}</time></div>
+			<div>Опубликовано:  <time datetime="${item_datePublished}" itemprop="datePublished">${item_datePublished}</time></div>
 		 	<div itemprop="author" itemscope="" itemtype="http://schema.org/Person">
 		 	Автор: <a href="https://plus.google.com/+Urrecipe1/posts"><span itemprop="name">Умитай Турдыкулова</span></a>
      		</div>

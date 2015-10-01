@@ -1,6 +1,7 @@
 package com.umi.healthy.action;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -19,6 +20,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
+
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import lombok.extern.java.Log;
 
@@ -55,20 +58,26 @@ public class ItemServlet {
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
 		
+		
+		
 		CategoryService categoryService = new CategoryService(); 
 		List<Category> categories =  categoryService.loadTopCategories(); 
 		List<Category> all_categories =  categoryService.loadAllCategories(); 
 		List<Category> item_categories =  Lists.newArrayList();
 		
 		for (Category cat : all_categories) {
-			if(item.getRecipeCategory().contains(cat)){
+			if(item.getRecipeCategory().contains( cat.getSlug() )){
 				item_categories.add(cat);
 			}
 		}
 		
 		try {
+			Date d = new Date( item.getDatePublished() );
+			request.setAttribute("item_datePublished", DateFormatUtils.format(d,"dd.MM.yyyy"));
+			
 			request.setAttribute("categories", categories);
 			request.setAttribute("item_categories", item_categories);
+			
 			request.setAttribute("item", item);
 			request.getRequestDispatcher("/item.jsp").forward(request, response);
 			
@@ -100,10 +109,21 @@ public class ItemServlet {
 	@Consumes("application/x-www-form-urlencoded")
 	@RolesAllowed({"ADMIN", "API"})
 	public void save (	
-			@DefaultValue("") @FormParam("slug") String  slug,
-			@DefaultValue("") @FormParam("name") String  name,
-			@DefaultValue("") @FormParam("description") String  description,
-			@DefaultValue("1000000") @FormParam("priority") Integer  priority ) throws IOException {
+			 @DefaultValue("") @FormParam("slug") String  slug,
+			 @DefaultValue("") @FormParam("name") String name,
+			 @DefaultValue("") @FormParam("thumbnailUrl") String thumbnailUrl,
+			 @DefaultValue("") @FormParam("about") String about,
+			 @DefaultValue("") @FormParam("description") String description,
+			 @DefaultValue("") @FormParam("recipeCategory") String recipeCategory,
+			 @DefaultValue("") @FormParam("totalTime") String totalTime,
+			 @DefaultValue("") @FormParam("recipeYield") String recipeYield,
+			 @DefaultValue("") @FormParam("ingredients") String ingredients,
+			 @DefaultValue("") @FormParam("nutrition") String  nutrition,
+			 @DefaultValue("") @FormParam("active") Boolean active,
+			 @DefaultValue("") @FormParam("datePublished") Long  datePublished,
+			 @DefaultValue("") @FormParam("dateCreated") Long dateCreated,
+			 @DefaultValue("") @FormParam("dateModified") Long dateModified
+			 ) throws IOException {
 		
 		log.info("Start save ");
 		
@@ -115,17 +135,9 @@ public class ItemServlet {
 			throw new CustomException(Status.BAD_REQUEST, "Field 'name' is missing.");
 		}
 		
-		Item newItem =  itemService.loadItem(slug); 
 		
-		if(  newItem == null ){
-			 newItem = new Item();
-		}
-		
-		newItem.setDescription(description);
-		newItem.setName(name);
-		newItem.setSlug(slug);
-		newItem.setPriority(priority);
-		itemService.saveItem(newItem);
+	
+		itemService.saveItem(slug,name,thumbnailUrl,about,description,recipeCategory,totalTime,recipeYield,ingredients,nutrition,active,datePublished,dateCreated,dateModified);
 		response.sendRedirect("/recipe/e/"+slug);
 		log.info("End save ");
 	}
