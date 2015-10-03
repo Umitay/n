@@ -23,8 +23,10 @@ import javax.ws.rs.core.Response.Status;
 import lombok.extern.java.Log;
 
 import com.google.appengine.repackaged.com.google.api.client.util.Lists;
+import com.umi.healthy.data.Article;
 import com.umi.healthy.data.Category;
 import com.umi.healthy.data.Item;
+import com.umi.healthy.services.ArticleService;
 import com.umi.healthy.services.CategoryService;
 import com.umi.healthy.services.ItemService;
 import com.umi.healthy.utils.CustomException;
@@ -49,19 +51,22 @@ public class CategoryServlet {
 		if(request.getServerName().contains("appspot.com")){
 			request.setAttribute("unvisible", true);
 		}
-		CategoryService categoryService = new CategoryService(); 
 		
 		Category category =  categoryService.loadCategory(slug); 
 		if( category == null ){
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
-		ItemService itemService = new ItemService(); 
-		List<Item>  items = itemService.loadItemsByCategory(slug,20,0);
 		
-		List<Category> categories =  categoryService.loadTopCategories(); 
+		List<Category> categories =  categoryService.loadTopCategories();
+		
+		ItemService itemService = new ItemService(); 
+		List<Item>  items = itemService.loadItemsByCategory(slug,20,0,true);
+		 
+		ArticleService articleService = new ArticleService(); 
+		List<Article> articles =  articleService.loadArticles(true);
 		
 		try {
-			
+			request.setAttribute("articles", articles);
 			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
 			request.setAttribute("items", items);
@@ -90,12 +95,16 @@ public class CategoryServlet {
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
 		
-		List<Category> categories =  categoryService.loadTopCategories(); 
+		List<Category> categories =  categoryService.loadTopCategories();
+		
 		ItemService itemService = new ItemService(); 
-		List<Item>  items = itemService.loadItemsByCategory(slug,20,0);
+		List<Item>  items = itemService.loadItemsByCategory(slug,20,0,false);
+		
+		ArticleService articleService = new ArticleService(); 
+		List<Article> articles =  articleService.loadArticles(false);
 		
 		try {
-			
+			request.setAttribute("articles", articles);
 			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
 			request.setAttribute("items", items);
@@ -114,10 +123,13 @@ public class CategoryServlet {
 	@RolesAllowed({"ADMIN", "API"})
 	public void edit( @DefaultValue("") @PathParam("slug") String slug ) {
 		response.setContentType("text/html; charset=utf-8");
+		
 		Category category =  categoryService.loadCategory(slug); 
 		List<Category> categories =  categoryService.loadAllCategories(); 
+	
 		
 		try {
+			
 			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
 			request.getRequestDispatcher("/category_form.jsp").forward(request, response);

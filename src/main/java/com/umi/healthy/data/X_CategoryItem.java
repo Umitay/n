@@ -23,5 +23,13 @@ public class X_CategoryItem {
 	@Getter
 	@Setter
 	public String  item_slug;
+	@Index
+	@Getter
+	@Setter
+	protected Long dateCreated;
 	
+	@Index
+	@Getter
+	@Setter
+	protected Boolean active;
 }

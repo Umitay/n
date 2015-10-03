@@ -20,7 +20,7 @@
 		
 		<div class="form-group">
 		<label>recipeCategory*</label>
-		<input type="text" value="${item.recipeCategory}" name="recipeCategory" class="form-control">
+		<input type="text" value="${item_categories}" name="recipeCategory" class="form-control">
 		</div>
 		<div class="form-group">
 		<label>totalTime*</label>
@@ -48,7 +48,7 @@
 		</div>
 		<div class="form-group">
 		<label>nutrition*</label>
-		<textarea   name="nutrition" class="form-control">${item.nutrition}</textarea>
+		<input type="text" value="${item.nutrition}"  name="nutrition" class="form-control">
 		</div>
 		<div class="form-group">
 		<label>ingredients*</label>

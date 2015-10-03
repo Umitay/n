@@ -13,5 +13,9 @@
         <property name="parent" direction="asc"/>
         <property name="priority" direction="asc"/>
     </datastore-index>
-    
+ <datastore-index kind="X_CategoryItem" ancestor="false" source="manual">
+        <property name="active" direction="asc"/>
+        <property name="cat_slug" direction="asc"/>
+        <property name="dateCreated" direction="desc"/>
+    </datastore-index>
 </datastore-indexes>

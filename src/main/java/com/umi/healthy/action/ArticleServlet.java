@@ -1,7 +1,6 @@
 package com.umi.healthy.action;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -21,9 +20,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
-
 import lombok.extern.java.Log;
 
 import com.google.appengine.repackaged.com.google.api.client.util.Lists;
@@ -35,81 +31,68 @@ import com.umi.healthy.services.CategoryService;
 import com.umi.healthy.services.ItemService;
 import com.umi.healthy.utils.CustomException;
 
-@Path("/recipe")
+@Path("/article")
 @Log
 @PermitAll
-public class ItemServlet {
+public class ArticleServlet {
 
 	@Context HttpServletRequest request;
 	@Context HttpServletResponse response;
+	ArticleService articleService = new ArticleService(); 
 	
-	ItemService itemService = new ItemService(); 
 	
 	@Path("/{slug}")
 	@GET
 	public void view( @DefaultValue("") @PathParam("slug") String slug ) {
-		
+		log.info("Start view");
 		if(slug.length() <=0 ){
 			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
 		}
 		if(request.getServerName().contains("appspot.com")){
 			request.setAttribute("unvisible", true);
 		}
-		Item item =  itemService.loadItem(slug); 
 		
-		if( item == null ){
+		Article article =  articleService.loadArticle(slug); 
+		if( article == null ){
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
-		if(!item.getActive()){
-			throw new CustomException(Status.NOT_FOUND, "404");
-		}
-		
-		
-		CategoryService categoryService = new CategoryService(); 
-		
-		ArticleService articleService = new ArticleService(); 
 		List<Article> articles =  articleService.loadArticles(true);
-		
+		CategoryService categoryService = new CategoryService(); 
 		List<Category> categories =  categoryService.loadTopCategories(); 
-		List<Category> all_categories =  categoryService.loadAllCategories(); 
-		List<Category> item_categories =  Lists.newArrayList();
-		
-		for (Category cat : all_categories) {
-			if(item.getRecipeCategory().contains( cat.getSlug() )){
-				item_categories.add(cat);
-			}
-		}
 		
 		try {
-			Date d = new Date( item.getDatePublished() );
-			request.setAttribute("item_datePublished", DateFormatUtils.format(d,"dd.MM.yyyy"));
-			
-			request.setAttribute("categories", categories);
-			request.setAttribute("item_categories", item_categories);
-			
-			request.setAttribute("item", item);
-			
 			request.setAttribute("articles", articles);
-			
-			request.getRequestDispatcher("/item.jsp").forward(request, response);
+			request.setAttribute("article", article);
+			request.setAttribute("categories", categories);
+			request.getRequestDispatcher("/article.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
+		log.info("End view");
 	}
 
+	
 	@Path("/e/{slug}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@RolesAllowed({"ADMIN", "API"})
 	public void edit( @DefaultValue("") @PathParam("slug") String slug ) {
-
-		Item item =  itemService.loadItem(slug); 
+		response.setContentType("text/html; charset=utf-8");
+		
+		Article article =  articleService.loadArticle(slug); 
+		if( article == null ){
+			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
+		}
+		
+		CategoryService categoryService = new CategoryService(); 
+		List<Category> categories =  categoryService.loadAllCategories(); 
+		
 		try {
-			request.setAttribute("item_categories", StringUtils.join(item.getRecipeCategory(), ","));
-			request.setAttribute("item", item);
-			request.getRequestDispatcher("/item_form.jsp").forward(request, response);
+			request.setAttribute("article", article);
+			request.setAttribute("categories", categories);
+			request.getRequestDispatcher("/article_form.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
@@ -122,21 +105,10 @@ public class ItemServlet {
 	@Consumes("application/x-www-form-urlencoded")
 	@RolesAllowed({"ADMIN", "API"})
 	public void save (	
-			 @DefaultValue("") @FormParam("slug") String  slug,
-			 @DefaultValue("") @FormParam("name") String name,
-			 @DefaultValue("") @FormParam("thumbnailUrl") String thumbnailUrl,
-			 @DefaultValue("") @FormParam("about") String about,
-			 @DefaultValue("") @FormParam("description") String description,
-			 @DefaultValue("") @FormParam("recipeCategory") String recipeCategory,
-			 @DefaultValue("") @FormParam("totalTime") String totalTime,
-			 @DefaultValue("") @FormParam("recipeYield") String recipeYield,
-			 @DefaultValue("") @FormParam("ingredients") String ingredients,
-			 @DefaultValue("") @FormParam("nutrition") String  nutrition,
-			 @DefaultValue("") @FormParam("active") Boolean active,
-			 @DefaultValue("") @FormParam("datePublished") Long  datePublished,
-			 @DefaultValue("") @FormParam("dateCreated") Long dateCreated,
-			 @DefaultValue("") @FormParam("dateModified") Long dateModified
-			 ) throws IOException {
+			@DefaultValue("") @FormParam("slug") String  slug,
+			@DefaultValue("") @FormParam("name") String  name,
+			@DefaultValue("") @FormParam("description") String  description
+			) throws IOException {
 		
 		log.info("Start save ");
 		
@@ -147,10 +119,19 @@ public class ItemServlet {
 		if(name.length() <=0 ){
 			throw new CustomException(Status.BAD_REQUEST, "Field 'name' is missing.");
 		}
-	
-		itemService.saveItem(slug,name,thumbnailUrl,about,description,recipeCategory,totalTime,recipeYield,ingredients,nutrition,active,datePublished,dateCreated,dateModified);
-	
-		response.sendRedirect("/n");
+		
+		Article newarticle =  articleService.loadArticle(slug); 
+		
+		if( newarticle == null ){
+			newarticle = new Article();
+		}
+		
+		newarticle.setDescription(description);
+		newarticle.setName(new String(name.getBytes("utf-8"),"utf-8" ));
+		newarticle.setSlug(slug);
+		
+		articleService.saveArticle(newarticle);
+		response.sendRedirect("/article/e/"+slug);
 		log.info("End save ");
 	}
 

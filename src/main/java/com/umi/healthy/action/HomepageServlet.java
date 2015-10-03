@@ -40,10 +40,13 @@ public class HomepageServlet{
 			ItemService itemService = new ItemService(); 
 			List<Item>  items = itemService.loadItems(16);
 			
+			ArticleService articleService = new ArticleService(); 
+			List<Article>  articles = articleService.loadArticles(true);
+			
 			if(request.getServerName().contains("appspot.com")){
 				request.setAttribute("unvisible", true);
 			}
-		
+			request.setAttribute("articles", articles);
 			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
 			request.setAttribute("items", items);
@@ -62,7 +65,7 @@ public class HomepageServlet{
 			ItemService itemService = new ItemService(); 
 			List<Item>  items = itemService.loadItems(20);
 			ArticleService articleService = new ArticleService(); 
-			List<Article>  articles = articleService.loadArticles();
+			List<Article>  articles = articleService.loadArticles(true);
 			request.setAttribute("categories", categories);
 			request.setAttribute("items", items);
 			request.setAttribute("articles", articles);

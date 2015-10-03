@@ -14,10 +14,12 @@
 				<c:forEach items="${items}" var="item" begin="0" end="3">
 					<div itemprop="itemListElement" class="col-sm-6 col-lg-3">
 						<div class="thumbnail">
-							<a href="/recipe/${item.slug}"> <img
+							<c:if test="${!empty items}">
+							 <a href="/recipe/${item.thumbnailUrl}"> <img
 								width="300" height="225" itemprop="image"
 								src="${item.thumbnailUrl}">
-							</a>
+							 </a>
+							 </c:if>
 							<div class="caption">
 								<h3 itemprop="name">
 									<a href="/recipe/${item.slug}"

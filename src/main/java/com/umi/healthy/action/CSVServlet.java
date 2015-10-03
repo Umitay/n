@@ -52,7 +52,7 @@ public class CSVServlet  {
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	@RolesAllowed({"ADMIN", "API"})
-	public String upload ( @DefaultValue("") @FormParam("filename") String  filename) {
+	public void upload ( @DefaultValue("") @FormParam("filename") String  filename) throws Exception {
 		
 		if(filename.length() <=0 ){
 			throw new CustomException(Status.BAD_REQUEST, "Field 'filename' is missing.");
@@ -72,7 +72,7 @@ public class CSVServlet  {
 		
 		itemService.loadToDatastroge( content );
 		
-		return "Data from the file: "+filename+" was loaded to data store";
+		response.sendRedirect("/n");
 	}
 
 }
