@@ -39,5 +39,6 @@
 <meta name="twitter:title" content="Полезные рецепты | Откройте для себя полезные, легкие и вкусные рецепты"/>
 <meta name="twitter:site" content="@umitay"/>
 <meta name="twitter:domain" content="Полезные рецепты"/>
+<meta name='yandex-verification' content='6952aca4a0d06474' />
 </head>
 <%@include file="top_nav.jsp" %>

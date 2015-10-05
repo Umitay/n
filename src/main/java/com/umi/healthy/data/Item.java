@@ -89,6 +89,23 @@ public class Item {
 	protected Long dateModified;
 	
 	
+	@Index
+	@Getter
+	@Setter
+	public String fb_share;
 	
+	@Index
+	@Getter
+	@Setter
+	public String vk_share;
 	
+	@Index
+	@Getter
+	@Setter
+	public String  lj_share;
+	
+	@Index
+	@Getter
+	@Setter
+	public String  twitter_share;
 }

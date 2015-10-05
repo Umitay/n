@@ -63,6 +63,22 @@
 		<textarea name="description" class="form-control" >${item.description}</textarea>
 		</div>
 		<div class="form-group">
+		<label>FB</label>
+		<input type="text" value="${item.fb_share}"  name="fb_share" class="form-control">
+		</div>
+		<div class="form-group">
+		<label>VK</label>
+		<input type="text" value="${item.vk_share}"  name="vk_share" class="form-control">
+		</div>
+		<div class="form-group">
+		<label>LJ</label>
+		<input type="text" value="${item.lj_share}"  name="lj_share" class="form-control">
+		</div>
+		<div class="form-group">
+		<label>Twitter</label>
+		<input type="text" value="${item.twitter_share}"  name="twitter_share" class="form-control">
+		</div>
+		<div class="form-group">
 		
 		<input type="submit" class="btn btn-primary"> 
 		</form>

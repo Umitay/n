@@ -173,6 +173,7 @@ public class CategoryServlet {
 		newCategory.setPriority(priority);
 		newCategory.setParent(parent);
 		categoryService.saveCategory(newCategory);
+		
 		response.sendRedirect("/category/e/"+slug);
 		log.info("End save ");
 	}

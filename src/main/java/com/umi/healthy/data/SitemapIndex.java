@@ -8,36 +8,13 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 @Cache
-@Entity(name = "Article")
-public class Article {
+@Entity(name = "SitemapIndex")
+public class SitemapIndex {
 	@Id
 	@Getter
 	@Setter
-	public String  slug;
-	
-	@Index
-	@Getter
-	@Setter
-	public String name;
-	
-	@Index
-	@Getter
-	@Setter
-	public String thumbnailUrl;
-	
-	@Index
-	@Getter
-	@Setter
-	public String about;
-	@Index
-	@Getter
-	@Setter
-	public String description;
-	@Index
-	@Getter
-	@Setter
-	public Integer priority;
-	
+	public String id;
+
 	@Index
 	@Getter
 	@Setter
@@ -46,15 +23,20 @@ public class Article {
 	@Index
 	@Getter
 	@Setter
-	protected Long  datePublished;
-	@Index
-	@Getter
-	@Setter
-	protected Long dateCreated;
+	protected Long category_date_modified;
 	
 	@Index
 	@Getter
 	@Setter
-	protected Long dateModified;
+	protected Long article_date_modified;
 	
+	@Index
+	@Getter
+	@Setter
+	protected Long recipe_date_modified;
+	
+	@Index
+	@Getter
+	@Setter
+	protected Long image_date_modified;
 }

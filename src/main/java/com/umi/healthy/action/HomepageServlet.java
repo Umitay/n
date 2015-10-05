@@ -1,6 +1,7 @@
 package com.umi.healthy.action;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -10,14 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
+
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import lombok.extern.java.Log;
 
 import com.umi.healthy.data.Article;
 import com.umi.healthy.data.Category;
 import com.umi.healthy.data.Item;
+import com.umi.healthy.data.SitemapIndex;
+import com.umi.healthy.data.persist.DBService;
 import com.umi.healthy.services.ArticleService;
 import com.umi.healthy.services.CategoryService;
 import com.umi.healthy.services.ItemService;
@@ -38,7 +45,7 @@ public class HomepageServlet{
 			Category category =  categoryService.loadCategory("recipes");
 			
 			ItemService itemService = new ItemService(); 
-			List<Item>  items = itemService.loadItems(16);
+			List<Item>  items = itemService.loadItems(16,0);
 			
 			ArticleService articleService = new ArticleService(); 
 			List<Article>  articles = articleService.loadArticles(true);
@@ -63,7 +70,7 @@ public class HomepageServlet{
 			CategoryService categoryService = new CategoryService(); 
 			List<Category> categories =  categoryService.loadAllCategories(); 
 			ItemService itemService = new ItemService(); 
-			List<Item>  items = itemService.loadItems(20);
+			List<Item>  items = itemService.loadItems(20,0);
 			ArticleService articleService = new ArticleService(); 
 			List<Article>  articles = articleService.loadArticles(true);
 			request.setAttribute("categories", categories);
@@ -74,5 +81,140 @@ public class HomepageServlet{
 			throw new CustomException(Status.INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 	}
+	
+	@Path("sitemap_index.xml")
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public String sitemap_index(  ) {
 		
+		DBService db = new DBService();
+		SitemapIndex sitemap = db.load(SitemapIndex.class, "1");
+		String xml = "<?xml version='1.0' encoding='UTF-8'?>"
+				+"<sitemapindex xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>";
+		
+		if( sitemap!= null){
+		
+			if(sitemap.getCategory_date_modified()!=null){
+				Date dCategory = new Date( sitemap.getCategory_date_modified());
+				 xml =	xml+"<sitemap>"
+				+"<loc>http://www.ur-recipe.com/categories-sitemap.xml</loc>"
+				+"<lastmod>"+DateFormatUtils.format(dCategory,"yyyy-MM-dd'T'HH:mm:ssZZ")+"</lastmod>"
+				+"</sitemap>";
+			}
+			
+			if(sitemap.getArticle_date_modified()!=null){
+				Date dArticle = new Date( sitemap.getArticle_date_modified() );
+				 xml =	xml+"<sitemap>"
+				+"<loc>http://www.ur-recipe.com/articles-sitemap.xml</loc>"
+				+"<lastmod>"+DateFormatUtils.format(dArticle,"yyyy-MM-dd'T'HH:mm:ssZZ")+"</lastmod>"
+				+"</sitemap>";
+			}
+			
+			if(sitemap.getRecipe_date_modified()!=null){
+				Date dRecipe = new Date( sitemap.getRecipe_date_modified() );
+				 xml =	xml+"<sitemap>"
+				+"<loc>http://www.ur-recipe.com/recipes-sitemap.xml</loc>"
+				+"<lastmod>"+DateFormatUtils.format(dRecipe,"yyyy-MM-dd'T'HH:mm:ssZZ")+"</lastmod>"
+				+"</sitemap>";
+			}
+			
+			if(sitemap.getImage_date_modified()!=null){
+				Date dImage = new Date( sitemap.getImage_date_modified() );
+				 xml =	xml+"<sitemap>"
+				+"<loc>http://www.ur-recipe.com/images-sitemap.xml</loc>"
+				+"<lastmod>"+DateFormatUtils.format(dImage,"yyyy-MM-dd'T'HH:mm:ssZZ")+"</lastmod>"
+				+"</sitemap>";
+			}
+		}
+		xml = xml +"</sitemapindex>";
+		
+		return xml;
+	}
+	@Path("categories-sitemap.xml")
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public String categories(  ) {
+		CategoryService categoryService = new CategoryService(); 
+		List<Category> categories =  categoryService.loadTopCategories();
+		
+		String xml = "<?xml version='1.0' encoding='UTF-8'?>"
+				+"<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>";
+				
+		for(Category category:categories){
+			Date dCategory = new Date( category.getDateModified() );
+			xml = xml +"<url>"
+				  +"<loc>"+ "http://www.ur-recipe.com/category/"+category.getSlug() + "</loc>"
+				  +"<lastmod>"+ DateFormatUtils.format(dCategory,"yyyy-MM-dd'T'HH:mm:ssZZ") + "</lastmod>"
+				  +"</url>";
+		}
+				
+	  	
+	  	xml = xml+ "</urlset>";
+		return xml;
+		
+	}	
+	@Path("articles-sitemap.xml")
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public String articles(  ) {
+
+		String xml = "<?xml version='1.0' encoding='UTF-8'?>"
+				+"<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>";
+		
+		ArticleService articleService = new ArticleService(); 
+		List<Article>  articles = articleService.loadArticles(true,1000000,0);
+		
+		for(Article article:articles){
+			Date dArticle = new Date( article.getDateModified() );
+			xml = xml +"<url>"
+				  +"<loc>"+ "http://www.ur-recipe.com/article/"+article.getSlug() + "</loc>"
+				  +"<lastmod>"+ DateFormatUtils.format(dArticle,"yyyy-MM-dd'T'HH:mm:ssZZ") + "</lastmod>"
+				  +"</url>";
+		}
+				
+	  	
+	  	xml = xml+ "</urlset>";
+		return xml;
+	}	
+	
+	@Path("recipes-sitemap.xml")
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public String recipes(  ) {
+
+		String xml = "<?xml version='1.0' encoding='UTF-8'?>"
+				+"<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>";
+		
+		ItemService itemService = new ItemService(); 
+		List<Item>  items = itemService.loadItems(1000000,0);
+		
+		for(Item item:items){
+			Date dItem = new Date( item.getDateModified() );
+			xml = xml +"<url>"
+				  +"<loc>"+ "http://www.ur-recipe.com/recipe/"+item.getSlug() + "</loc>"
+				  +"<lastmod>"+ DateFormatUtils.format(dItem, "yyyy-MM-dd'T'HH:mm:ssZZ") + "</lastmod>"
+				  +"</url>";
+		}
+				
+	  	
+	  	xml = xml+ "</urlset>";
+		return xml;
+	}	
+	@Path("images-sitemap.xml")
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public String images(  ) {
+		return "";
+	}	
+	
+	@Path("robots.txt")
+	@GET
+	@Produces(MediaType.TEXT_PLAIN )
+	public String robots(  ) {
+
+		String txt ="User-agent: *\nDisallow: /n\nAllow: /\nHost: www.ur-recipe.com";
+		
+		return txt;
+	}	
+	
 }

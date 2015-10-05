@@ -44,7 +44,7 @@ body{ padding-top: 10%}
       <ul class="nav navbar-nav">
       <li><a href="/n"><b>Admin</b></a>  </li>
       <li><a href="/csv"><b>Upload Csv</b></a>  </li>
-      
+      <li><a href="/article/l"><b>Articles</b></a>  </li>
          <c:if test="${!empty categories}">
 		    <c:forEach items="${categories}" var="category">
 		    	<li><a  style="display: inline;" href="/category/l/${category.slug}">${category.name}</a><a style="display: inline;"href="/category/e/${category.slug}">(edit)</a></li>

@@ -135,8 +135,11 @@ public class ItemServlet {
 			 @DefaultValue("") @FormParam("active") Boolean active,
 			 @DefaultValue("") @FormParam("datePublished") Long  datePublished,
 			 @DefaultValue("") @FormParam("dateCreated") Long dateCreated,
-			 @DefaultValue("") @FormParam("dateModified") Long dateModified
-			 ) throws IOException {
+			 @DefaultValue("") @FormParam("dateModified") Long dateModified,
+			 @DefaultValue("") @FormParam("fb_share")	String fb_share ,
+			 @DefaultValue("") @FormParam("vk_share") String vk_share ,
+			 @DefaultValue("") @FormParam("lj_share") String lj_share ,
+			 @DefaultValue("") @FormParam("twitter_share") String twitter_share ) throws IOException {
 		
 		log.info("Start save ");
 		
@@ -148,7 +151,10 @@ public class ItemServlet {
 			throw new CustomException(Status.BAD_REQUEST, "Field 'name' is missing.");
 		}
 	
-		itemService.saveItem(slug,name,thumbnailUrl,about,description,recipeCategory,totalTime,recipeYield,ingredients,nutrition,active,datePublished,dateCreated,dateModified);
+		itemService.saveItem(slug,name,thumbnailUrl,about,description,
+				recipeCategory,totalTime,recipeYield,ingredients,nutrition,
+				active,datePublished,dateCreated,dateModified,
+				fb_share, vk_share, lj_share, twitter_share);
 	
 		response.sendRedirect("/n");
 		log.info("End save ");

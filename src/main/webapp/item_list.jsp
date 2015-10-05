@@ -14,8 +14,8 @@
 				<c:forEach items="${items}" var="item" begin="0" end="3">
 					<div itemprop="itemListElement" class="col-sm-6 col-lg-3">
 						<div class="thumbnail">
-							<c:if test="${!empty items}">
-							 <a href="/recipe/${item.thumbnailUrl}"> <img
+							<c:if test="${!empty item.thumbnailUrl}">
+							 <a href="/recipe/${item.slug}"> <img
 								width="300" height="225" itemprop="image"
 								src="${item.thumbnailUrl}">
 							 </a>
@@ -38,10 +38,12 @@
 				<c:forEach items="${items}" var="item"  begin="4" end="7">
 					<div itemprop="itemListElement" class="col-sm-6 col-lg-3">
 						<div class="thumbnail">
-							<a href="/recipe/${item.slug}"> <img
+							<c:if test="${!empty item.thumbnailUrl}">
+							 <a href="/recipe/${item.slug}"> <img
 								width="300" height="225" itemprop="image"
 								src="${item.thumbnailUrl}">
-							</a>
+							 </a>
+							 </c:if>
 							<div class="caption">
 								<h3 itemprop="name">
 									<a href="/recipe/${item.slug}"
@@ -59,10 +61,12 @@
 				<c:forEach items="${items}" var="item"  begin="8" end="11">
 					<div itemprop="itemListElement" class="col-sm-6 col-lg-3">
 						<div class="thumbnail">
-							<a href="/recipe/${item.slug}"> <img
+							<c:if test="${!empty item.thumbnailUrl}">
+							 <a href="/recipe/${item.slug}"> <img
 								width="300" height="225" itemprop="image"
 								src="${item.thumbnailUrl}">
-							</a>
+							 </a>
+							 </c:if>
 							<div class="caption">
 								<h3 itemprop="name">
 									<a href="/recipe/${item.slug}"
@@ -80,10 +84,12 @@
 				<c:forEach items="${items}" var="item" begin="12" end="15">
 					<div itemprop="itemListElement" class="col-sm-6 col-lg-3">
 						<div class="thumbnail">
-							<a href="/recipe/${item.slug}"> <img
+							<c:if test="${!empty item.thumbnailUrl}">
+							 <a href="/recipe/${item.slug}"> <img
 								width="300" height="225" itemprop="image"
 								src="${item.thumbnailUrl}">
-							</a>
+							 </a>
+							 </c:if>
 							<div class="caption">
 								<h3 itemprop="name">
 									<a href="/recipe/${item.slug}"

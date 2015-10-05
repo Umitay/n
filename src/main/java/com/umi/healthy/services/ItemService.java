@@ -15,6 +15,7 @@ import lombok.extern.java.Log;
 import com.google.appengine.labs.repackaged.com.google.common.collect.Lists;
 import com.umi.healthy.data.Category;
 import com.umi.healthy.data.Item;
+import com.umi.healthy.data.SitemapIndex;
 import com.umi.healthy.data.X_CategoryItem;
 import com.umi.healthy.data.persist.DBService;
 import com.umi.healthy.utils.StringUtil;
@@ -36,12 +37,12 @@ public class ItemService extends DBService{
 		
 		return item;
 	}
-	public List<Item> loadItems(Integer limit){
+	public List<Item> loadItems(Integer limit, Integer offset){
 
 		List<Item>  items = Lists.newArrayList() ;
 		
 		try{
-		 items = ofy().load().type(Item.class).filter("active", true).order("-dateCreated").limit(limit).list();
+		 items = ofy().load().type(Item.class).filter("active", true).order("-dateCreated").limit(limit).offset(offset).list();
 		}catch(Exception e ) {
 			log.severe(StringUtil.exceptionFormat( e ));
 		}
@@ -102,8 +103,8 @@ public class ItemService extends DBService{
 						case "description": 
 							String  description = line[colIndex];
 							if(description.length() >0){
-								description = description.replaceAll("(\\r\\n|\\n)", "<br>");
-								description = description.replaceAll("<br><br>", "<br>");
+								description = description.replaceAll("(\\r\\n|\\n)", "<br><br>");
+								description = description.replaceAll("<br><br><br>", "<br><br>");
 								
 								item.setDescription(description);
 							}
@@ -120,8 +121,8 @@ public class ItemService extends DBService{
 							String  ingredients = line[colIndex];
 							log.info(ingredients);
 							if(ingredients.length() >0){
-								ingredients = ingredients.replaceAll("(\\r\\n|\\n)",  "<br>");
-								ingredients = ingredients.replaceAll("<br><br>", "<br>");
+								ingredients = ingredients.replaceAll("(\\r\\n|\\n)",  "<br><br>");
+								ingredients = ingredients.replaceAll("<br><br><br>", "<br><br>");
 								item.setIngredients(ingredients);
 							}
 							 break;
@@ -139,6 +140,10 @@ public class ItemService extends DBService{
 							
 							
 							 break;
+						case "fb_share": item.setFb_share(line[colIndex]); break;
+						case "vk_share": item.setVk_share(line[colIndex]); break;
+						case "lj_share": item.setLj_share(line[colIndex]); break;
+						case "twitter_share": item.setTwitter_share(line[colIndex]); break;
 						default:log.info("unregistered column "+header[colIndex]); break;
 					}
 					
@@ -169,7 +174,9 @@ public class ItemService extends DBService{
 			String about, String description, String categories,
 			String totalTime, String recipeYield, String ingredients,
 			String nutrition,  Boolean active,
-			Long datePublished, Long dateCreated, Long dateModified) {
+			Long datePublished, Long dateCreated, Long dateModified,
+			String fb_share , String vk_share , String lj_share , String twitter_share ) {
+		
 			List<String> recipeCategory =null;
 			Item  item =  null;
 			
@@ -199,12 +206,26 @@ public class ItemService extends DBService{
 					item.setRecipeCategory(recipeCategory); 
 				}
 				
-				item.setRecipeYield(recipeYield);
-				item.setThumbnailUrl(thumbnailUrl );            
-				item.setTotalTime( totalTime);
+				item.setRecipeYield( recipeYield );
+				item.setThumbnailUrl( thumbnailUrl );            
+				item.setTotalTime( totalTime );
+				item.setFb_share( fb_share );
+				item.setVk_share( vk_share ); 
+				item.setLj_share( lj_share ); 
+				item.setTwitter_share( twitter_share ); 
 				item.setActive(true);
 				item =  save(item);
 				saveItemCategory(item, recipeCategory,true);
+				
+				SitemapIndex sitemap = load(SitemapIndex.class, "1");
+				
+				if(sitemap == null){
+					sitemap = new SitemapIndex();
+					sitemap.setId("1");
+				}
+				
+				sitemap.setRecipe_date_modified (System.currentTimeMillis());
+				save(sitemap);
 				
 			}catch(Exception e ) {
 				log.severe("newitem.getitem_name(): " + name);

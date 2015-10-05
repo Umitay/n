@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /n
+Allow: /
+Host: www.ur-recipe.com

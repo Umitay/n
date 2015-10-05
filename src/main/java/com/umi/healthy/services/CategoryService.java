@@ -8,6 +8,7 @@ import lombok.extern.java.Log;
 
 import com.google.appengine.labs.repackaged.com.google.common.collect.Lists;
 import com.umi.healthy.data.Category;
+import com.umi.healthy.data.SitemapIndex;
 import com.umi.healthy.data.persist.DBService;
 import com.umi.healthy.utils.StringUtil;
 
@@ -48,27 +49,23 @@ public class CategoryService  extends DBService{
 			category.setActive(newcategory.getActive());
 			category = save(category);
 			
+			SitemapIndex sitemap = load(SitemapIndex.class, "1");
+			
+			if(sitemap == null){
+				sitemap = new SitemapIndex();
+				sitemap.setActive(true);
+				sitemap.setId("1");
+			}
+			
+			sitemap.setCategory_date_modified(System.currentTimeMillis());
+			save(sitemap);
+			
 		}catch(Exception e ) {
 			log.severe("newcategory.getcategory_name(): " + newcategory.getName());
 			log.severe(StringUtil.exceptionFormat( e ));
 		}
 		
 		return category;
-	}
-
-
-	public void saveCategories(List<Category> categories) {
-		try{
-			
-			save(categories);
-			
-		}catch(Exception e){
-			log.severe(StringUtil.exceptionFormat( e ));
-			for(Category category:categories){
-				save(category);
-			}
-		}
-		
 	}
 
 }

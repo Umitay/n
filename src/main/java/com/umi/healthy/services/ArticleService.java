@@ -7,18 +7,21 @@ import java.util.List;
 import lombok.extern.java.Log;
 
 import com.umi.healthy.data.Article;
+import com.umi.healthy.data.SitemapIndex;
 import com.umi.healthy.data.persist.DBService;
 import com.umi.healthy.utils.StringUtil;
 @Log
 public class ArticleService extends DBService{
-	public List<Article> loadArticles(Boolean active) {
+	public List<Article> loadArticles(Boolean active, Integer limit, Integer offset ) {
 		if(active){
-		return ofy().load().type(Article.class).filter( "active ==",active).list();
+			return ofy().load().type(Article.class).filter( "active ==",active).limit(limit).offset(offset).list();
 		}else{
 			return loadAll(Article.class);
 		}
 	}
-	
+	public List<Article> loadArticles(Boolean active) {
+	return  loadArticles(active,10000000, 0 );
+	}
 	
 	public Article loadArticle(String slug) {
 		return load(Article.class,slug);
@@ -42,8 +45,19 @@ public class ArticleService extends DBService{
 			article.setDateModified(System.currentTimeMillis() );
 			article.setPriority(newarticle.getPriority());
 			article.setActive(newarticle.getActive());
+			article.setAbout(newarticle.getAbout());
+			article.setThumbnailUrl(newarticle.getThumbnailUrl());
 			article = save(article);
 			
+			SitemapIndex sitemap = load(SitemapIndex.class, "1");
+			
+			if(sitemap == null){
+				sitemap = new SitemapIndex();
+				sitemap.setId("1");
+			}
+			
+			sitemap.setArticle_date_modified (System.currentTimeMillis());
+			save(sitemap);
 		}catch(Exception e ) {
 			log.severe("newarticle.getarticle_name(): " + newarticle.getName());
 			log.severe(StringUtil.exceptionFormat( e ));

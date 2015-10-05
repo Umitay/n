@@ -4,9 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@include file="header.jsp"%>
 <div class="container">
-	
-		<h1>${article.name}</h1>
-		${article.about}
+   <c:if test="${!empty category.description}">
+	<div class="jumbotron">
+		<h1>${category.name}</h1>
 		<c:if test="${empty unvisible}">
 			<div class="panel">
 				<script
@@ -21,8 +21,25 @@
 				</script>
 			</div>
 	    </c:if>
-	    
-		${article.description}
+		${category.description}
 	</div>
-
+	 </c:if>
+<c:if test="${!empty articles}">
+<ul class="media-list">
+ <c:forEach items="${articles}" var="article">
+  <li class="media">
+    <div class="media-left">
+      <a href="/article/${article.slug}">
+        <img class="media-object" src="${article.thumbnailUrl}" >
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">${article.name}</h4>
+     <p itemprop="summary">${article.about}</p>
+    </div>
+  </li>
+  </c:forEach>
+</ul>
+</c:if>
+</div>
 <%@include file="bottom.jsp"%>

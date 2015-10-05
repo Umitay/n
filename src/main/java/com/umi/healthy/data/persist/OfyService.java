@@ -14,6 +14,7 @@ public class OfyService
 		factory().register(Category.class);
 		factory().register(Article.class);
 		factory().register(X_CategoryItem.class);
+		factory().register(SitemapIndex.class);
     }
 
     public static Objectify ofy() {
