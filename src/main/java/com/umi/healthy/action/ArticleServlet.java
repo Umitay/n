@@ -159,12 +159,15 @@ public class ArticleServlet {
 		
 		log.info("Start save ");
 		
-		if(slug.length() <=0 ){
-			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
-		}
-		
 		if(name.length() <=0 ){
 			throw new CustomException(Status.BAD_REQUEST, "Field 'name' is missing.");
+		}
+		
+		if(slug.length() <=0 ){
+			slug = name.toLowerCase().replace(",", " ");
+			slug = slug.replace(" ", "-");
+			slug = slug.replace("--", "-");
+			//throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
 		}
 		
 		Article newarticle =  articleService.loadArticle(slug); 
