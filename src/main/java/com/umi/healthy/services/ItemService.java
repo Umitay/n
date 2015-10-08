@@ -90,7 +90,7 @@ public class ItemService extends DBService{
 		for (int rowIndex= 1; rowIndex < content.size(); rowIndex++) {
 			line = content.get(rowIndex);
 			Item item = new Item();
-			List<String> recipeCategory = null;
+			List<String> recipeCategory =Lists.newArrayList();
 			for(int colIndex = 0; colIndex < line.length; colIndex++){
 				
 				
@@ -111,7 +111,10 @@ public class ItemService extends DBService{
 							 break;
 						case "recipeCategory": 
 							String[] array = line[colIndex].split(",");
-							recipeCategory = Arrays.asList(array);
+							for(String a:array){
+								recipeCategory.add(a.toLowerCase().trim());
+							}
+						
 							item.setRecipeCategory(recipeCategory); 
 							break;
 							
