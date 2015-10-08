@@ -77,6 +77,23 @@ h1,.jumbotron a {
 section h2 {
     font-size: 23px;
 }
+
+.list-article-border {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: block;
+    line-height: 1.42857;
+    margin-bottom: 20px;
+    padding: 10px;
+    overflow: hidden;
+    height: 160px;
+    width: 500px;
+    transition: all 0.2s ease-in-out 0s;
+}
+.list-article-border:nth-child(2n) {
+  margin-left: 20px;
+}
 .panel-heading-bg1,.list-group-head-bg1 {
 	color: #E15D35 !important;
 	font-weight: bold !important;

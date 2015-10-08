@@ -25,7 +25,7 @@
 									<a href="/recipe/${item.slug}"
 										itemprop="url">${item.name}</a>
 								</h3>
-								<p itemprop="summary">${item.about}</p>
+								<p itemprop="description">${item.about}</p>
 							</div>
 						</div>
 					</div>
@@ -49,7 +49,7 @@
 									<a href="/recipe/${item.slug}"
 										itemprop="url">${item.name}</a>
 								</h3>
-								<p itemprop="summary">${item.about}</p>
+								<p itemprop="description">${item.about}</p>
 							</div>
 						</div>
 					</div>
@@ -72,7 +72,7 @@
 									<a href="/recipe/${item.slug}"
 										itemprop="url">${item.name}</a>
 								</h3>
-								<p itemprop="summary">${item.about}</p>
+								<p itemprop="description">${item.about}</p>
 							</div>
 						</div>
 					</div>
@@ -95,7 +95,7 @@
 									<a href="/recipe/${item.slug}"
 										itemprop="url">${item.name}</a>
 								</h3>
-								<p itemprop="summary">${item.about}</p>
+								<p itemprop="description">${item.about}</p>
 							</div>
 						</div>
 					</div>

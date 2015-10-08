@@ -89,7 +89,7 @@ public class ArticleServlet {
 			request.setAttribute("category", category);
 			request.setAttribute("articles", articles);
 			request.setAttribute("categories", categories);
-			request.getRequestDispatcher("/articles.jsp").forward(request, response);
+			request.getRequestDispatcher("/article_list.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
