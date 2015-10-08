@@ -30,7 +30,7 @@
 				<meta content="Descending" itemprop="itemListOrder">
 				
 				<c:forEach items="${articles}" var="article">
-					<div itemprop="itemListElement" class="list-article-border pull-left" >
+					<div itemprop="itemListElement" class="list-article-border pull-left" onclick="open_article('${article.slug}')">
 						<c:if test="${!empty article.thumbnailUrl}">
 					    <div class="pull-left">
 					      <a href="/article/${article.slug}">
@@ -40,7 +40,7 @@
 					    </c:if>
 					    <div class="pull-left">
 					     <h4  itemprop="name"> <a href="/article/${article.slug}" itemprop="url">${article.name}</a></h4>
-					     <div itemprop="description">${article.about}</div>
+					     <div id="description" itemprop="description">${article.about}</div>
 					    </div>
 					 </div>
 	  			</c:forEach>
@@ -48,5 +48,11 @@
 	</c:if>
 </div>
 
-<javascript>
+<script type="text/javascript">
+//<![CDATA[
+function open_article(slug){
+	location.href="/article/"+slug;
+}
+//]]>
+</script> 
 <%@include file="bottom.jsp"%>

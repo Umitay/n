@@ -14,25 +14,24 @@
 		<label>Name*</label>
 		<input type="text" value="${article.name}" name="name" class="form-control">
 		</div>
-		
-		<div class="form-group">
-		<label>About*</label>
-		<textarea name="about" class="form-control" type="text">${article.about}</textarea>
-		</div>
-		
-		<div class="form-group">
-		<label>Description*</label>
-		<textarea name="description" class="form-control" type="text">${article.description}</textarea>
-		</div>
-		
 		<div class="form-group">
 		<label>Active*</label>
-		<select name="active">
+		<select name="active" class="form-control">
 			<option value="true" ${article.active ? 'selected' : ''} >Yes</option>
 			<option value="false" ${!article.active ? 'selected' : ''}>No</option>
 		</select>
 		</div>
-
+		
+		<div class="form-group">
+		<label>About*</label>
+		<textarea style="height: 200px;" name="about" class="form-control" type="text">${article.about}</textarea>
+		</div>
+		
+		<div class="form-group">
+		<label>Description*</label>
+		<textarea style="height: 700px;" name="description" class="form-control" type="text">${article.description}</textarea>
+		</div>
+		
 		<input type="submit" class="btn btn-primary"> 
 		</form>
 	</div><!--/.container -->

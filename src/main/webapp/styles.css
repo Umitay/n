@@ -80,19 +80,24 @@ section h2 {
 
 .list-article-border {
     background-color: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid #d4f2c7;
     border-radius: 4px;
     display: block;
     line-height: 1.42857;
     margin-bottom: 20px;
     padding: 10px;
-    overflow: hidden;
     height: 160px;
     width: 500px;
+    cursor: pointer;
     transition: all 0.2s ease-in-out 0s;
 }
 .list-article-border:nth-child(2n) {
   margin-left: 20px;
+}
+.list-article-border #description{
+	max-height: 99px;
+	color:#36523f;
+	overflow: hidden;
 }
 .panel-heading-bg1,.list-group-head-bg1 {
 	color: #E15D35 !important;
