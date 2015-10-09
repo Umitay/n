@@ -87,7 +87,7 @@ section h2 {
     margin-bottom: 20px;
     padding: 10px;
     height: 160px;
-    width: 500px;
+    width: 49%;
     cursor: pointer;
     transition: all 0.2s ease-in-out 0s;
 }

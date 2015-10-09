@@ -60,7 +60,7 @@
 		</div>
 		<div class="form-group">
 		<label>Description*</label>
-		<textarea name="description" class="form-control" >${item.description}</textarea>
+		<textarea  style="height: 700px;" name="description" class="form-control" >${item.description}</textarea>
 		</div>
 		<div class="form-group">
 		<label>FB</label>

@@ -103,8 +103,8 @@ public class ItemService extends DBService{
 						case "description": 
 							String  description = line[colIndex];
 							if(description.length() >0){
-								description = description.replaceAll("(\\r\\n|\\n)", "<br><br>");
-								description = description.replaceAll("<br><br><br>", "<br><br>");
+								description = description.replaceAll("(\\r\\n|\\n)", "<br>");
+								description = description.replaceAll("<br><br>", "<br>");
 								
 								item.setDescription(description);
 							}
@@ -124,8 +124,8 @@ public class ItemService extends DBService{
 							String  ingredients = line[colIndex];
 							log.info(ingredients);
 							if(ingredients.length() >0){
-								ingredients = ingredients.replaceAll("(\\r\\n|\\n)",  "<br><br>");
-								ingredients = ingredients.replaceAll("<br><br><br>", "<br><br>");
+								ingredients = ingredients.replaceAll("(\\r\\n|\\n)",  "<br>");
+								ingredients = ingredients.replaceAll("<br><br>", "<br>");
 								item.setIngredients(ingredients);
 							}
 							 break;

@@ -25,7 +25,7 @@
 	</div>
 	 </c:if>
 	<c:if test="${!empty articles}">
-			<section itemscope="" itemtype="http://schema.org/ItemList">
+			<section itemscope="" itemtype="http://schema.org/ItemList" style="margin-top: 20px;">
 				<meta content=true itemprop="mainContentOfPage">
 				<meta content="Descending" itemprop="itemListOrder">
 				
