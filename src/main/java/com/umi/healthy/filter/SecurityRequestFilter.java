@@ -44,7 +44,7 @@ public class SecurityRequestFilter implements ContainerRequestFilter {
 			String currentPerson = null;
 			List<String> raList = Arrays.asList(roles_allowed.value());
 			
-			//if( raList.contains("ADMIN") ){
+			//if( raList.contains("ADMIN") || raList.contains("SEO") ){
 				Map<String, Cookie> cookies = requestContext.getCookies();
 				for (Entry<String, Cookie> c : cookies.entrySet()) {
 					log.info("Entry: " +  c.getKey() );
@@ -62,7 +62,7 @@ public class SecurityRequestFilter implements ContainerRequestFilter {
 					}
 				 }
 				
-			//}
+		//	}
 			
 			if (!is_allowed) {
 				URI uri = null;

@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -89,7 +90,23 @@ public class ItemService extends DBService{
 		
 		for (int rowIndex= 1; rowIndex < content.size(); rowIndex++) {
 			line = content.get(rowIndex);
-			Item item = new Item();
+			String name = line[5];
+			String slug = StringUtil.rus2lat(line[5].toLowerCase());
+			slug = slug.trim();
+			slug = slug.replace(",", "");
+			slug = slug.replace(".", "");
+			slug = slug.replace(" ", "-");
+			slug = slug.replace("--", "-");
+			
+			Item item =  loadItem( slug );
+			
+			if(item == null){
+				item = new Item();
+			}
+			
+			item.setSlug(slug);
+			item.setName(name);
+			
 			List<String> recipeCategory =Lists.newArrayList();
 			for(int colIndex = 0; colIndex < line.length; colIndex++){
 				
@@ -97,8 +114,9 @@ public class ItemService extends DBService{
 				if(line[colIndex] != null && header[colIndex] !=null){
 					
 					switch (header[colIndex]) {
-						case "name": item.setName(line[colIndex]); break;
+						case "alt": item.setAlt(line[colIndex]); break;
 						case "thumbnailUrl": item.setThumbnailUrl(line[colIndex]); break;
+						case "thumbnailUrl2": item.setThumbnailUrl2(line[colIndex]); break;
 						case "about": item.setAbout(line[colIndex]); break;
 						case "description": 
 							String  description = line[colIndex];
@@ -141,7 +159,6 @@ public class ItemService extends DBService{
 									item.setDateCreated(System.currentTimeMillis());
 								}
 							
-							
 							 break;
 						case "fb_share": item.setFb_share(line[colIndex]); break;
 						case "vk_share": item.setVk_share(line[colIndex]); break;
@@ -159,12 +176,11 @@ public class ItemService extends DBService{
 				if(item.getDateCreated() == null ){
 					item.setDateCreated(System.currentTimeMillis());
 				}
-				item.setActive(false);
-				String slug = item.getName().toLowerCase().replace(",", " ");
-				slug = slug.replace(" ", "-");
-				item.setSlug(slug.replace("--", "-"));
+				item.setDatePublished( System.currentTimeMillis() );
+				item.setDateModified( System.currentTimeMillis() );
+				item.setActive(true);
 				item = save(item);
-				saveItemCategory(item, recipeCategory);
+				saveItemCategory(item, recipeCategory,item.getActive());
 			}
 		}// end of cycle
 		
@@ -173,7 +189,7 @@ public class ItemService extends DBService{
 	
 
 
-	public Item saveItem(String slug, String name, String thumbnailUrl,
+	public Item saveItem(String slug, String name, String alt, String thumbnailUrl, String thumbnailUrl2,
 			String about, String description, String categories,
 			String totalTime, String recipeYield, String ingredients,
 			String nutrition,  Boolean active,
@@ -182,35 +198,51 @@ public class ItemService extends DBService{
 		
 			List<String> recipeCategory =null;
 			Item  item =  null;
-			
+			Item  item_clone =  null;
+			String new_slug=  null;
 			
 			try{
+				if(!categories.isEmpty()){
+					String[] array = categories.split(",");
+					recipeCategory = Arrays.asList(array);
+				}
+				
+				new_slug = StringUtil.rus2lat(name);
+				new_slug = new_slug.replace(",", "");
+				new_slug = new_slug.replace(".", "");
+				new_slug = new_slug.replace(" ", "-");
+				new_slug = new_slug.replace("--", "-");
+				new_slug = new_slug.trim();
 				
 				item =load( Item.class ,slug);
 				
 				if(item == null){
+					
 					item = new Item();
-					item.setSlug( slug );
+					item.setSlug( new_slug );
 					item.setDateCreated( System.currentTimeMillis() );
 					
+				}else if(!item.getSlug().equals(new_slug) ){
+					
+					item_clone = item.clone();
+					item_clone.setActive(false);
+					saveItemCategory(item_clone, recipeCategory,false);
+					
+					item.setSlug( new_slug );
 				}
 				
 				item.setAbout(about);
 				item.setDescription(description);
 				item.setName( name );
+				item.setAlt( alt );
 				item.setDatePublished( System.currentTimeMillis() );
 				item.setDateModified( System.currentTimeMillis() );
 				item.setIngredients(ingredients);
 				item.setNutrition(nutrition);
-				
-				if(!categories.isEmpty()){
-					String[] array = categories.split(",");
-					recipeCategory = Arrays.asList(array);
-					item.setRecipeCategory(recipeCategory); 
-				}
-				
+				item.setRecipeCategory(recipeCategory); 
 				item.setRecipeYield( recipeYield );
-				item.setThumbnailUrl( thumbnailUrl );            
+				item.setThumbnailUrl( thumbnailUrl );      
+				item.setThumbnailUrl2( thumbnailUrl2 );       
 				item.setTotalTime( totalTime );
 				item.setFb_share( fb_share );
 				item.setVk_share( vk_share ); 
@@ -277,5 +309,5 @@ public class ItemService extends DBService{
 		}
 	
 	}
-
-}
+	
+	}

@@ -19,7 +19,7 @@
 <script>tinymce.init({selector:'textarea',plugins: [
                                                     "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak spellchecker",
                                                     "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-                                                    "table contextmenu template textcolor paste fullpage textcolor"
+                                                    "table contextmenu template textcolor paste  textcolor"
                                                   ]});</script>
 
 <title>Admin</title>
@@ -41,17 +41,24 @@ body{ padding-top: 10%}
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" rel="home" href="/">Рецепты</a>
+      <a class="navbar-brand" rel="home" target="_blank" href="/">Рецепты</a>
     </div>
      <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-      <li><a href="/n"><b>Admin</b></a>  </li>
       <li><a href="/csv"><b>Upload Csv</b></a>  </li>
-      <li><a href="/article/l"><b>Articles</b></a>  </li>
          <c:if test="${!empty categories}">
 		    <c:forEach items="${categories}" var="category">
-		    	<li><a  style="display: inline;" href="/category/l/${category.slug}">${category.name}</a><a style="display: inline;"href="/category/e/${category.slug}">(edit)</a></li>
+		     <c:if test="${category.slug == 'recipes'}">
+		    	<li><a  style="display: inline;" href="/n">${category.name}</a><a style="display: inline;" href="/category/e/${category.slug}">(edit)</a></li>
+			   </c:if>
+			   <c:if test="${category.slug == 'articles'}">
+			   <li><a  style="display: inline;" href="/article/l">${category.name}</a><a style="display: inline;"href="/category/e/${category.slug}">(edit)</a></li>
+			
+			   </c:if>
+			   <c:if test="${category.slug != 'recipes' && category.slug != 'articles'}">
+			   <li><a  style="display: inline;" href="/category/l/${category.slug}">${category.name}</a><a style="display: inline;"href="/category/e/${category.slug}">(edit)</a></li>
+			   </c:if>
 		    </c:forEach>
 		   </c:if>
 

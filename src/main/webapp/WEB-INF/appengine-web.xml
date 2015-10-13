@@ -12,7 +12,9 @@
 	<env-variables>
 	  <env-var name="DEFAULT_ENCODING" value="UTF-8" />
 	</env-variables>
+	
 	<sessions-enabled>true</sessions-enabled>
+	
 	<static-files>
 	  <include path="/**.png" expiration="4d 5h" />
 	  <include path="/**.css" expiration="4d 5h"/>

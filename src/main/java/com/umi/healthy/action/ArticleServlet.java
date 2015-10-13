@@ -30,6 +30,7 @@ import com.umi.healthy.services.ArticleService;
 import com.umi.healthy.services.CategoryService;
 import com.umi.healthy.services.ItemService;
 import com.umi.healthy.utils.CustomException;
+import com.umi.healthy.utils.StringUtil;
 
 @Path("/article")
 @Log
@@ -164,10 +165,12 @@ public class ArticleServlet {
 		}
 		
 		if(slug.length() <=0 ){
-			slug = name.toLowerCase().replace(",", " ");
+			slug = StringUtil.rus2lat(name.toLowerCase());
+			slug = slug.trim();
+			slug = slug.replace(",", "");
+			slug = slug.replace(".", "");
 			slug = slug.replace(" ", "-");
 			slug = slug.replace("--", "-");
-			//throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
 		}
 		
 		Article newarticle =  articleService.loadArticle(slug); 
@@ -176,11 +179,11 @@ public class ArticleServlet {
 			newarticle = new Article();
 		}
 		
-		newarticle.setDescription(description);
+		newarticle.setDescription(description.trim());
 		newarticle.setName(new String(name.getBytes("utf-8"),"utf-8" ));
 		newarticle.setSlug(slug);
-		newarticle.setThumbnailUrl(thumbnailUrl);
-		newarticle.setAbout(about);
+		newarticle.setThumbnailUrl(thumbnailUrl.trim());
+		newarticle.setAbout(about.trim());
 		newarticle.setActive(active);
 		articleService.saveArticle(newarticle);
 		

@@ -1,27 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@include file="header.jsp" %>
+<%@include file="item_header.jsp" %>
 
 <div class="container">
 	<div class="row">	
 	<div class="col-xs-12 col-sm-8 col-md-8">
 	 <div id="item" itemtype="http://schema.org/Recipe" itemscope="">
-		<meta itemprop="recipeCategory" content="Овощи и гарниры">
-		<meta itemprop="description" content="Легкое,но сытное блюдо из доступных продуктов.">
-		<meta itemprop="dateModified" content="2015-07-1">
+		<meta itemprop="dateModified" content="${item_dateModified}">
 		<div class="page-header"><h1 itemprop="name">${item.name}</h1></div>
 		
 		<!-- row -->		 
 		<div class="row">
 		  <div class="col-xs-6 col-md-4">
-		  <div class="thumbnail" id="output_field" style="height: 180px; background-color:#F1FCEC;" itemprop="image"> 
-		     <img width="230" height="230" src="${item.thumbnailUrl}" />	</div>
-		<script src="https://apis.google.com/js/plusone.js"></script>
-		<g:plus action="share"></g:plus>
+		    <div class="thumbnail" id="output_field" style="height: 180px; background-color:#F1FCEC;" itemprop="image"> 
+		     <img width="230" height="230" src="${item.thumbnailUrl}" />	
+		    </div>
 		  </div>
 		  <div class="col-xs-6 col-md-8">
-		 	<div>${item.about}</div>
+		 	<div itemprop="description" >${item.about}</div>
 		 	<div>
 				Время приготовления:
 				<time content="PT${item.totalTime} min" itemprop="totalTime">${item.totalTime} мин</time>
@@ -41,7 +38,7 @@
 		 	<c:if test="${!empty item_categories}">
 			 	<div>Категорий: 
 				 	<c:forEach items="${item_categories}" var="category">
-				 		<a href="http://ur-recipe.com/category/${category.slug}">${category.name}</a>&nbsp;
+				 		<a href="http://www.ur-recipe.com/category/${category.slug}" itemprop="recipeCategory">${category.name}</a>&nbsp;
 					</c:forEach>
 				</div>
 			</c:if>
@@ -52,6 +49,7 @@
 		 </div>
 		</div>
 		<!-- / row -->
+		<%@include file="horizont_sosial_buttons.jsp" %>
 		<div class="bg-warning ads"></div>
 		<!--  row -->
 		<div class="row">

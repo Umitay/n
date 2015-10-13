@@ -19,6 +19,7 @@ import javax.ws.rs.core.Response.Status;
 import lombok.extern.java.Log;
 
 import com.umi.healthy.data.persist.EnvironmentConfig;
+import com.umi.healthy.services.UserService;
 import com.umi.healthy.utils.CustomException;
 import com.umi.healthy.utils.EncodingUtil;
 import com.umi.healthy.utils.NetworkUtils;
@@ -38,7 +39,7 @@ public class LoginServlet {
 			String currentPerson = NetworkUtils.readCookieValue("p1", request );
 			
 			if( currentPerson != null && EncodingUtil.MD5("offer" + EnvironmentConfig.SECRET_KEY).equals(currentPerson) ){
-				response.sendRedirect("/oz");
+				response.sendRedirect("/n");
 				log.info("the user in the session");
 			}else{
 				request.getRequestDispatcher("/login.jsp").forward(request, response);
@@ -71,13 +72,13 @@ public class LoginServlet {
 		if(password.length() <=0 ){
 			throw new CustomException(Status.BAD_REQUEST, "Field 'password' is missing.");
 		}
-
-		if( email.equals( EnvironmentConfig.getInstance().getEmail() ) 
-				&& password.equals(EnvironmentConfig.getInstance().getPassword() ) ){
+		UserService userService = new UserService();
+		
+		if( userService.is_user_exists( email ,password ) ){
 			log.info("writeCookie ");
-			NetworkUtils.writeCookie(response, "p1", "offer");
+			NetworkUtils.writeCookie(response, "p1", EncodingUtil.MD5("offer" + EnvironmentConfig.SECRET_KEY));
 			log.info("the user in the session");
-			response.sendRedirect("/oz");
+			response.sendRedirect("/n");
 			
 		}else{
 			log.info("The passed details are wrong");

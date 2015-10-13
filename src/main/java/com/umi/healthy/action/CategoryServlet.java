@@ -120,7 +120,7 @@ public class CategoryServlet {
 	@Path("/e/{slug}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	@RolesAllowed({"ADMIN", "API"})
+	@RolesAllowed({"ADMIN", "API", "SEO"})
 	public void edit( @DefaultValue("") @PathParam("slug") String slug ) {
 		response.setContentType("text/html; charset=utf-8");
 		

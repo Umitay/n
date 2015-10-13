@@ -14,10 +14,17 @@
 		<input type="text" value="${item.name}" name="name" class="form-control">
 		</div>
 		<div class="form-group">
+		<label>Alt*</label>
+		<input type="text" value="${item.alt}" name="alt" class="form-control">
+		</div>
+		<div class="form-group">
 		<label>thumbnailUrl*</label>
 		<input type="text" value="${item.thumbnailUrl}" name="thumbnailUrl" class="form-control">
 		</div>
-		
+		<div class="form-group">
+		<label>thumbnailUrl2*</label>
+		<input type="text" value="${item.thumbnailUrl2}" name="thumbnailUrl2" class="form-control">
+		</div>
 		<div class="form-group">
 		<label>recipeCategory*</label>
 		<input type="text" value="${item_categories}" name="recipeCategory" class="form-control">

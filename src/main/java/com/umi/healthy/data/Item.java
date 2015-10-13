@@ -23,11 +23,19 @@ public class Item {
 	@Getter
 	@Setter
 	public String name;
-	
+	@Index
+	@Getter
+	@Setter
+	public String alt;
 	@Index
 	@Getter
 	@Setter
 	public String thumbnailUrl;
+	
+	@Index
+	@Getter
+	@Setter
+	public String thumbnailUrl2;
 	
 	@Index
 	@Getter
@@ -108,4 +116,11 @@ public class Item {
 	@Getter
 	@Setter
 	public String  twitter_share;
+
+	@Override
+	public Item clone() throws CloneNotSupportedException {
+		// TODO Auto-generated method stub
+		return this.clone();
+	}
+	
 }

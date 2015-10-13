@@ -84,6 +84,9 @@ public class ItemServlet {
 			Date d = new Date( item.getDatePublished() );
 			request.setAttribute("item_datePublished", DateFormatUtils.format(d,"dd.MM.yyyy"));
 			
+			Date dm = new Date( item.getDateModified() );
+			request.setAttribute("item_dateModified", DateFormatUtils.format(dm,"dd.MM.yyyy"));
+			
 			request.setAttribute("categories", categories);
 			request.setAttribute("item_categories", item_categories);
 			
@@ -104,10 +107,14 @@ public class ItemServlet {
 	@Produces(MediaType.APPLICATION_JSON)
 	@RolesAllowed({"ADMIN", "API"})
 	public void edit( @DefaultValue("") @PathParam("slug") String slug ) {
-
+		
+		String item_categories = "";
 		Item item =  itemService.loadItem(slug); 
+		if(item !=null){
+			item_categories = StringUtils.join(item.getRecipeCategory(), ",");
+		}
 		try {
-			request.setAttribute("item_categories", StringUtils.join(item.getRecipeCategory(), ","));
+			request.setAttribute("item_categories", item_categories );
 			request.setAttribute("item", item);
 			request.getRequestDispatcher("/item_form.jsp").forward(request, response);
 			
@@ -120,11 +127,13 @@ public class ItemServlet {
 	@Path("/save")
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
-	@RolesAllowed({"ADMIN", "API"})
+	@RolesAllowed({"ADMIN", "API", "SEO"})
 	public void save (	
 			 @DefaultValue("") @FormParam("slug") String  slug,
 			 @DefaultValue("") @FormParam("name") String name,
+			 @DefaultValue("") @FormParam("alt") String alt,
 			 @DefaultValue("") @FormParam("thumbnailUrl") String thumbnailUrl,
+			 @DefaultValue("") @FormParam("thumbnailUrl2") String thumbnailUrl2,
 			 @DefaultValue("") @FormParam("about") String about,
 			 @DefaultValue("") @FormParam("description") String description,
 			 @DefaultValue("") @FormParam("recipeCategory") String recipeCategory,
@@ -151,7 +160,7 @@ public class ItemServlet {
 			throw new CustomException(Status.BAD_REQUEST, "Field 'name' is missing.");
 		}
 	
-		itemService.saveItem(slug,name,thumbnailUrl,about,description,
+		itemService.saveItem(slug,name,alt,thumbnailUrl,thumbnailUrl2,about,description,
 				recipeCategory,totalTime,recipeYield,ingredients,nutrition,
 				active,datePublished,dateCreated,dateModified,
 				fb_share, vk_share, lj_share, twitter_share);
