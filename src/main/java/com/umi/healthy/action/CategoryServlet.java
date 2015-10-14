@@ -43,9 +43,10 @@ public class CategoryServlet {
 	
 	@Path("/{slug}")
 	@GET
-	public void view( @DefaultValue("") @PathParam("slug") String slug ) {
+	public void view( @DefaultValue("") @PathParam("slug") String slug ) throws IOException {
 		log.info("Start view");
 		if(slug.length() <=0 ){
+			response.sendRedirect("/");
 			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
 		}
 		if(request.getServerName().contains("appspot.com")){
@@ -54,6 +55,7 @@ public class CategoryServlet {
 		
 		Category category =  categoryService.loadCategory(slug); 
 		if( category == null ){
+			response.sendRedirect("/");
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
 		
@@ -74,6 +76,7 @@ public class CategoryServlet {
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
+			response.sendRedirect("/");
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
 		log.info("End view");
@@ -81,7 +84,7 @@ public class CategoryServlet {
 
 	@Path("/l/{slug}")
 	@GET
-	public void n_view( @DefaultValue("") @PathParam("slug") String slug ) {
+	public void n_view( @DefaultValue("") @PathParam("slug") String slug ) throws IOException {
 		log.info("Start view");
 		if(slug.length() <=0 ){
 			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
@@ -92,6 +95,7 @@ public class CategoryServlet {
 		
 		
 		if( category == null ){
+			response.sendRedirect("/");
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
 		
@@ -121,7 +125,7 @@ public class CategoryServlet {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@RolesAllowed({"ADMIN", "API", "SEO"})
-	public void edit( @DefaultValue("") @PathParam("slug") String slug ) {
+	public void edit( @DefaultValue("") @PathParam("slug") String slug ) throws IOException {
 		response.setContentType("text/html; charset=utf-8");
 		
 		Category category =  categoryService.loadCategory(slug); 
@@ -136,6 +140,7 @@ public class CategoryServlet {
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
+			response.sendRedirect("/n");
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
 	}
@@ -153,11 +158,10 @@ public class CategoryServlet {
 		
 		log.info("Start save ");
 		
-		if(slug.length() <=0 ){
-			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
-		}
+		
 		
 		if(name.length() <=0 ){
+			response.sendRedirect("/n");
 			throw new CustomException(Status.BAD_REQUEST, "Field 'name' is missing.");
 		}
 		

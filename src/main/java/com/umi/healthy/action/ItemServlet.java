@@ -113,7 +113,11 @@ public class ItemServlet {
 		if(item !=null){
 			item_categories = StringUtils.join(item.getRecipeCategory(), ",");
 		}
+		CategoryService categoryService = new CategoryService(); 
+		List<Category> all_categories =  categoryService.loadAllCategories(); 
+		
 		try {
+			request.setAttribute("categories", all_categories);
 			request.setAttribute("item_categories", item_categories );
 			request.setAttribute("item", item);
 			request.getRequestDispatcher("/item_form.jsp").forward(request, response);
@@ -152,11 +156,9 @@ public class ItemServlet {
 		
 		log.info("Start save ");
 		
-		if(slug.length() <=0 ){
-			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
-		}
-		
+			
 		if(name.length() <=0 ){
+			response.sendRedirect("/n");
 			throw new CustomException(Status.BAD_REQUEST, "Field 'name' is missing.");
 		}
 	

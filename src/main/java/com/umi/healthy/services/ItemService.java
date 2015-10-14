@@ -198,8 +198,7 @@ public class ItemService extends DBService{
 		
 			List<String> recipeCategory =null;
 			Item  item =  null;
-			Item  item_clone =  null;
-			String new_slug=  null;
+			String new_slug=  name.toLowerCase();
 			
 			try{
 				if(!categories.isEmpty()){
@@ -207,12 +206,24 @@ public class ItemService extends DBService{
 					recipeCategory = Arrays.asList(array);
 				}
 				
-				new_slug = StringUtil.rus2lat(name);
+			}catch(Exception e ) {
+				log.severe("recipe category: " + categories);
+				log.severe(StringUtil.exceptionFormat( e ));
+			}
+			
+			try{
+				new_slug = StringUtil.rus2lat(new_slug);
 				new_slug = new_slug.replace(",", "");
 				new_slug = new_slug.replace(".", "");
 				new_slug = new_slug.replace(" ", "-");
 				new_slug = new_slug.replace("--", "-");
 				new_slug = new_slug.trim();
+			}catch(Exception e ) {
+				log.severe("rus2lat: " + categories);
+				log.severe(StringUtil.exceptionFormat( e ));
+			}
+			
+			try{
 				
 				item =load( Item.class ,slug);
 				
@@ -224,12 +235,21 @@ public class ItemService extends DBService{
 					
 				}else if(!item.getSlug().equals(new_slug) ){
 					
-					item_clone = item.clone();
-					item_clone.setActive(false);
-					saveItemCategory(item_clone, recipeCategory,false);
+					Item  item_clone = load( Item.class ,slug);
+					List<X_CategoryItem> x  = ofy().load().type(X_CategoryItem.class).filter("item_slug", item.getSlug() ).list();
+					deleteList(x);
+					delete(item_clone);
 					
 					item.setSlug( new_slug );
+					
 				}
+			}catch(Exception e ) {
+				log.severe("load item, slug: " + slug+",new_slug: "+new_slug);
+				log.severe(StringUtil.exceptionFormat( e ));
+			}
+			
+			try{
+			
 				
 				item.setAbout(about);
 				item.setDescription(description);

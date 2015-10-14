@@ -8,7 +8,7 @@
 	<form action="/article/save" method="post">
 		<div class="form-group">
 		<label>Slug*</label>
-		<input type="text" value="${article.slug}" name="slug" class="form-control">
+		<input type="text" value="${article.slug}" name="slug" class="form-control" disabled="disabled">
 		</div>
 		<div class="form-group">
 		<label>Name*</label>

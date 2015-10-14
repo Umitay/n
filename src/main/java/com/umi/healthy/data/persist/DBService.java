@@ -45,7 +45,14 @@ public class DBService {
 	{
 		return ofy().load().key(key).now();
 	}
-
+	public <E> void delete(E object)
+	{
+		ofy().delete().entity(object);
+	}
+	public <E> void deleteList(List<E> objects)
+	{
+		ofy().delete().entities(objects);
+	}
 	public <E> void deleteAll(Class<E> type)
 	{
 		ofy().delete().keys(ofy().load().type(type).keys());

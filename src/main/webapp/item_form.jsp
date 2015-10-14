@@ -7,7 +7,7 @@
 	<form action="/recipe/save" method="post">
 		<div class="form-group">
 		<label>Slug*</label>
-		<input type="text" value="${item.slug}" name="slug" class="form-control">
+		<input type="text" value="${item.slug}" name="slug" class="form-control" disabled="disabled">
 		</div>
 		<div class="form-group">
 		<label>Name*</label>

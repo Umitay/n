@@ -27,6 +27,7 @@ import javax.ws.rs.core.Response.Status;
 import lombok.extern.java.Log;
 
 import com.umi.healthy.data.Category;
+import com.umi.healthy.services.CategoryService;
 import com.umi.healthy.services.ItemService;
 import com.umi.healthy.utils.Csv;
 import com.umi.healthy.utils.CustomException;
@@ -42,6 +43,9 @@ public class CSVServlet  {
 	@RolesAllowed({"ADMIN", "API"})
 	public void index( @DefaultValue("") @QueryParam("slug") String slug ) {
 		try {
+			CategoryService categoryService = new CategoryService(); 
+			List<Category> categories =  categoryService.loadAllCategories(); 
+			request.setAttribute("categories", categories);
 			request.getRequestDispatcher("/csv_loader.jsp").forward(request, response);
 		} catch (ServletException | IOException e) {
 			throw new CustomException(Status.INTERNAL_SERVER_ERROR,  e.getMessage() );

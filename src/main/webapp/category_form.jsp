@@ -8,7 +8,7 @@
 	<form action="/category/save" method="post">
 		<div class="form-group">
 		<label>Slug*</label>
-		<input type="text" value="${category.slug}" name="slug" class="form-control">
+		<input type="text" value="${category.slug}" name="slug" class="form-control" >
 		</div>
 		<div class="form-group">
 		<label>Name*</label>

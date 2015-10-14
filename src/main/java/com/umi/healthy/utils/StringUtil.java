@@ -212,7 +212,7 @@ public class StringUtil
 	}
 public static String rus2lat(String str){
 		
-		String new_str = "";
+	
 		Map<Character,String> map = new HashMap<Character,String>();
 		map.put('\u0410', "A");
 		map.put('\u0412', "B");
@@ -272,17 +272,6 @@ public static String rus2lat(String str){
 		}
 		
 		
-		for (int i = 0; i < str.length(); i++) {
-			
-			if(map.containsKey(str.charAt(i))){
-				log.info("containsKey:" + str.charAt(i));
-				new_str = new_str+map.get(str.charAt(i));
-			}else{
-				log.info("not containsKey:" + str.charAt(i));
-				new_str = new_str+str.charAt(i);
-			}
-	    }
-		
-		return new_str;
+		return  sb.toString();
 	}
 }

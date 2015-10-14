@@ -44,9 +44,10 @@ public class ArticleServlet {
 	
 	@Path("/{slug}")
 	@GET
-	public void view( @DefaultValue("") @PathParam("slug") String slug ) {
+	public void view( @DefaultValue("") @PathParam("slug") String slug ) throws IOException {
 		log.info("Start view");
 		if(slug.length() <=0 ){
+			response.sendRedirect("/");
 			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
 		}
 		if(request.getServerName().contains("appspot.com")){
@@ -55,6 +56,7 @@ public class ArticleServlet {
 		
 		Article article =  articleService.loadArticle(slug); 
 		if( article == null ){
+			response.sendRedirect("/");
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
 		List<Article> articles =  articleService.loadArticles(true);
@@ -126,7 +128,7 @@ public class ArticleServlet {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@RolesAllowed({"ADMIN", "API"})
-	public void edit( @DefaultValue("") @PathParam("slug") String slug ) {
+	public void edit( @DefaultValue("") @PathParam("slug") String slug ) throws IOException {
 		response.setContentType("text/html; charset=utf-8");
 		
 		Article article =  articleService.loadArticle(slug); 
@@ -141,6 +143,7 @@ public class ArticleServlet {
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
+			response.sendRedirect("/n");
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
 	}
@@ -161,6 +164,7 @@ public class ArticleServlet {
 		log.info("Start save ");
 		
 		if(name.length() <=0 ){
+			response.sendRedirect("/n");
 			throw new CustomException(Status.BAD_REQUEST, "Field 'name' is missing.");
 		}
 		
