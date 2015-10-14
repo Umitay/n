@@ -76,7 +76,7 @@ public class LoginServlet {
 		
 		if( userService.is_user_exists( email ,password ) ){
 			log.info("writeCookie ");
-			NetworkUtils.writeCookie(response, "p1", EncodingUtil.MD5("offer" + EnvironmentConfig.SECRET_KEY));
+			NetworkUtils.writeCookie(response, "p1","offer");
 			log.info("the user in the session");
 			response.sendRedirect("/n");
 			

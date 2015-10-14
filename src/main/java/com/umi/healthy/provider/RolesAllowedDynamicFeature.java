@@ -17,7 +17,7 @@ public class RolesAllowedDynamicFeature implements DynamicFeature {
 	
 	@Override
 	public void configure(ResourceInfo resourceInfo, FeatureContext context) {
-		//log.info("Start");
+		//log.info("Start RolesAllowedDynamicFeature.configure");
 		
 		if (resourceInfo.getResourceMethod().isAnnotationPresent(DenyAll.class)) {
 			context.register(DenyAllFilter.class);
@@ -26,12 +26,12 @@ public class RolesAllowedDynamicFeature implements DynamicFeature {
 		RolesAllowed ra= resourceInfo.getResourceMethod().getAnnotation(RolesAllowed.class);
 		
 		if (ra != null) {
-			log.info( resourceInfo.getResourceMethod() + " has Roles Allowed  ");
+			//log.info( resourceInfo.getResourceMethod() + " has Roles Allowed  ");
 			SecurityRequestFilter sFilter = new SecurityRequestFilter(ra);
 			context.register(sFilter);
 		}
 		
-		//log.info("End");
+		//log.info("End  RolesAllowedDynamicFeature.configure");
 	}
 
 }

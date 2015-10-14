@@ -55,7 +55,7 @@ public class SecurityRequestFilter implements ContainerRequestFilter {
 				 
 				if( cookie != null ){
 				 currentPerson = cookie.getValue();
-				 log.info("currentPerson: "+currentPerson);
+				 log.info("currentPerson: "+currentPerson + "MD5: "+EncodingUtil.MD5("offer" + EnvironmentConfig.SECRET_KEY));
 				 if( currentPerson != null && EncodingUtil.MD5("offer" + EnvironmentConfig.SECRET_KEY).equals(currentPerson) ){
 						is_allowed = true;
 						 log.info("is_allowed: "+is_allowed);
