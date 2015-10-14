@@ -34,6 +34,7 @@ import com.umi.healthy.services.ArticleService;
 import com.umi.healthy.services.CategoryService;
 import com.umi.healthy.services.ItemService;
 import com.umi.healthy.utils.CustomException;
+import com.umi.healthy.utils.StringUtil;
 
 @Path("/recipe")
 @Log
@@ -156,12 +157,20 @@ public class ItemServlet {
 		
 		log.info("Start save ");
 		
-			
+	
 		if(name.length() <=0 ){
 			response.sendRedirect("/n");
 			throw new CustomException(Status.BAD_REQUEST, "Field 'name' is missing.");
 		}
-	
+		
+		if(slug.length() <=0 ){
+			slug = StringUtil.rus2lat(name.toLowerCase());
+			slug = slug.trim();
+			slug = slug.replace(",", "");
+			slug = slug.replace(".", "");
+			slug = slug.replace(" ", "-");
+			slug = slug.replace("--", "-");
+		}
 		itemService.saveItem(slug,name,alt,thumbnailUrl,thumbnailUrl2,about,description,
 				recipeCategory,totalTime,recipeYield,ingredients,nutrition,
 				active,datePublished,dateCreated,dateModified,

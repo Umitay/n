@@ -198,7 +198,7 @@ public class ItemService extends DBService{
 		
 			List<String> recipeCategory =null;
 			Item  item =  null;
-			String new_slug=  name.toLowerCase();
+			
 			
 			try{
 				if(!categories.isEmpty()){
@@ -211,7 +211,11 @@ public class ItemService extends DBService{
 				log.severe(StringUtil.exceptionFormat( e ));
 			}
 			
-			try{
+			
+			
+			/*try{
+			 * String new_slug=  name.toLowerCase();
+				try{
 				new_slug = StringUtil.rus2lat(new_slug);
 				new_slug = new_slug.replace(",", "");
 				new_slug = new_slug.replace(".", "");
@@ -222,9 +226,6 @@ public class ItemService extends DBService{
 				log.severe("rus2lat: " + categories);
 				log.severe(StringUtil.exceptionFormat( e ));
 			}
-			
-			try{
-				
 				item =load( Item.class ,slug);
 				
 				if(item == null){
@@ -247,10 +248,18 @@ public class ItemService extends DBService{
 				log.severe("load item, slug: " + slug+",new_slug: "+new_slug);
 				log.severe(StringUtil.exceptionFormat( e ));
 			}
-			
+			*/
 			try{
 			
+				item =load( Item.class ,slug);
 				
+				if(item == null){
+					
+					item = new Item();
+					item.setSlug( slug );
+					item.setDateCreated( System.currentTimeMillis() );
+					
+				}
 				item.setAbout(about);
 				item.setDescription(description);
 				item.setName( name );
