@@ -23,10 +23,7 @@ public class Item {
 	@Getter
 	@Setter
 	public String name;
-	@Index
-	@Getter
-	@Setter
-	public String alt;
+	
 	@Index
 	@Getter
 	@Setter
@@ -116,7 +113,31 @@ public class Item {
 	@Getter
 	@Setter
 	public String  twitter_share;
-
+	
+	@Index
+	@Getter
+	@Setter
+	public String alt;
+	
+	@Index
+	@Getter
+	@Setter
+	public String   link_title;
+	
+	@Index
+	@Getter
+	@Setter
+	public String  meta_title;
+	
+	@Index
+	@Getter
+	@Setter
+	public String  meta_keywords;
+	
+	@Index
+	@Getter
+	@Setter
+	public String  meta_description;
 	@Override
 	public Item clone() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub

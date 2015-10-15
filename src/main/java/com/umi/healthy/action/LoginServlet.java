@@ -1,6 +1,8 @@
 package com.umi.healthy.action;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.annotation.security.PermitAll;
 import javax.servlet.ServletException;
@@ -15,6 +17,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
+
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import lombok.extern.java.Log;
 
@@ -78,6 +82,8 @@ public class LoginServlet {
 			log.info("writeCookie ");
 			NetworkUtils.writeCookie(response, "p1","offer");
 			log.info("the user in the session");
+			Date d = new Date( System.currentTimeMillis() );
+			NetworkUtils.sendMail("umitay.turdykulov@gmail.com", email+" in the session, time: "+DateFormatUtils.format(d,"dd.MM.yyyy"));
 			response.sendRedirect("/n");
 			
 		}else{

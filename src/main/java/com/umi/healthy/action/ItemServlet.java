@@ -91,10 +91,12 @@ public class ItemServlet {
 			
 			request.setAttribute("categories", categories);
 			request.setAttribute("item_categories", item_categories);
-			
 			request.setAttribute("item", item);
-			
 			request.setAttribute("articles", articles);
+			
+			request.setAttribute("meta_title", !item.getMeta_title().isEmpty() ? item.getMeta_title():  item.getName() );
+			request.setAttribute("meta_keywords", !item.getMeta_keywords().isEmpty() ? item.getMeta_keywords():  item.getName() +"Вкусно ✓ Полезно ✓ Легко ✓");
+			request.setAttribute("meta_description", !item.getMeta_description().isEmpty() ? item.getMeta_description() +"Вкусно ✓ Полезно ✓ Легко ✓":  item.getAbout()  +"Вкусно ✓ Полезно ✓ Легко ✓");
 			
 			request.getRequestDispatcher("/item.jsp").forward(request, response);
 			
@@ -160,7 +162,12 @@ public class ItemServlet {
 			 @DefaultValue("") @FormParam("fb_share")	String fb_share ,
 			 @DefaultValue("") @FormParam("vk_share") String vk_share ,
 			 @DefaultValue("") @FormParam("lj_share") String lj_share ,
-			 @DefaultValue("") @FormParam("twitter_share") String twitter_share ) throws IOException {
+			 @DefaultValue("") @FormParam("twitter_share") String twitter_share,
+			 @DefaultValue("") @FormParam("link_title") String link_title, 
+			 @DefaultValue("") @FormParam("meta_title") String meta_title,
+			 @DefaultValue("") @FormParam("meta_keywords") String meta_keywords, 
+			 @DefaultValue("") @FormParam("meta_description") String meta_description
+			 ) throws IOException {
 		
 		log.info("Start save with slug: "+slug);
 	
@@ -198,7 +205,7 @@ public class ItemServlet {
 		itemService.saveItem(slug,name,alt,thumbnailUrl,thumbnailUrl2,about,description,
 					recipeCategory,totalTime,recipeYield,ingredients,nutrition,
 					active,datePublished,dateCreated,dateModified,
-					fb_share, vk_share, lj_share, twitter_share,is_admin);
+					fb_share, vk_share, lj_share, twitter_share,is_admin, link_title, meta_title, meta_keywords, meta_description);
 		  
 		response.sendRedirect("/n");
 		log.info("End save ");

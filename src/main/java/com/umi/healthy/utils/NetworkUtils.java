@@ -39,18 +39,19 @@ public class NetworkUtils {
 	private static final Long HASH_EXPERATION_TIME = 60000L; // 1 minute
 	public static final String SECRET_KEY = "aC=l745$key";
 	public static final String USER_AGENT = "agentIM";
-/*	public static Boolean sendMail(String email,String description) throws UnsupportedEncodingException{
+	public static Boolean sendMail(String email,String description) throws UnsupportedEncodingException{
 		Boolean flag = true;
 		 Properties props = new Properties();
 	        Session session = Session.getDefaultInstance(props, null);
 
 	        try {
 	            Message msg = new MimeMessage(session);
-	            msg.setFrom(new InternetAddress(EnvironmentConfig.getInstance().getEmail(), "OzTees"));
+	            msg.setFrom(new InternetAddress(EnvironmentConfig.getInstance().getEmail(), "Nutrition"));
 	            msg.addRecipient(Message.RecipientType.TO,
-	            		new InternetAddress(EnvironmentConfig.getInstance().getEmail_to(),"Offer I."));
- 	            msg.addRecipient(Message.RecipientType.TO,
-	                             new InternetAddress(email, email));
+	            		new InternetAddress(EnvironmentConfig.getInstance().getEmail(), "Nutrition"));
+	            
+ 	           /* msg.addRecipient(Message.RecipientType.TO,
+	                             new InternetAddress(email, email));*/
 	           
 	            msg.setSubject(" Order (this email come from oztees that hosted on google)");
 	            msg.setText(description);
@@ -63,7 +64,7 @@ public class NetworkUtils {
 	        }
 		
 		return true;
-	}*/
+	}
 	public static String addHashQuery(String query) {
 		String result = "";
 		if (query != null) {

@@ -18,7 +18,7 @@
 <script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type='text/css' media='all' >
-<link rel="stylesheet"  href="/styles.css" type="text/css" media="all" />
+<link rel="stylesheet"  href="/static/styles.css" type="text/css" media="all" />
 <link rel="icon" href="/logo.png" type="image/x-icon" />
 <link rel="shortcut icon" href="/logo.png" type="image/x-icon" />
 <!-- Latest compiled and minified JavaScript -->
