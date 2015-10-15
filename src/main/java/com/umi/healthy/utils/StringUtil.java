@@ -210,8 +210,20 @@ public class StringUtil
 					line ) ;
 		
 	}
-public static String rus2lat(String str){
+	public static String generateSlug(String str)
+	{	
+		String slug = StringUtil.rus2lat(str.toLowerCase());
+		slug = slug.trim();
+		slug = slug.replace(",", "");
+		slug = slug.replace(".", "");
+		slug = slug.replace(" ", "-");
+		slug = slug.replace("--", "-");
 		
+		return slug;
+	}
+	
+	public static String rus2lat(String str){
+	
 	
 		Map<Character,String> map = new HashMap<Character,String>();
 		map.put('\u0410', "A");

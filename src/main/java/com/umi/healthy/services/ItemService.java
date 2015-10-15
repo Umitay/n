@@ -89,23 +89,19 @@ public class ItemService extends DBService{
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
 		
 		for (int rowIndex= 1; rowIndex < content.size(); rowIndex++) {
-			line = content.get(rowIndex);
-			String name = line[5];
-			String slug = StringUtil.rus2lat(line[5].toLowerCase());
-			slug = slug.trim();
-			slug = slug.replace(",", "");
-			slug = slug.replace(".", "");
-			slug = slug.replace(" ", "-");
-			slug = slug.replace("--", "-");
 			
-			Item item =  loadItem( slug );
+			line = content.get(rowIndex);
+			
+			String slug = StringUtil.generateSlug(line[5].toLowerCase());
+			
+			Item item = loadItem( slug );
 			
 			if(item == null){
 				item = new Item();
 			}
 			
 			item.setSlug(slug);
-			item.setName(name);
+			item.setName( line[5]);
 			
 			List<String> recipeCategory =Lists.newArrayList();
 			for(int colIndex = 0; colIndex < line.length; colIndex++){
@@ -187,79 +183,31 @@ public class ItemService extends DBService{
 		log.info("end uploadCsv toDataStore");
 	}
 	
-
-
 	public Item saveItem(String slug, String name, String alt, String thumbnailUrl, String thumbnailUrl2,
 			String about, String description, String categories,
 			String totalTime, String recipeYield, String ingredients,
 			String nutrition,  Boolean active,
 			Long datePublished, Long dateCreated, Long dateModified,
-			String fb_share , String vk_share , String lj_share , String twitter_share ) {
+			String fb_share , String vk_share , String lj_share , String twitter_share, Boolean is_admin ) {
 		
 			List<String> recipeCategory =null;
 			Item  item =  null;
 			
+			if(!categories.isEmpty()){
+				String[] array = categories.split(",");
+				recipeCategory = Arrays.asList(array);
+			}
 			
 			try{
-				if(!categories.isEmpty()){
-					String[] array = categories.split(",");
-					recipeCategory = Arrays.asList(array);
-				}
-				
-			}catch(Exception e ) {
-				log.severe("recipe category: " + categories);
-				log.severe(StringUtil.exceptionFormat( e ));
-			}
 			
-			
-			
-			/*try{
-			 * String new_slug=  name.toLowerCase();
-				try{
-				new_slug = StringUtil.rus2lat(new_slug);
-				new_slug = new_slug.replace(",", "");
-				new_slug = new_slug.replace(".", "");
-				new_slug = new_slug.replace(" ", "-");
-				new_slug = new_slug.replace("--", "-");
-				new_slug = new_slug.trim();
-			}catch(Exception e ) {
-				log.severe("rus2lat: " + categories);
-				log.severe(StringUtil.exceptionFormat( e ));
-			}
-				item =load( Item.class ,slug);
+				item = load( Item.class ,slug);
 				
 				if(item == null){
-					
 					item = new Item();
-					item.setSlug( new_slug );
 					item.setDateCreated( System.currentTimeMillis() );
-					
-				}else if(!item.getSlug().equals(new_slug) ){
-					
-					Item  item_clone = load( Item.class ,slug);
-					List<X_CategoryItem> x  = ofy().load().type(X_CategoryItem.class).filter("item_slug", item.getSlug() ).list();
-					deleteList(x);
-					delete(item_clone);
-					
-					item.setSlug( new_slug );
-					
 				}
-			}catch(Exception e ) {
-				log.severe("load item, slug: " + slug+",new_slug: "+new_slug);
-				log.severe(StringUtil.exceptionFormat( e ));
-			}
-			*/
-			try{
-			
-				item =load( Item.class ,slug);
 				
-				if(item == null){
-					
-					item = new Item();
-					item.setSlug( slug );
-					item.setDateCreated( System.currentTimeMillis() );
-					
-				}
+				item.setSlug( slug );
 				item.setAbout(about);
 				item.setDescription(description);
 				item.setName( name );
@@ -273,21 +221,19 @@ public class ItemService extends DBService{
 				item.setThumbnailUrl( thumbnailUrl );      
 				item.setThumbnailUrl2( thumbnailUrl2 );       
 				item.setTotalTime( totalTime );
-				item.setFb_share( fb_share );
-				item.setVk_share( vk_share ); 
-				item.setLj_share( lj_share ); 
-				item.setTwitter_share( twitter_share ); 
-				item.setActive(true);
+				
+				 if(is_admin){
+					item.setFb_share( fb_share );
+					item.setVk_share( vk_share ); 
+					item.setLj_share( lj_share ); 
+					item.setTwitter_share( twitter_share ); 
+				 }
+				item.setActive(active);
+				
 				item =  save(item);
-				saveItemCategory(item, recipeCategory,true);
+				saveItemCategory(item, recipeCategory,active);
 				
 				SitemapIndex sitemap = load(SitemapIndex.class, "1");
-				
-				if(sitemap == null){
-					sitemap = new SitemapIndex();
-					sitemap.setId("1");
-				}
-				
 				sitemap.setRecipe_date_modified (System.currentTimeMillis());
 				save(sitemap);
 				

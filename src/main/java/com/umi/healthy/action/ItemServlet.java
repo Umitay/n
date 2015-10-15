@@ -30,6 +30,7 @@ import com.google.appengine.repackaged.com.google.api.client.util.Lists;
 import com.umi.healthy.data.Article;
 import com.umi.healthy.data.Category;
 import com.umi.healthy.data.Item;
+import com.umi.healthy.data.X_CategoryItem;
 import com.umi.healthy.services.ArticleService;
 import com.umi.healthy.services.CategoryService;
 import com.umi.healthy.services.ItemService;
@@ -112,15 +113,21 @@ public class ItemServlet {
 		String item_categories = "";
 		Item item =  itemService.loadItem(slug); 
 		if(item !=null){
-			item_categories = StringUtils.join(item.getRecipeCategory(), ",");
+			item_categories = StringUtils.join( item.getRecipeCategory(), ",");
 		}
+		
 		CategoryService categoryService = new CategoryService(); 
 		List<Category> all_categories =  categoryService.loadAllCategories(); 
+		
+	
 		
 		try {
 			request.setAttribute("categories", all_categories);
 			request.setAttribute("item_categories", item_categories );
 			request.setAttribute("item", item);
+			if(request.getServerName().contains("appspot.com")){
+				request.setAttribute("is_admin", true);
+			}
 			request.getRequestDispatcher("/item_form.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
@@ -155,27 +162,44 @@ public class ItemServlet {
 			 @DefaultValue("") @FormParam("lj_share") String lj_share ,
 			 @DefaultValue("") @FormParam("twitter_share") String twitter_share ) throws IOException {
 		
-		log.info("Start save ");
-		
+		log.info("Start save with slug: "+slug);
 	
 		if(name.length() <=0 ){
 			response.sendRedirect("/n");
 			throw new CustomException(Status.BAD_REQUEST, "Field 'name' is missing.");
 		}
 		
-		if(slug.length() <=0 ){
-			slug = StringUtil.rus2lat(name.toLowerCase());
-			slug = slug.trim();
-			slug = slug.replace(",", "");
-			slug = slug.replace(".", "");
-			slug = slug.replace(" ", "-");
-			slug = slug.replace("--", "-");
+		if(slug.length() >0 ){
+			
+			Item item = itemService.loadItem(slug);
+			
+			if( item != null ) {
+				log.info("Found the item with slug: " + slug);
+				
+				if(!item.getName().equals(name) ){
+					log.info(" Found an Item by given slug, but name of the Item was changed, therefor will be deleted and than will created with new generated slug.");
+					List<X_CategoryItem> x  = itemService.load(X_CategoryItem.class, "item_slug", item.getSlug() );
+					if(!x.isEmpty() ){
+						log.info("X_CategoryItem size: " + x.size() );
+						itemService.deleteList(x);
+					}
+					log.info("start delete the item with slug: " + slug);
+					itemService.delete(item);
+			}
+			}
 		}
+		slug = StringUtil.generateSlug(name);
+		
+		Boolean is_admin = false;
+		if(request.getServerName().contains("appspot.com")){
+			is_admin = true;
+		}
+		
 		itemService.saveItem(slug,name,alt,thumbnailUrl,thumbnailUrl2,about,description,
-				recipeCategory,totalTime,recipeYield,ingredients,nutrition,
-				active,datePublished,dateCreated,dateModified,
-				fb_share, vk_share, lj_share, twitter_share);
-	
+					recipeCategory,totalTime,recipeYield,ingredients,nutrition,
+					active,datePublished,dateCreated,dateModified,
+					fb_share, vk_share, lj_share, twitter_share,is_admin);
+		  
 		response.sendRedirect("/n");
 		log.info("End save ");
 	}

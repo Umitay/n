@@ -6,7 +6,6 @@
 		   <div class="fb-like" data-href="http://www.ur-recipe.com/recipe/${item.slug}" data-layout="button" data-action="like"  data-share="true"></div>
 		  </div>
 		   <div class="col-xs-3 col-md-3">
-		    <script src="https://apis.google.com/js/plusone.js"></script>
 		    <g:plus action="share"></g:plus>
 		    </div>
 </div>

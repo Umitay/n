@@ -25,7 +25,7 @@
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <title>${item.name} | Полезные рецепты</title>
 <meta name="description" content="Вкусно ✓ Полезно ✓ Легко ✓ \n ${item.about}"/>
-<link rel="canonical" href="http://www.ur-recipe.com" />
+<link rel="canonical" href="http://www.ur-recipe.com/recipe/${item.slug}" />
 <link rel="publisher" href="https://plus.google.com/+Urrecipe1/posts"/>
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:image" content="${item.thumbnailUrl2}" />
@@ -43,6 +43,10 @@
 <meta name="twitter:domain" content="Полезные рецепты"/>
 <meta name='yandex-verification' content='6952aca4a0d06474' />
 <meta name="robots" value="index, follow" />
+<!-- Вставьте этот тег в заголовке страницы или непосредственно перед закрывающим тегом основной части. -->
+	<script src="https://apis.google.com/js/platform.js" async defer>
+	  {lang: 'ru'}
+	</script>
 </head>
 <body>
 <div id="fb-root"></div>

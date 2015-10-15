@@ -75,11 +75,6 @@
 	<!-- /.col-xs-12 col-sm-8 col-md-8 -->
 	<div class="col-sm-4 col-md-4">
 	
-		<!-- Вставьте этот тег в заголовке страницы или непосредственно перед закрывающим тегом основной части. -->
-	<script src="https://apis.google.com/js/platform.js" async defer>
-	  {lang: 'ru'}
-	</script>
-	
 	<!-- Поместите этот тег туда, где должна отображаться виджет. -->
 	<div class="g-page" data-href="//plus.google.com/u/0/102501925985129905212" data-rel="publisher"></div>
 	<c:if test="${empty unvisible}">

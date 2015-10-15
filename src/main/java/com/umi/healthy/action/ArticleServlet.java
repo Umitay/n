@@ -26,6 +26,7 @@ import com.google.appengine.repackaged.com.google.api.client.util.Lists;
 import com.umi.healthy.data.Article;
 import com.umi.healthy.data.Category;
 import com.umi.healthy.data.Item;
+import com.umi.healthy.data.X_CategoryItem;
 import com.umi.healthy.services.ArticleService;
 import com.umi.healthy.services.CategoryService;
 import com.umi.healthy.services.ItemService;
@@ -168,14 +169,17 @@ public class ArticleServlet {
 			throw new CustomException(Status.BAD_REQUEST, "Field 'name' is missing.");
 		}
 		
-		if(slug.length() <=0 ){
-			slug = StringUtil.rus2lat(name.toLowerCase());
-			slug = slug.trim();
-			slug = slug.replace(",", "");
-			slug = slug.replace(".", "");
-			slug = slug.replace(" ", "-");
-			slug = slug.replace("--", "-");
+		if(slug.length() >0 ){
+			
+			Article article = articleService.loadArticle(slug);
+			
+			if(article != null && !article.getName().equals(name) ){
+				log.info(" Found an Item by given slug, but name of the Item was changed, therefor will be deleted and than will created with new generated slug.");
+				articleService.delete(article);
+			}
 		}
+		
+		slug = StringUtil.generateSlug(name);
 		
 		Article newarticle =  articleService.loadArticle(slug); 
 		
@@ -184,11 +188,12 @@ public class ArticleServlet {
 		}
 		
 		newarticle.setDescription(description.trim());
-		newarticle.setName(new String(name.getBytes("utf-8"),"utf-8" ));
+		newarticle.setName(name);
 		newarticle.setSlug(slug);
 		newarticle.setThumbnailUrl(thumbnailUrl.trim());
 		newarticle.setAbout(about.trim());
 		newarticle.setActive(active);
+		
 		articleService.saveArticle(newarticle);
 		
 		response.sendRedirect("/article/l");

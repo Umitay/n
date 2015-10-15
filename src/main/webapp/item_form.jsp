@@ -7,7 +7,7 @@
 	<form action="/recipe/save" method="post">
 		<div class="form-group">
 		<label>Slug*</label>
-		<input type="text" value="${item.slug}" name="slug" class="form-control" disabled="disabled">
+		<input type="text" value="${item.slug}" name="slug" class="form-control" readonly>
 		</div>
 		<div class="form-group">
 		<label>Name*</label>
@@ -51,7 +51,10 @@
 		</div>
 		<div class="form-group">
 		<label>active*</label>
-		<input type="text" value="${item.active}"  class="form-control">
+		<select name="active" class="form-control">
+			<option value="true" ${item.active ? 'selected' : ''} >Yes</option>
+			<option value="false" ${!item.active ? 'selected' : ''}>No</option>
+		</select>
 		</div>
 		<div class="form-group">
 		<label>nutrition*</label>
@@ -69,24 +72,25 @@
 		<label>Description*</label>
 		<textarea  style="height: 700px;" name="description" class="form-control" >${item.description}</textarea>
 		</div>
+		<c:if test="${is_admin}">
+			<div class="form-group">
+			<label>FB</label>
+			<input type="text" value="${item.fb_share}"  name="fb_share" class="form-control">
+			</div>
+			<div class="form-group">
+			<label>VK</label>
+			<input type="text" value="${item.vk_share}"  name="vk_share" class="form-control">
+			</div>
+			<div class="form-group">
+			<label>LJ</label>
+			<input type="text" value="${item.lj_share}"  name="lj_share" class="form-control">
+			</div>
+			<div class="form-group">
+			<label>Twitter</label>
+			<input type="text" value="${item.twitter_share}"  name="twitter_share" class="form-control">
+			</div>
+		</c:if>
 		<div class="form-group">
-		<label>FB</label>
-		<input type="text" value="${item.fb_share}"  name="fb_share" class="form-control">
-		</div>
-		<div class="form-group">
-		<label>VK</label>
-		<input type="text" value="${item.vk_share}"  name="vk_share" class="form-control">
-		</div>
-		<div class="form-group">
-		<label>LJ</label>
-		<input type="text" value="${item.lj_share}"  name="lj_share" class="form-control">
-		</div>
-		<div class="form-group">
-		<label>Twitter</label>
-		<input type="text" value="${item.twitter_share}"  name="twitter_share" class="form-control">
-		</div>
-		<div class="form-group">
-		
 		<input type="submit" class="btn btn-primary"> 
 		</form>
 	</div><!--/.container -->
