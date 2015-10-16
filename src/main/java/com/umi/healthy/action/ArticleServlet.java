@@ -57,9 +57,15 @@ public class ArticleServlet {
 		
 		Article article =  articleService.loadArticle(slug); 
 		if( article == null ){
-			response.sendRedirect("/");
-			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
+			if(StringUtil.is_rus(slug) ){
+				slug = StringUtil.generateSlug(slug);
+				response.sendRedirect("/article/"+slug);
+			}else{
+				response.sendRedirect("/article/list");
+				throw new CustomException(Status.NOT_FOUND, "404");
+			}
 		}
+		
 		List<Article> articles =  articleService.loadArticles(true);
 		CategoryService categoryService = new CategoryService(); 
 		List<Category> categories =  categoryService.loadTopCategories(); 
@@ -156,10 +162,15 @@ public class ArticleServlet {
 	public void save (	
 			@DefaultValue("") @FormParam("slug") String  slug,
 			@DefaultValue("") @FormParam("name") String  name,
+			@DefaultValue("") @FormParam("alt") String alt,
 			@DefaultValue("") @FormParam("thumbnailUrl") String thumbnailUrl,
 			@DefaultValue("") @FormParam("about") String  about,
 			@DefaultValue("false") @FormParam("active") Boolean active,
-			@DefaultValue("") @FormParam("description") String  description
+			@DefaultValue("") @FormParam("description") String  description,
+			 @DefaultValue("") @FormParam("link_title") String link_title, 
+			 @DefaultValue("") @FormParam("meta_title") String meta_title,
+			 @DefaultValue("") @FormParam("meta_keywords") String meta_keywords, 
+			 @DefaultValue("") @FormParam("meta_description") String meta_description
 			) throws IOException {
 		
 		log.info("Start save ");
@@ -193,7 +204,11 @@ public class ArticleServlet {
 		newarticle.setThumbnailUrl(thumbnailUrl.trim());
 		newarticle.setAbout(about.trim());
 		newarticle.setActive(active);
-		
+		newarticle.setAlt(alt);
+		newarticle.setLink_title(link_title);
+		newarticle.setMeta_title(meta_title);
+		newarticle.setMeta_keywords(meta_keywords);
+		newarticle.setMeta_description(meta_description);
 		articleService.saveArticle(newarticle);
 		
 		response.sendRedirect("/article/l");

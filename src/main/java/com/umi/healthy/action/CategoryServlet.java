@@ -154,7 +154,12 @@ public class CategoryServlet {
 			@DefaultValue("") @FormParam("name") String  name,
 			@DefaultValue("") @FormParam("description") String  description,
 			@DefaultValue("1000000") @FormParam("priority") Integer  priority,
-			@DefaultValue("0") @FormParam("parent") String  parent) throws IOException {
+			@DefaultValue("0") @FormParam("parent") String  parent,
+			 @DefaultValue("") @FormParam("link_title") String link_title, 
+			 @DefaultValue("") @FormParam("meta_title") String meta_title,
+			 @DefaultValue("") @FormParam("meta_keywords") String meta_keywords, 
+			 @DefaultValue("") @FormParam("meta_description") String meta_description
+			) throws IOException {
 		
 		log.info("Start save ");
 		
@@ -176,6 +181,10 @@ public class CategoryServlet {
 		newCategory.setSlug(slug);
 		newCategory.setPriority(priority);
 		newCategory.setParent(parent);
+		newCategory.setLink_title(link_title);
+		newCategory.setMeta_title(meta_title);
+		newCategory.setMeta_keywords(meta_keywords);
+		newCategory.setMeta_description(meta_description);
 		categoryService.saveCategory(newCategory);
 		
 		response.sendRedirect("/category/e/"+slug);

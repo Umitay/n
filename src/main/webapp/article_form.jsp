@@ -21,7 +21,26 @@
 			<option value="false" ${!article.active ? 'selected' : ''}>No</option>
 		</select>
 		</div>
-		
+		<div class="form-group">
+				<label>Link title</label>
+				<input type="text" value="${article.link_title}" name="link_title" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>Image alt</label>
+				<input type="text" value="${article.alt}" name="alt" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>Meta title</label>
+				<input type="text" value="${article.meta_title}" name="meta_title" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>Meta Keywords</label>
+				<input type="text" value="${article.meta_keywords}" name="meta_keywords" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>Meta Description</label>
+				<input type="text" value="${article.meta_description}" name="meta_description" class="form-control">
+				</div>
 		<div class="form-group">
 		<label>About*</label>
 		<textarea style="height: 200px;" name="about" class="form-control" type="text">${article.about}</textarea>

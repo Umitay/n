@@ -15,6 +15,22 @@
 		<input type="text" value="${category.name}" name="name" class="form-control">
 		</div>
 		<div class="form-group">
+				<label>Link title</label>
+				<input type="text" value="${category.link_title}" name="link_title" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>Meta title</label>
+				<input type="text" value="${category.meta_title}" name="meta_title" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>Meta Keywords</label>
+				<input type="text" value="${category.meta_keywords}" name="meta_keywords" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>Meta Description</label>
+				<input type="text" value="${category.meta_description}" name="meta_description" class="form-control">
+				</div>
+		<div class="form-group">
 		<label>Description*</label>
 		<textarea name="description" class="form-control" type="text">${category.description}</textarea>
 		</div>

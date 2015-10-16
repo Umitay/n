@@ -49,26 +49,29 @@ public class ItemServlet {
 	
 	@Path("/{slug}")
 	@GET
-	public void view( @DefaultValue("") @PathParam("slug") String slug ) {
+	public void view( @DefaultValue("") @PathParam("slug") String slug ) throws IOException {
 		
 		if(slug.length() <=0 ){
 			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
 		}
-		if(request.getServerName().contains("appspot.com")){
-			request.setAttribute("unvisible", true);
-		}
+		
 		Item item =  itemService.loadItem(slug); 
 		
 		if( item == null ){
-			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
-		}
-		if(!item.getActive()){
-			throw new CustomException(Status.NOT_FOUND, "404");
+			if(StringUtil.is_rus(slug) ){
+				slug = StringUtil.generateSlug(slug);
+				response.sendRedirect("/recipe/"+slug);
+			}else{
+				response.sendRedirect("/404.jsp");
+				throw new CustomException(Status.NOT_FOUND, "404");
+			}
 		}
 		
+		if(request.getServerName().contains("appspot.com")){
+			request.setAttribute("unvisible", true);
+		}
 		
 		CategoryService categoryService = new CategoryService(); 
-		
 		ArticleService articleService = new ArticleService(); 
 		List<Article> articles =  articleService.loadArticles(true);
 		
@@ -94,9 +97,9 @@ public class ItemServlet {
 			request.setAttribute("item", item);
 			request.setAttribute("articles", articles);
 			
-			request.setAttribute("meta_title", !item.getMeta_title().isEmpty() ? item.getMeta_title():  item.getName() );
-			request.setAttribute("meta_keywords", !item.getMeta_keywords().isEmpty() ? item.getMeta_keywords():  item.getName() +"Вкусно ✓ Полезно ✓ Легко ✓");
-			request.setAttribute("meta_description", !item.getMeta_description().isEmpty() ? item.getMeta_description() +"Вкусно ✓ Полезно ✓ Легко ✓":  item.getAbout()  +"Вкусно ✓ Полезно ✓ Легко ✓");
+			request.setAttribute("meta_title", item.getMeta_title()!=null ? item.getMeta_title():  item.getName() );
+			request.setAttribute("meta_keywords", item.getMeta_keywords()!=null  ? item.getMeta_keywords():  item.getName() +"Вкусно ✓ Полезно ✓ Легко ✓");
+			request.setAttribute("meta_description", item.getMeta_description()!=null  ? item.getMeta_description() +"Вкусно ✓ Полезно ✓ Легко ✓":  item.getAbout()  +"Вкусно ✓ Полезно ✓ Легко ✓");
 			
 			request.getRequestDispatcher("/item.jsp").forward(request, response);
 			

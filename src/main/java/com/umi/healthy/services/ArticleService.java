@@ -47,6 +47,12 @@ public class ArticleService extends DBService{
 			article.setActive(newarticle.getActive());
 			article.setAbout(newarticle.getAbout());
 			article.setThumbnailUrl(newarticle.getThumbnailUrl());
+			article.setAlt( newarticle.getAlt() );
+			article.setLink_title(newarticle.getLink_title());
+			article.setMeta_title(newarticle.getMeta_title());
+			article.setMeta_keywords(newarticle.getMeta_keywords());
+			article.setMeta_description(newarticle.getMeta_description());
+			
 			article = save(article);
 			
 			SitemapIndex sitemap = load(SitemapIndex.class, "1");

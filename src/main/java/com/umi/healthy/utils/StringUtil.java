@@ -286,4 +286,66 @@ public class StringUtil
 		
 		return  sb.toString();
 	}
+	public static Boolean is_rus(String str){
+		
+		Boolean flag = false;
+		Map<Character,String> map = new HashMap<Character,String>();
+		map.put('\u0410', "A");
+		map.put('\u0412', "B");
+		map.put('\u0421', "C");
+		map.put('\u0415', "E");
+		map.put('\u041D', "H");
+		map.put('\u041A', "K");
+		map.put('\u041C', "M");
+		map.put('\u041E', "O");
+		map.put('\u0420', "P");
+		map.put('\u0422', "T");
+		map.put('\u0423', "Y");
+		map.put('\u0425', "X");
+		map.put('\u0430', "a");
+		map.put('\u0431', "b");
+		map.put('\u0432', "v");
+		map.put('\u0433', "g");
+		map.put('\u0434', "d");
+		map.put('\u0435', "e");
+		map.put('\u0436', "zh");
+		map.put('\u0437', "z");
+		map.put('\u0438', "i");
+		map.put('\u0439', "i");
+		map.put('\u043A', "k");
+		map.put('\u043B', "l");
+		map.put('\u043C', "m");
+		map.put('\u043D', "n");
+		map.put('\u043E', "o");
+		map.put('\u043F', "p");
+		map.put('\u0440', "r");
+		map.put('\u0441', "s");
+		map.put('\u0442', "t");
+		map.put('\u0443', "u");
+		map.put('\u0444', "f");
+		map.put('\u0445', "h");
+		map.put('\u0446', "c");
+		map.put('\u0447', "ch");
+		map.put('\u0448', "sh");
+		map.put('\u0449', "shch");
+		map.put('\u044A', "");
+		map.put('\u044B', "y");
+		map.put('\u044C', "");
+		map.put('\u044D', "e");
+		map.put('\u044E', "yu");
+		map.put('\u044F', "ya");
+		map.put(' ', " ");
+		
+	
+		for (Character c : str.toCharArray()) {
+		    if (map.containsKey(c)) {
+		       log.info("add latin: "+map.get(c)+" for cyrillic: "+ c);
+		       flag = true;
+		    }
+		}
+		
+		
+		return flag;
+	}
+	
 }

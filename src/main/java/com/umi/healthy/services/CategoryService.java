@@ -47,6 +47,10 @@ public class CategoryService  extends DBService{
 			category.setDateModified(System.currentTimeMillis() );
 			category.setPriority(newcategory.getPriority());
 			category.setActive(newcategory.getActive());
+			category.setLink_title(newcategory.getLink_title());
+			category.setMeta_title(newcategory.getMeta_title());
+			category.setMeta_keywords(newcategory.getMeta_keywords());
+			category.setMeta_description(newcategory.getMeta_description());
 			category = save(category);
 			
 			SitemapIndex sitemap = load(SitemapIndex.class, "1");

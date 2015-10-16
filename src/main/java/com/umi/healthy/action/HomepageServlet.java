@@ -9,8 +9,10 @@ import javax.annotation.security.RolesAllowed;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -29,6 +31,7 @@ import com.umi.healthy.services.ArticleService;
 import com.umi.healthy.services.CategoryService;
 import com.umi.healthy.services.ItemService;
 import com.umi.healthy.utils.CustomException;
+import com.umi.healthy.utils.StringUtil;
 @Path("/")
 @Log
 public class HomepageServlet{
@@ -62,6 +65,22 @@ public class HomepageServlet{
 			throw new CustomException(Status.INTERNAL_SERVER_ERROR, e.getMessage());
 		}
 	}
+	@Path("/{slug}") // hvost
+	@GET
+	public void view( @DefaultValue("") @PathParam("slug") String slug ) throws IOException {
+		try {
+			if(StringUtil.is_rus(slug) ){
+				slug = StringUtil.generateSlug(slug);
+				response.sendRedirect("/recipe/"+slug);
+			}else{
+				response.sendRedirect("/");
+				throw new CustomException(Status.NOT_FOUND, "404");
+			}
+		} catch (Exception e) {
+			throw new CustomException(Status.INTERNAL_SERVER_ERROR, e.getMessage());
+		}
+	}
+	
 	@Path("n")
 	@GET
 	@RolesAllowed({"ADMIN", "API"})

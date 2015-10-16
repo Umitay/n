@@ -56,5 +56,26 @@ public class Article {
 	@Getter
 	@Setter
 	protected Long dateModified;
+	@Index
+	@Getter
+	@Setter
+	public String alt;
+	@Index
+	@Getter
+	@Setter
+	public String   link_title;
+	@Index
+	@Getter
+	@Setter
+	public String  meta_title;
 	
+	@Index
+	@Getter
+	@Setter
+	public String  meta_keywords;
+	
+	@Index
+	@Getter
+	@Setter
+	public String  meta_description;
 }
