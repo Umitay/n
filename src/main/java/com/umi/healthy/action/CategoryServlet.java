@@ -1,6 +1,8 @@
 package com.umi.healthy.action;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -18,6 +20,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import lombok.extern.java.Log;
@@ -30,6 +33,7 @@ import com.umi.healthy.services.ArticleService;
 import com.umi.healthy.services.CategoryService;
 import com.umi.healthy.services.ItemService;
 import com.umi.healthy.utils.CustomException;
+import com.umi.healthy.utils.StringUtil;
 
 @Path("/category")
 @Log
@@ -41,22 +45,74 @@ public class CategoryServlet {
 	
 	CategoryService categoryService = new CategoryService(); 
 	
+	@GET
+	public Response category_list( ) throws IOException {
+		log.info("Start view");
+		if(request.getServerName().contains("appspot.com")){
+			request.setAttribute("unvisible", true);
+		}
+	
+		List<Category> categories =  categoryService.loadTopCategories();
+		 
+		ArticleService articleService = new ArticleService(); 
+		List<Article> articles =  articleService.loadArticles(true);
+		
+		try {
+			request.setAttribute("articles", articles);
+			request.setAttribute("categories", categories);
+			request.getRequestDispatcher("/category_list.jsp").forward(request, response);
+			
+		} catch (ServletException | IOException e) {
+			log.severe(e.getMessage());
+			response.sendRedirect("/");
+			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
+		}
+		log.info("End view");
+		return Response.ok().build();
+	}
+	
 	@Path("/{slug}")
 	@GET
-	public void view( @DefaultValue("") @PathParam("slug") String slug ) throws IOException {
+	public Response view( @DefaultValue("") @PathParam("slug") String slug ) throws IOException, URISyntaxException {
 		log.info("Start view");
-		if(slug.length() <=0 ){
-			response.sendRedirect("/");
-			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
-		}
+
+
 		if(request.getServerName().contains("appspot.com")){
 			request.setAttribute("unvisible", true);
 		}
 		
 		Category category =  categoryService.loadCategory(slug); 
 		if( category == null ){
-			response.sendRedirect("/");
-			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
+			if(StringUtil.is_rus(slug) ){
+				String s = StringUtil.generateSlug(slug);
+				if(s.equals("vypechka")){
+					slug = "baking-recipes"; 
+				}else if(s.equals("pitanie-dlya-detei")){
+					slug = "healthy-kids-recipes";
+				}else if(s.equals("sousy")){
+					slug = "sous";
+				}else if(s.equals("myasnye-blyuda")){
+					slug = "main_course";
+				}else if(s.equals("salaty")){
+					slug = "salads";
+				}else if(s.equals("ptica-i-dich")){
+					slug = "chicken-recipes";
+				}else if(s.equals("ovoshchi-i-garniry")){
+					slug = "side-dishes";
+				}else if(s.equals("supy")){
+					slug = "healthy-soup-recipes";
+				}else if(s.equals("desert")){
+					slug = "dessert";
+				}else{
+					slug = s;
+				}
+				
+				return Response.status(Response.Status.MOVED_PERMANENTLY).location(new URI("/category/"+slug)).build();
+			}else{
+				response.sendRedirect("/404.jsp");
+				throw new CustomException(Status.NOT_FOUND, "404");
+			}
+		
 		}
 		
 		List<Category> categories =  categoryService.loadTopCategories();
@@ -80,6 +136,7 @@ public class CategoryServlet {
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
 		log.info("End view");
+		return Response.ok().build();
 	}
 
 	@Path("/l/{slug}")

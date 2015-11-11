@@ -66,13 +66,12 @@ public class ItemServlet {
 			if(StringUtil.is_rus(slug) ){
 				
 				slug = StringUtil.generateSlug(slug);
-				response.setStatus(response.SC_MOVED_PERMANENTLY);
-				response.setHeader("Location", "/recipe/"+slug);
+				return Response.status(Response.Status.MOVED_PERMANENTLY).location(new URI("/recipe/"+slug)).build();
 			}else{
 				response.sendRedirect("/404.jsp");
 				throw new CustomException(Status.NOT_FOUND, "404");
 			}
-			return Response.status(Response.Status.MOVED_PERMANENTLY).location(new URI("/recipe/"+slug)).build();
+		
 		}
 		
 		if(request.getServerName().contains("appspot.com")){
