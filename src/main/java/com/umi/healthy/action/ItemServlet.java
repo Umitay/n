@@ -1,6 +1,9 @@
 package com.umi.healthy.action;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +22,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.lang3.StringUtils;
@@ -49,7 +53,8 @@ public class ItemServlet {
 	
 	@Path("/{slug}")
 	@GET
-	public void view( @DefaultValue("") @PathParam("slug") String slug ) throws IOException {
+	@Produces(MediaType.TEXT_HTML)
+	public Response view( @DefaultValue("") @PathParam("slug") String slug ) throws IOException, URISyntaxException {
 		
 		if(slug.length() <=0 ){
 			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
@@ -59,12 +64,14 @@ public class ItemServlet {
 		
 		if( item == null ){
 			if(StringUtil.is_rus(slug) ){
+				
 				slug = StringUtil.generateSlug(slug);
-				response.sendRedirect("/recipe/"+slug);
+				return Response.status(Response.Status.MOVED_PERMANENTLY).location(new URI("/recipe/"+slug)).build();
 			}else{
 				response.sendRedirect("/404.jsp");
 				throw new CustomException(Status.NOT_FOUND, "404");
 			}
+		
 		}
 		
 		if(request.getServerName().contains("appspot.com")){
@@ -107,6 +114,7 @@ public class ItemServlet {
 			log.severe(e.getMessage());
 			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
 		}
+		return Response.ok().build();
 	}
 
 	@Path("/e/{slug}")
