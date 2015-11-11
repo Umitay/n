@@ -24,7 +24,10 @@ public class Article {
 	@Getter
 	@Setter
 	public String thumbnailUrl;
-	
+	@Index
+	@Getter
+	@Setter
+	public String thumbnailUrl2;
 	@Index
 	@Getter
 	@Setter

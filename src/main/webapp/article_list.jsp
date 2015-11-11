@@ -32,13 +32,13 @@
 				<c:forEach items="${articles}" var="article">
 					<div itemprop="itemListElement" class="list-article-border pull-left" onclick="open_article('${article.slug}')">
 						<c:if test="${!empty article.thumbnailUrl}">
-					    <div class="pull-left">
+					    <div class="pull-left" style="width: 20%;" >
 					      <a href="/article/${article.slug}">
-					        <img class="media-object" itemprop="image" src="${article.thumbnailUrl}" >
+					        <img style="width: 95%;"  itemprop="image" src="${article.thumbnailUrl}" >
 					      </a>
 					    </div>
 					    </c:if>
-					    <div class="pull-left">
+					    <div class="pull-left"  style="width: 80%;">
 					     <h4  itemprop="name"> <a href="/article/${article.slug}" itemprop="url">${article.name}</a></h4>
 					     <div id="description" itemprop="description">${article.about}</div>
 					    </div>

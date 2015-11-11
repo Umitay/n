@@ -7,7 +7,7 @@
   <name>healthy server</name>
   
    <properties>
-        <appengine.app.version>8</appengine.app.version>
+        <appengine.app.version>9</appengine.app.version>
         <appengine.target.version>1.9.25</appengine.target.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <appengine.app.id>nutrition-healthy-lifestyle</appengine.app.id>
