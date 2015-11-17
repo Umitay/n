@@ -25,20 +25,20 @@
 	</div>
 	 </c:if>
 	<c:if test="${!empty articles}">
-			<section itemscope="" itemtype="http://schema.org/ItemList" style="margin-top: 20px;">
+			<section itemscope="" itemtype="http://schema.org/ItemList" style="margin-top: 20px;float: left;">
 				<meta content=true itemprop="mainContentOfPage">
 				<meta content="Descending" itemprop="itemListOrder">
 				
 				<c:forEach items="${articles}" var="article">
-					<div itemprop="itemListElement" class="list-article-border pull-left" onclick="open_article('${article.slug}')">
+					<div itemprop="itemListElement" style="float: left; min-height: 211px;" class=" thumbnail col-xs-12 col-sm-6 col-md-6 col-lg-6" onclick="open_article('${article.slug}')">
 						<c:if test="${!empty article.thumbnailUrl}">
-					    <div class="pull-left" style="width: 20%;" >
+					    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" >
 					      <a href="/article/${article.slug}">
-					        <img style="width: 95%;"  itemprop="image" src="${article.thumbnailUrl}" >
+					        <img itemprop="image" class="img-responsive" src="${article.thumbnailUrl}" >
 					      </a>
 					    </div>
 					    </c:if>
-					    <div class="pull-left"  style="width: 80%;">
+					    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" >
 					     <h4  itemprop="name"> <a href="/article/${article.slug}" itemprop="url">${article.name}</a></h4>
 					     <div id="description" itemprop="description">${article.about}</div>
 					    </div>
