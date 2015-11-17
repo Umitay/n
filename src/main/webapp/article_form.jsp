@@ -22,6 +22,10 @@
 		</select>
 		</div>
 		<div class="form-group">
+				<label>Image</label>
+				<input type="text" value="${article.thumbnailUrl}" name="thumbnailUrl" class="form-control">
+		</div>
+		<div class="form-group">
 				<label>Link title</label>
 				<input type="text" value="${article.link_title}" name="link_title" class="form-control">
 				</div>

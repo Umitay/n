@@ -23,16 +23,16 @@
 <link rel="shortcut icon" href="/logo.png" type="image/x-icon" />
 <!-- Latest compiled and minified JavaScript -->
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<title>${item.name} | Полезные рецепты</title>
+<title>${article.name} | Полезные рецепты</title>
 <meta name="description" content="${meta_description}"/>
 <meta name="keywords" content="${meta_keywords}">
 <link rel="publisher" href="https://plus.google.com/+Urrecipe1/posts"/>
 <meta property="og:locale" content="ru_RU" />
-<meta property="og:image" content="${empty item.thumbnailUrl2 ? item.thumbnailUrl: item.thumbnailUrl2}" />
+<meta property="og:image" content="${empty article.thumbnailUrl2 ? article.thumbnailUrl: article.thumbnailUrl2}" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="${meta_title}" />
 <meta property="og:description" content="${meta_description}" />
-<meta property="og:url" content="http://www.ur-recipe.com/recipe/${item.slug}" />
+<meta property="og:url" content="http://www.ur-recipe.com/article/${article.slug}" />
 <meta property="og:site_name" content="Полезные рецепты" />
 <meta property="fb:app_id" content="1659668160945449" /> 
 <meta property="article:publisher" content="https://www.facebook.com/tut.recipe" />
@@ -48,8 +48,8 @@
 	  {lang: 'ru'}
 	</script>
 </head>
-<body onload="setTimeout(function(){loadPage('desktop','fb');},0);">
-<script type="text/javascript">
+<body>
+<script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -59,72 +59,26 @@
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
-        console.log('connected: ');
-     // testAPI();
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      console.log('not_authorized: ' + 'Please log into this app.');
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      console.log('The person is not logged into Facebook');
-      
-      FB.login(function(response) {
-    	  console.log('FB.login: ' + response);
-    	  statusLoginCallback(response)
-    	 }, {scope: 'public_profile,email,user_friends'});
-    }
-  }
-//This is called with the results from from FB.getLoginStatus().
-  function statusLoginCallback(response) {
-    console.log('statusLoginCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-    	
-    	/*send to server the user details 
-    		{
-			    status: 'connected',
-			    authResponse: {
-			        accessToken: '...',
-			        expiresIn:'...',
-			        signedRequest:'...',
-			        userID:'...'
-			    }
-			}
-    	
-    	signedRequest:
-    	{
-		   "oauth_token": "{user-access-token}",
-		   "algorithm": "HMAC-SHA256",
-		   "expires": 1291840400,
-		   "issued_at": 1291836800,
-		   "user_id": "218471"
-		}
-    	*/
         console.log('connected: ' + response);
-     // testAPI();
+      testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       console.log('not_authorized: ' + 'Please log into this app.');
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
-      console.log('The person is not logged into Facebook');
-     
+      console.log('not_authorized: ' + 'Please log into Facebookthis app.');
     }
   }
+
   // This function is called when someone finishes with the Login
   // Button.  See the onlogin handler attached to it in the sample
   // code below.
- /*  function checkLoginState() {
+  function checkLoginState() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     });
-  } */
+  }
 
   window.fbAsyncInit = function() {
   FB.init({
@@ -172,7 +126,6 @@
       console.log(JSON.stringify(response));
     });
   }
-  
 </script>
 <div id="fb-root"></div>
 

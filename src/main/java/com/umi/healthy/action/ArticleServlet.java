@@ -199,16 +199,16 @@ public class ArticleServlet {
 		}
 		
 		newarticle.setDescription(description.trim());
-		newarticle.setName(name);
-		newarticle.setSlug(slug);
+		newarticle.setName(name.trim());
+		newarticle.setSlug(slug.trim());
 		newarticle.setThumbnailUrl(thumbnailUrl.trim());
 		newarticle.setAbout(about.trim());
 		newarticle.setActive(active);
-		newarticle.setAlt(alt);
-		newarticle.setLink_title(link_title);
-		newarticle.setMeta_title(meta_title);
-		newarticle.setMeta_keywords(meta_keywords);
-		newarticle.setMeta_description(meta_description);
+		newarticle.setAlt(alt.trim());
+		newarticle.setLink_title(link_title.trim());
+		newarticle.setMeta_title(meta_title.trim());
+		newarticle.setMeta_keywords(meta_keywords.trim());
+		newarticle.setMeta_description(meta_description.trim());
 		articleService.saveArticle(newarticle);
 		
 		response.sendRedirect("/article/l");

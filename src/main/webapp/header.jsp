@@ -25,7 +25,6 @@
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <title>Полезные рецепты </title>
 <meta name="description" content="Полезные рецепты | Откройте для себя полезные, легкие и вкусные рецепты"/>
-<link rel="canonical" href="http://www.ur-recipe.com" />
 <link rel="publisher" href="https://plus.google.com/+Urrecipe1/posts"/>
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:type" content="website" />
