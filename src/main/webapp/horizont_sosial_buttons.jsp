@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<div class="row">
+<div class="row" style="margin-top: 20px; margin-bottom: 20px;">
 	<div class="col-xs-3 col-md-3">
 		<!-- Your like button code -->
 		<div class="fb-like"
@@ -12,7 +12,6 @@
 		</div>
 	</div>
 	<div class="col-xs-3 col-md-3">
-
 		<!-- Your share button code -->
 		<div class="fb-share-button"
 			data-href="http://www.ur-recipe.com/recipe/${item.slug}"
