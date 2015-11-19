@@ -81,22 +81,17 @@
 					</div>
 				</div>
 				<!-- / row -->
+				<hr>
+				<%@include file="include_item_list.jsp"%>
+				
 			</div>
 			<!-- /itemscope  -->
 		</div>
 		<!-- /.col-xs-12 col-sm-8 col-md-8 -->
 		<div class="col-sm-4 col-md-4">
-			<div class="fb-page" data-href="https://www.facebook.com/tut.recipe"
-				data-small-header="false" data-adapt-container-width="true"
-				data-hide-cover="false" data-show-facepile="false"
-				data-show-posts="false">
-				<div class="fb-xfbml-parse-ignore">
-					<blockquote cite="https://www.facebook.com/tut.recipe">
-						<a href="https://www.facebook.com/tut.recipe">Любимые рецепты</a>
-					</blockquote>
-				</div>
-			</div>
+		<div class="fb-page" data-href="https://www.facebook.com/tut.recipe" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/tut.recipe"><a href="https://www.facebook.com/tut.recipe">Полезные рецепты</a></blockquote></div></div>
 			
+			<%@include file="article_side_list.jsp"%>
 			<c:if test="${empty unvisible}">
 				<script async
 					src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
