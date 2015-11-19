@@ -109,4 +109,4 @@
 	<!-- /.row -->
 </div>
 <!-- /.container -->
-<%@include file="bottom.jsp"%>
+<%@include file="item_bottom.jsp"%>
