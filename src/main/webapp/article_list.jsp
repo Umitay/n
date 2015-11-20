@@ -25,13 +25,13 @@
 	</div>
 	 </c:if>
 	<c:if test="${!empty articles}">
-			<section itemscope="" itemtype="http://schema.org/ItemList" style="margin-top: 20px;float: left;">
+			<section itemscope="" itemtype="http://schema.org/ItemList" style="margin-top: 20px; float:left;" class="item-list">
 				<meta content=true itemprop="mainContentOfPage">
 				<meta content="Descending" itemprop="itemListOrder">
 				
 				<c:forEach items="${articles}" var="article">
-					<div itemprop="itemListElement" style="float: left; min-height: 211px;" class=" thumbnail col-xs-12 col-sm-6 col-md-6 col-lg-6" onclick="open_article('${article.slug}')">
-						<c:if test="${!empty article.thumbnailUrl}">
+					<div itemprop="itemListElement" class="article thumbnail col-xs-12 col-sm-6 col-md-6 col-lg-5-5" onclick="open_article('${article.slug}')">
+					   <c:if test="${!empty article.thumbnailUrl}">
 					    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" >
 					      <a href="/article/${article.slug}">
 					        <img itemprop="image" class="img-responsive" src="${article.thumbnailUrl}" >

@@ -6,7 +6,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12 col-sm-8 col-md-8">
+		<div class="col-xs-12 col-sm-12 col-md-8">
 			<div id="item" itemtype="http://schema.org/Recipe" itemscope="">
 				<meta itemprop="dateModified" content="${item_dateModified}">
 				<div class="page-header">
@@ -15,14 +15,14 @@
 
 				<!-- row -->
 				<div class="row">
-					<div class="col-xs-6 col-md-4">
+					<div class="col-xs-12 col-md-4">
 						<div class="thumbnail" id="output_field"
 							style="height: 180px; background-color: #F1FCEC;"
 							itemprop="image">
 							<img width="230" height="230" src="${item.thumbnailUrl}" />
 						</div>
 					</div>
-					<div class="col-xs-6 col-md-8">
+					<div class="col-xs-12 col-md-8">
 						<div itemprop="description">${item.about}</div>
 						<div>
 							Время приготовления:
@@ -67,13 +67,13 @@
 				<div class="bg-warning ads"></div>
 				<!--  row -->
 				<div class="row">
-					<div class="col-xs-6 col-md-8">
+					<div class="col-xs-12 col-md-8">
 						<div>
 							<h2>Как приготовить</h2>
 							<div itemprop="recipeInstructions">${item.description}</div>
 						</div>
 					</div>
-					<div class="col-xs-6 col-md-4">
+					<div class="col-xs-12 col-md-4">
 						<div itemprop="ingredients">
 							<h2>Ингредиенты</h2>
 							${item.ingredients}
@@ -81,27 +81,18 @@
 					</div>
 				</div>
 				<!-- / row -->
+				<hr>
+				<%@include file="include_item_list.jsp"%>
+				
 			</div>
 			<!-- /itemscope  -->
 		</div>
 		<!-- /.col-xs-12 col-sm-8 col-md-8 -->
 		<div class="col-sm-4 col-md-4">
-			<div class="fb-page" data-href="https://www.facebook.com/tut.recipe"
-				data-small-header="false" data-adapt-container-width="true"
-				data-hide-cover="false" data-show-facepile="false"
-				data-show-posts="false">
-				<div class="fb-xfbml-parse-ignore">
-					<blockquote cite="https://www.facebook.com/tut.recipe">
-						<a href="https://www.facebook.com/tut.recipe">Любимые рецепты</a>
-					</blockquote>
-				</div>
-			</div>
-			<!-- Поместите этот тег туда, где должна отображаться виджет. 
-			<div class="g-page"
-				data-href="//plus.google.com/u/0/102501925985129905212"
-				data-rel="publisher"></div>-->
-				
-			<c:if test="${empty !unvisible}">
+		<div class="fb-page" data-href="https://www.facebook.com/tut.recipe" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/tut.recipe"><a href="https://www.facebook.com/tut.recipe">Полезные рецепты</a></blockquote></div></div>
+			
+			<%@include file="article_side_list.jsp"%>
+			<c:if test="${empty unvisible}">
 				<script async
 					src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 				<!-- recipe-side -->
@@ -118,4 +109,4 @@
 	<!-- /.row -->
 </div>
 <!-- /.container -->
-<%@include file="bottom.jsp"%>
+<%@include file="item_bottom.jsp"%>

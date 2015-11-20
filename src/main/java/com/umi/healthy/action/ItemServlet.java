@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -78,9 +79,15 @@ public class ItemServlet {
 			request.setAttribute("unvisible", true);
 		}
 		
+		ItemService itemService = new ItemService(); 
+		List<Item>  items = itemService.loadItems(100,0);
+		Collections.shuffle(items);
+		
 		CategoryService categoryService = new CategoryService(); 
 		ArticleService articleService = new ArticleService(); 
-		List<Article> articles =  articleService.loadArticles(true);
+		
+		List<Article> articles = articleService.loadArticles(true);
+		Collections.shuffle(articles);
 		
 		List<Category> categories =  categoryService.loadTopCategories(); 
 		List<Category> all_categories =  categoryService.loadAllCategories(); 
@@ -103,10 +110,10 @@ public class ItemServlet {
 			request.setAttribute("item_categories", item_categories);
 			request.setAttribute("item", item);
 			request.setAttribute("articles", articles);
-			
+			request.setAttribute("items", items);
 			request.setAttribute("meta_title", item.getMeta_title()!=null ? item.getMeta_title():  item.getName() );
-			request.setAttribute("meta_keywords", item.getMeta_keywords()!=null  ? item.getMeta_keywords():  item.getName() +"Вкусно ✓ Полезно ✓ Легко ✓");
-			request.setAttribute("meta_description", item.getMeta_description()!=null  ? item.getMeta_description() +"Вкусно ✓ Полезно ✓ Легко ✓":  item.getAbout()  +"Вкусно ✓ Полезно ✓ Легко ✓");
+			request.setAttribute("meta_keywords", item.getMeta_keywords()!=null  ? item.getMeta_keywords():  item.getName() +" Вкусно ✓ Полезно ✓ Легко ✓");
+			request.setAttribute("meta_description", item.getMeta_description()!=null  ? item.getMeta_description() +" Вкусно ✓ Полезно ✓ Легко ✓":  item.getAbout()  +"Вкусно ✓ Полезно ✓ Легко ✓");
 			
 			request.getRequestDispatcher("/item.jsp").forward(request, response);
 			

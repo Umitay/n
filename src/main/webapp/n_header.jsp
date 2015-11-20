@@ -11,8 +11,6 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"	href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 <link rel="stylesheet"	href="/static/styles.css">
-<link rel="icon" href="/logo.png" type="image/x-icon" />
-<link rel="shortcut icon" href="/logo.png" type="image/x-icon" />
 <!-- Latest compiled and minified JavaScript -->
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
