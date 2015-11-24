@@ -53,6 +53,12 @@ h2 {
 ul.nav li.dropdown:hover ul.dropdown-menu {
 	display: block;
 }
+.navbar-nav > li > a {
+	display: inline;
+}
+.navbar-nav > li::before {
+    content: "|";
+}
 
 
 .jumbotron{
