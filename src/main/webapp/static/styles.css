@@ -62,6 +62,15 @@ h2 {
 ul.nav li.dropdown:hover ul.dropdown-menu {
 	display: block;
 }
+
+.navbar-nav > li > a {
+	display: inline;
+}
+.navbar-nav > li::before {
+    content: "|";
+}
+
+
 .jumbotron{
 	background-color: #d4f2c7;
 	margin-bottom:0px;
@@ -420,27 +429,47 @@ color: gold;
 .icon-resize-vertical{background-position:-432px -119px;}
 .icon-resize-horizontal{background-position:-456px -118px;}
 
-
+.article:nth-child(odd) {
+   margin-right: 2%;
+}
+.thumbnail .caption h3 {
+	 font-size: 14px;
+	 font-weight: bold;
+}
 /* Small devices (mobile, up to 768px) */
 @media (max-width:  768px ) { 
-	   .article{ height: auto; } 
+	   .article { height: auto; } 
+	   .recipe { height: auto; } 
 }
 
 /* Small devices (tablets, 768px and up to 800px) */
 @media ( min-width:768px ) and (max-width: 990px) {
 	  .article{ height: auto; } 
+	  .recipe { height: auto; } 
 }
 
 /* Medium devices Desktops */
 @media (min-width: 990px) and (max-width: 1200px) {
-.col-lg-5-5 { width:49%; }
-.article { float: left; height: 211px;}
+	.col-lg-5-5 { width:49%; }
+	.article { float: left; height: 211px;}
+	.recipe { float: left; height: 500px; }
+	 .recipe .thumbnail { height: 480px; } 
+	.thumbnail .caption {
+			max-height: 250px;
+			overflow: hidden;
+		} 
 }
  
 /* Large devices Desktops */
 @media (min-width: 1200px ) { 
 	.col-lg-5-5 { width:49%; }
  	.article { float: left; height: 211px;}
+	.recipe { float: left; height: 500px; } 
+	 .recipe .thumbnail { height: 480px; } 
+	.thumbnail .caption {
+		max-height: 250px;
+		overflow: hidden;
+	}
   }
 
 

@@ -9,10 +9,8 @@
 			<h2 itemprop="name">Все рецепты</h2>
 			<meta content="Descending" itemprop="itemListOrder">
 			
-			<!-- row of columns -->
-			<div class="row">
-				<c:forEach items="${items}" var="item" begin="0" end="3">
-					<div itemprop="itemListElement" class="col-sm-6 col-lg-3">
+				<c:forEach items="${items}" var="item">
+					<div itemprop="itemListElement" class="recipe col-xs-12 col-sm-6 col-md-6 col-lg-3">
 						<div class="thumbnail">
 							<c:if test="${!empty item.thumbnailUrl}">
 							 <a href="/recipe/${item.slug}"> <img alt="${item.alt}"
@@ -30,77 +28,5 @@
 						</div>
 					</div>
 				</c:forEach>
-			</div>
-			<!--/ row of columns -->
-			
-			<!-- row of columns -->
-			<div class="row">
-				<c:forEach items="${items}" var="item"  begin="4" end="7">
-					<div itemprop="itemListElement" class="col-sm-6 col-lg-3">
-						<div class="thumbnail">
-							<c:if test="${!empty item.thumbnailUrl}">
-							 <a href="/recipe/${item.slug}"> <img alt="${item.alt}"
-								width="300" height="225" itemprop="image"
-								src="${item.thumbnailUrl}">
-							 </a>
-							 </c:if>
-							<div class="caption">
-								<h3 itemprop="name">
-									<a href="/recipe/${item.slug}" title="${item.link_title}"
-										itemprop="url">${item.name}</a>
-								</h3>
-								<p itemprop="description">${item.about}</p>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
-			<!--/ row of columns -->
-			<!-- row of columns -->
-			<div class="row">
-				<c:forEach items="${items}" var="item"  begin="8" end="11">
-					<div itemprop="itemListElement" class="col-sm-6 col-lg-3">
-						<div class="thumbnail">
-							<c:if test="${!empty item.thumbnailUrl}">
-							 <a href="/recipe/${item.slug}"> <img alt="${item.alt}"
-								width="300" height="225" itemprop="image"
-								src="${item.thumbnailUrl}">
-							 </a>
-							 </c:if>
-							<div class="caption">
-								<h3 itemprop="name">
-									<a href="/recipe/${item.slug}" title="${item.link_title}"
-										itemprop="url">${item.name}</a>
-								</h3>
-								<p itemprop="description">${item.about}</p>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
-			<!--/ row of columns -->
-			<!-- row of columns -->
-			<div class="row">
-				<c:forEach items="${items}" var="item" begin="12" end="15">
-					<div itemprop="itemListElement" class="col-sm-6 col-lg-3">
-						<div class="thumbnail">
-							<c:if test="${!empty item.thumbnailUrl}">
-							 <a href="/recipe/${item.slug}"> <img alt="${item.alt}"
-								width="300" height="225" itemprop="image"
-								src="${item.thumbnailUrl}">
-							 </a>
-							 </c:if>
-							<div class="caption">
-								<h3 itemprop="name">
-									<a href="/recipe/${item.slug}" title="${item.link_title}"
-										itemprop="url">${item.name}</a>
-								</h3>
-								<p itemprop="description">${item.about}</p>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
-			<!--/ row of columns -->
 		</section>
 	</c:if>
