@@ -231,7 +231,7 @@ public class HomepageServlet{
 	@Produces(MediaType.TEXT_PLAIN )
 	public String robots(  ) {
 
-		String txt ="User-agent: *\nDisallow: /n\nAllow: /\nHost: www.ur-recipe.com";
+		String txt ="User-agent: *\nDisallow: /n\nAllow: /\nHost: www.ur-recipe.com\nSitemap: http://www.ur-recipe.com/sitemap_index.xml";
 		
 		return txt;
 	}	
