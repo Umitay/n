@@ -63,12 +63,13 @@
 					</div>
 				</div>
 				<!-- / row -->
+				<c:set var="share_url" value="http://www.ur-recipe.com/recipe/${item.slug}" scope="request"/>
+				<%@include file="horizont_sosial_buttons.jsp"%>
+				<div class="bg-warning ads">
 				<c:if test="${empty unvisible}">
 					<%@include file="ad_horizont.jsp"%>
 			    </c:if>
-	    
-				<%@include file="horizont_sosial_buttons.jsp"%>
-				<div class="bg-warning ads"></div>
+				</div>
 				<!--  row -->
 				<div class="row">
 					<div class="col-xs-12 col-md-8">
@@ -98,8 +99,6 @@
 			<c:if test="${empty unvisible}">
 				<%@include file="ad_side.jsp"%>
 			</c:if>
-			<div class="fb-page" data-href="https://www.facebook.com/tut.recipe" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/tut.recipe"><a href="https://www.facebook.com/tut.recipe">Полезные рецепты</a></blockquote></div></div>
-		
 		</div>
 		<!-- /.col-sm-4 col-md-4 -->
 	</div>

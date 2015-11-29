@@ -72,17 +72,22 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 
 .jumbotron{
-	background-color: #d4f2c7;
-	margin-bottom:0px;
-	color: #36523F;
+	 background-color: #d4f2c7;
+    color: #36523f;
+    margin-bottom: 0;
+     padding-bottom: 15px;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-top: 15px !important;
 }
 .jumbotron h1, .jumbotron .h1 {
     font-size: 25px;
+    margin-top: 0px;
 }
 .jumbotron p {
     font-size: 14px;
     font-weight: 200;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
 }
 
 #item .page-header {
@@ -428,7 +433,11 @@ color: gold;
 .icon-folder-open{background-position:-408px -120px;}
 .icon-resize-vertical{background-position:-432px -119px;}
 .icon-resize-horizontal{background-position:-456px -118px;}
-
+.item_list_element{
+	 height: 450px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
 .article:nth-child(odd) {
    margin-right: 2%;
 }

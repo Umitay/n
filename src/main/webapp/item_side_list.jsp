@@ -5,12 +5,10 @@
 <c:if test="${!empty items}">
 		<section itemscope="" itemtype="http://schema.org/ItemList">
 			<meta content=true itemprop="mainContentOfPage">
-
-			<h2 itemprop="name">Все рецепты</h2>
 			<meta content="Descending" itemprop="itemListOrder">
 			
-				<c:forEach items="${items}" var="item">
-					<div itemprop="itemListElement" class="item_list_element thumbnail col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				<c:forEach items="${items}" var="item" varStatus="loop" begin="0" end="2">
+					<div itemprop="itemListElement" class="item_list_element thumbnail">
 							<c:if test="${!empty item.thumbnailUrl}">
 							 <a href="/recipe/${item.slug}"> <img alt="${item.alt}"
 								width="300" height="225" itemprop="image"

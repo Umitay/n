@@ -1,6 +1,7 @@
 package com.umi.healthy.action;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -69,11 +70,33 @@ public class ArticleServlet {
 		List<Article> articles =  articleService.loadArticles(true);
 		CategoryService categoryService = new CategoryService(); 
 		List<Category> categories =  categoryService.loadTopCategories(); 
+		ItemService itemService = new ItemService(); 
+		List<Item>  items = itemService.loadItems(16,0);
+		Collections.shuffle(items);
+		
+		String meta_description=article.getMeta_description();
+		if(meta_description.length() <=0){
+			meta_description =  article.getAbout() +" Вкусно ✓ Полезно ✓ Легко ✓";
+		}
+		
+		String meta_title = article.getMeta_title();
+		if(meta_title.length() <= 0 ){
+			meta_title = article.getName();
+		}
+		String meta_keywords = article.getMeta_keywords();
+		if(meta_keywords.length() <= 0 ){
+			meta_keywords = article.getName() +" Вкусно ✓ Полезно ✓ Легко ✓";
+		}
 		
 		try {
 			request.setAttribute("articles", articles);
 			request.setAttribute("article", article);
+			request.setAttribute("items", items);
 			request.setAttribute("categories", categories);
+			request.setAttribute("meta_title",  meta_title );
+			request.setAttribute("meta_keywords", meta_keywords );
+			request.setAttribute("meta_description", meta_description);
+		
 			request.getRequestDispatcher("/article.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
