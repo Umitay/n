@@ -63,6 +63,10 @@
 					</div>
 				</div>
 				<!-- / row -->
+				<c:if test="${empty unvisible}">
+					<%@include file="ad_horizont.jsp"%>
+			    </c:if>
+	    
 				<%@include file="horizont_sosial_buttons.jsp"%>
 				<div class="bg-warning ads"></div>
 				<!--  row -->
@@ -89,20 +93,13 @@
 		</div>
 		<!-- /.col-xs-12 col-sm-8 col-md-8 -->
 		<div class="col-sm-4 col-md-4">
-		<div class="fb-page" data-href="https://www.facebook.com/tut.recipe" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/tut.recipe"><a href="https://www.facebook.com/tut.recipe">Полезные рецепты</a></blockquote></div></div>
 			
 			<%@include file="article_side_list.jsp"%>
 			<c:if test="${empty unvisible}">
-				<script async
-					src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<!-- recipe-side -->
-				<ins class="adsbygoogle" style="display: block"
-					data-ad-client="ca-pub-2604632423420713" data-ad-slot="6080759413"
-					data-ad-format="auto"></ins>
-				<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
-				</script>
+				<%@include file="ad_side.jsp"%>
 			</c:if>
+			<div class="fb-page" data-href="https://www.facebook.com/tut.recipe" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false" data-show-posts="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/tut.recipe"><a href="https://www.facebook.com/tut.recipe">Полезные рецепты</a></blockquote></div></div>
+		
 		</div>
 		<!-- /.col-sm-4 col-md-4 -->
 	</div>
