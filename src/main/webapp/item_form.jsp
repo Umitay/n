@@ -59,7 +59,23 @@
 				<label>Meta Description</label>
 				<input type="text" value="${item.meta_description}" name="meta_description" class="form-control">
 				</div>
-						<div class="form-group">
+				<div class="form-group">
+				<label>ads_horizont1</label>
+				<input type="text" value="${item.ads_horizont1}" name="ads_horizont1" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>ads_horizont2</label>
+				<input type="text" value="${item.ads_horizont2}" name="ads_horizont2" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>ads_side1</label>
+				<input type="text" value="${item.ads_side1}" name="ads_side1" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>ads_side2</label>
+				<input type="text" value="${item.ads_side2}" name="ads_side2" class="form-control">
+				</div>
+				<div class="form-group">
 				<label>dateModified*</label>
 				<input type="text" value="${item.dateModified}" class="form-control">
 				</div>
@@ -78,24 +94,22 @@
 					<option value="false" ${!item.active ? 'selected' : ''}>No</option>
 				</select>
 				</div>
-				<c:if test="${is_admin}">
-					<div class="form-group">
-					<label>FB</label>
-					<input type="text" value="${item.fb_share}"  name="fb_share" class="form-control">
-					</div>
-					<div class="form-group">
-					<label>VK</label>
-					<input type="text" value="${item.vk_share}"  name="vk_share" class="form-control">
-					</div>
-					<div class="form-group">
-					<label>LJ</label>
-					<input type="text" value="${item.lj_share}"  name="lj_share" class="form-control">
-					</div>
-					<div class="form-group">
-					<label>Twitter</label>
-					<input type="text" value="${item.twitter_share}"  name="twitter_share" class="form-control">
-					</div>
-				</c:if>
+				<div class="form-group">
+				<label>FB</label>
+				<input type="text" value="${item.fb_share}"  name="fb_share" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>VK</label>
+				<input type="text" value="${item.vk_share}"  name="vk_share" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>LJ</label>
+				<input type="text" value="${item.lj_share}"  name="lj_share" class="form-control">
+				</div>
+				<div class="form-group">
+				<label>Twitter</label>
+				<input type="text" value="${item.twitter_share}"  name="twitter_share" class="form-control">
+				</div>
 		</div>
 		<div  class="col-sm-6 col-lg-6">
 		      <div class="form-group">
@@ -103,8 +117,8 @@
 				<textarea  name="ingredients" class="form-control">${item.ingredients}</textarea>
 				</div>
 				<div class="form-group">
-				<label>about*</label>
-					<textarea name="about" class="form-control">${item.about}</textarea>
+					<label>about*</label>
+					<input type="text" value="${item.about}" name="about" class="form-control">
 				</div>
 				<div class="form-group">
 				<label>Description*</label>

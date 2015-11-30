@@ -99,6 +99,20 @@ public class ItemServlet {
 			}
 		}
 		
+		String meta_description=item.getMeta_description();
+		if(meta_description.length() <=0){
+			meta_description =  item.getAbout() +" Вкусно ✓ Полезно ✓ Легко ✓";
+		}
+		
+		String meta_title = item.getMeta_title();
+		if(meta_title.length() <= 0 ){
+			meta_title = item.getName();
+		}
+		String meta_keywords = item.getMeta_keywords();
+		if(meta_keywords.length() <= 0 ){
+			meta_keywords = item.getName() +" Вкусно ✓ Полезно ✓ Легко ✓";
+		}
+		
 		try {
 			Date d = new Date( item.getDatePublished() );
 			request.setAttribute("item_datePublished", DateFormatUtils.format(d,"dd.MM.yyyy"));
@@ -111,9 +125,9 @@ public class ItemServlet {
 			request.setAttribute("item", item);
 			request.setAttribute("articles", articles);
 			request.setAttribute("items", items);
-			request.setAttribute("meta_title", item.getMeta_title()!=null ? item.getMeta_title():  item.getName() );
-			request.setAttribute("meta_keywords", item.getMeta_keywords()!=null  ? item.getMeta_keywords():  item.getName() +" Вкусно ✓ Полезно ✓ Легко ✓");
-			request.setAttribute("meta_description", item.getMeta_description()!=null  ? item.getMeta_description() +" Вкусно ✓ Полезно ✓ Легко ✓":  item.getAbout()  +"Вкусно ✓ Полезно ✓ Легко ✓");
+			request.setAttribute("meta_title", meta_title);
+			request.setAttribute("meta_keywords", meta_keywords);
+			request.setAttribute("meta_description", meta_description);
 			
 			request.getRequestDispatcher("/item.jsp").forward(request, response);
 			
@@ -184,7 +198,11 @@ public class ItemServlet {
 			 @DefaultValue("") @FormParam("link_title") String link_title, 
 			 @DefaultValue("") @FormParam("meta_title") String meta_title,
 			 @DefaultValue("") @FormParam("meta_keywords") String meta_keywords, 
-			 @DefaultValue("") @FormParam("meta_description") String meta_description
+			 @DefaultValue("") @FormParam("meta_description") String meta_description,
+			 @DefaultValue("") @FormParam("ads_horizont1") String ads_horizont1, 
+			 @DefaultValue("") @FormParam("ads_horizont2") String ads_horizont2,
+			 @DefaultValue("") @FormParam("ads_side1") String ads_side1, 
+			 @DefaultValue("") @FormParam("ads_side2") String ads_side2
 			 ) throws IOException {
 		
 		log.info("Start save with slug: "+slug);
@@ -223,7 +241,9 @@ public class ItemServlet {
 		itemService.saveItem(slug,name,alt,thumbnailUrl,thumbnailUrl2,about,description,
 					recipeCategory,totalTime,recipeYield,ingredients,nutrition,
 					active,datePublished,dateCreated,dateModified,
-					fb_share, vk_share, lj_share, twitter_share,is_admin, link_title, meta_title, meta_keywords, meta_description);
+					fb_share, vk_share, lj_share, twitter_share,is_admin, link_title,
+					meta_title, meta_keywords, meta_description,
+					ads_horizont1,ads_horizont2, ads_side1, ads_side2);
 		  
 		response.sendRedirect("/n");
 		log.info("End save ");

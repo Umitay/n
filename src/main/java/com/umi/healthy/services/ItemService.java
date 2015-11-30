@@ -190,7 +190,8 @@ public class ItemService extends DBService{
 			Long datePublished, Long dateCreated, Long dateModified,
 			String fb_share , String vk_share , String lj_share ,
 			String twitter_share, Boolean is_admin,
-			String link_title, String meta_title,String meta_keywords, String meta_description) {
+			String link_title, String meta_title,String meta_keywords, String meta_description, 
+			String ads_horizont1, String ads_horizont2, String ads_side1, String ads_side2) {
 		
 			List<String> recipeCategory =null;
 			Item  item =  null;
@@ -230,13 +231,14 @@ public class ItemService extends DBService{
 				item.setMeta_title(meta_title);
 				item.setMeta_keywords(meta_keywords);
 				item.setMeta_description(meta_description);
-				
-				 if(is_admin){
-					item.setFb_share( fb_share );
-					item.setVk_share( vk_share ); 
-					item.setLj_share( lj_share ); 
-					item.setTwitter_share( twitter_share ); 
-				 }
+				item.setAds_horizont1(ads_horizont1);
+				item.setAds_horizont2(ads_horizont2);
+				item.setAds_side1(ads_side1);
+				item.setAds_side2(ads_side2);
+				item.setFb_share( fb_share );
+				item.setVk_share( vk_share ); 
+				item.setLj_share( lj_share ); 
+				item.setTwitter_share( twitter_share ); 
 				item.setActive(active);
 				
 				item =  save(item);
