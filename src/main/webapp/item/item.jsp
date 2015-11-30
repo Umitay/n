@@ -23,7 +23,9 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-8">
-						<div itemprop="description">${item.about} <br></div>
+						<div itemprop="description">${item.about}
+							<br>
+						</div>
 						<div>
 							Время приготовления:
 							<time content="PT${item.totalTime} min" itemprop="totalTime">${item.totalTime}
@@ -63,20 +65,23 @@
 					</div>
 				</div>
 				<!-- / row -->
-				<c:set var="share_url" value="http://www.ur-recipe.com/recipe/${item.slug}" scope="request"/>
+				<c:set var="share_url"
+					value="http://www.ur-recipe.com/recipe/${item.slug}"
+					scope="request" />
 				<%@include file="/common/horizont_sosial_buttons.jsp"%>
-				
+
 				<div class="bg-warning ads">
-				<c:if test="${empty unvisible }">
+					<c:if test="${empty unvisible }">
 						<c:choose>
-						    <c:when test="${empty item.ads_horizont1}">
-						    	<%@include file="/common/ad_horizont.jsp"%>
-						    </c:when>
-						    <c:otherwise>
+							<c:when test="${empty item.ads_horizont1}">
+								<%@include file="/common/ad_horizont.jsp"%>
+							</c:when>
+							<c:otherwise>
 						        ${item.ads_horizont1}
 						    </c:otherwise>
 						</c:choose>
-			    </c:if>
+					</c:if>
+					<br>
 				</div>
 				<!--  row -->
 				<div class="row">
@@ -96,47 +101,37 @@
 				<!-- / row -->
 				<hr>
 				<%@include file="include_item_list.jsp"%>
-				
+
 				<div class="bg-warning ads">
-				<c:if test="${empty unvisible }">
+					<c:if test="${empty unvisible }">
 						<c:choose>
-						    <c:when test="${empty item.ads_horizont2}">
-						    	<%@include file="/common/ad_horizont.jsp"%>
-						    </c:when>
-						    <c:otherwise>
+							<c:when test="${empty item.ads_horizont2}">
+								<%@include file="/common/ad_horizont.jsp"%>
+							</c:when>
+							<c:otherwise>
 						        ${item.ads_horizont2}
 						    </c:otherwise>
 						</c:choose>
-			    </c:if>
+					</c:if>
 				</div>
 			</div>
 			<!-- /itemscope  -->
 		</div>
 		<!-- /.col-xs-12 col-sm-8 col-md-8 -->
-		<div class="col-sm-4 col-md-4">
+		<div class="col-xs-12 col-sm-12 col-md-4">
 			<c:if test="${empty unvisible}">
 				<c:choose>
-						    <c:when test="${empty item.ads_side1}">
-						    	<%@include file="/common/ad_side.jsp"%>
-						    </c:when>
-						    <c:otherwise>
+					<c:when test="${empty item.ads_side1}">
+						<%@include file="/common/ad_side.jsp"%>
+					</c:when>
+					<c:otherwise>
 						        ${item.ads_side1}
 						    </c:otherwise>
-						</c:choose>
+				</c:choose>
 			</c:if>
-			
+
 			<%@include file="/article/article_side_list.jsp"%>
-			
-			<c:if test="${empty unvisible}">
-				<c:choose>
-						    <c:when test="${empty item.ads_side2}">
-						    	<%@include file="/common/ad_side.jsp"%>
-						    </c:when>
-						    <c:otherwise>
-						        ${item.ads_side2}
-						    </c:otherwise>
-						</c:choose>
-			</c:if>
+
 		</div>
 		<!-- /.col-sm-4 col-md-4 -->
 	</div>

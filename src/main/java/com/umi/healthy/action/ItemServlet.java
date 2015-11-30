@@ -160,7 +160,7 @@ public class ItemServlet {
 			if(request.getServerName().contains("appspot.com")){
 				request.setAttribute("is_admin", true);
 			}
-			request.getRequestDispatcher("/n/item_form.jsp").forward(request, response);
+			request.getRequestDispatcher("/item/item_form.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());

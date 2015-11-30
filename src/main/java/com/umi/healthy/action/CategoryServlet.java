@@ -125,7 +125,7 @@ public class CategoryServlet {
 
 		String meta_description=category.getMeta_description();
 		if(meta_description == null || meta_description.length() <=0){
-			meta_description = "Откройте для себя полезные, легкие и вкусные рецепты. Вкусно ✓ Полезно ✓ Легко ✓";
+			meta_description = "Откройте для себя полезные, легкие и вкусные рецепты.";
 		}
 		
 		String meta_title = category.getMeta_title();
@@ -134,7 +134,7 @@ public class CategoryServlet {
 		}
 		String meta_keywords = category.getMeta_keywords();
 		if(meta_keywords == null || meta_keywords.length() <= 0 ){
-			meta_keywords = category.getName() +" Вкусно ✓ Полезно ✓ Легко ✓";
+			meta_keywords = category.getName();
 		}
 		
 		try {
@@ -200,18 +200,24 @@ public class CategoryServlet {
 	@Produces(MediaType.APPLICATION_JSON)
 	@RolesAllowed({"ADMIN", "API", "SEO"})
 	public void edit( @DefaultValue("") @PathParam("slug") String slug ) throws IOException {
-		response.setContentType("text/html; charset=utf-8");
+		log.info("Start edit: "+slug);
+		if(slug.length() <=0 ){
+			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
+		}
 		
+		response.setContentType("text/html; charset=utf-8");
+		CategoryService categoryService = new CategoryService(); 
 		Category category =  categoryService.loadCategory(slug); 
+		log.info("Category name: "+category.getName());
+		
 		List<Category> categories =  categoryService.loadAllCategories(); 
-	
+		log.info("Categories: "+categories.size());
 		
 		try {
 			
 			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
-			request.getRequestDispatcher("/n/category_form.jsp").forward(request, response);
-			
+			request.getRequestDispatcher("/category/category_form.jsp").forward(request, response);
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
 			response.sendRedirect("/n");

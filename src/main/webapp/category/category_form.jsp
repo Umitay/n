@@ -32,7 +32,7 @@
 		</div>
 		<div class="form-group">
 		<label>Ads jumbotron</label>
-		<textarea  name="ads_jumbotron" class="form-control"> ${category.ads_jumbotron}</textarea>
+		<textarea  name="ads_jumbotron" class="form-control">${category.ads_jumbotron}</textarea>
 		</div>
 		<div class="form-group">
 		<label>ads_horizont1</label>

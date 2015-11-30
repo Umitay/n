@@ -43,31 +43,31 @@
 		</div>
 		<div class="form-group">
 		<label>Meta Description</label>
-		<input type="text" value="${article.meta_description}" name="meta_description" class="form-control">
+		<textarea  name="meta_description" class="form-control">${article.meta_description}</textarea>
 		</div>
 		<div class="form-group">
 		<label>ads_horizont1</label>
-		<input type="text" value="${article.ads_horizont1}" name="ads_horizont1" class="form-control">
+		<textarea  name="ads_horizont1" class="form-control">${article.ads_horizont1}</textarea>
 		</div>
 		<div class="form-group">
 		<label>ads_horizont2</label>
-		<input type="text" value="${article.ads_horizont2}" name="ads_horizont2" class="form-control">
+		<textarea  name="ads_horizont2" class="form-control">${article.ads_horizont2}</textarea>
 		</div>
 		<div class="form-group">
 		<label>ads_side1</label>
-		<input type="text" value="${article.ads_side1}" name="ads_side1" class="form-control">
+		<textarea  name="ads_side1" class="form-control">${article.ads_side1}</textarea>
 		</div>
 		<div class="form-group">
 		<label>ads_side2</label>
-		<input type="text" value="${article.ads_side2}" name="ads_side2" class="form-control">
+		<textarea name="ads_side2" class="form-control">${article.ads_side2}</textarea>
 		</div>
 		<div class="form-group">
 		<label>About*</label>
-		<input type="text" value="${article.about}" name="about" class="form-control">
+		<textarea   name="about" class="form-control">${article.about}</textarea>
 		</div>
 		<div class="form-group">
 		<label>Description*</label>
-		<textarea style="height: 700px;" name="description" class="form-control" type="text">${article.description}</textarea>
+		<textarea style="height: 700px;" id="textarea"  name="description" class="form-control" type="text">${article.description}</textarea>
 		</div>
 		<input type="submit" class="btn btn-primary"> 
 		</form>

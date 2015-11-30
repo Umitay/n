@@ -169,7 +169,7 @@ public class ArticleServlet {
 		try {
 			request.setAttribute("article", article);
 			request.setAttribute("categories", categories);
-			request.getRequestDispatcher("/n/article_form.jsp").forward(request, response);
+			request.getRequestDispatcher("/article/article_form.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());

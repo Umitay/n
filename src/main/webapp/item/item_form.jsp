@@ -57,23 +57,23 @@
 				</div>
 				<div class="form-group">
 				<label>Meta Description</label>
-				<input type="text" value="${item.meta_description}" name="meta_description" class="form-control">
+				<textarea  name="meta_description" class="form-control">${item.meta_description}</textarea>
 				</div>
 				<div class="form-group">
 				<label>ads_horizont1</label>
-				<input type="text" value="${item.ads_horizont1}" name="ads_horizont1" class="form-control">
+				<textarea  name="ads_horizont1" class="form-control">${item.ads_horizont1}</textarea>
 				</div>
 				<div class="form-group">
 				<label>ads_horizont2</label>
-				<input type="text" value="${item.ads_horizont2}" name="ads_horizont2" class="form-control">
+				<textarea  name="ads_horizont2" class="form-control">${item.ads_horizont2}</textarea>
 				</div>
 				<div class="form-group">
 				<label>ads_side1</label>
-				<input type="text" value="${item.ads_side1}" name="ads_side1" class="form-control">
+				<textarea  name="ads_side1" class="form-control">${item.ads_side1}</textarea>
 				</div>
 				<div class="form-group">
 				<label>ads_side2</label>
-				<input type="text" value="${item.ads_side2}" name="ads_side2" class="form-control">
+				<textarea name="ads_side2" class="form-control">${item.ads_side2}</textarea>
 				</div>
 				<div class="form-group">
 				<label>dateModified*</label>
@@ -117,12 +117,12 @@
 				<textarea  name="ingredients" class="form-control">${item.ingredients}</textarea>
 				</div>
 				<div class="form-group">
-					<label>about*</label>
-					<input type="text" value="${item.about}" name="about" class="form-control">
+				<label>About*</label>
+				<textarea   name="about" class="form-control">${item.about}</textarea>
 				</div>
 				<div class="form-group">
 				<label>Description*</label>
-				<textarea  style="height: 700px;" name="description" class="form-control" >${item.description}</textarea>
+				<textarea   id="textarea"  style="height: 700px;" name="description" class="form-control" >${item.description}</textarea>
 				</div>
 				
 			</div>

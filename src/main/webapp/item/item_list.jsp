@@ -9,7 +9,18 @@
 			<h2 itemprop="name">Все рецепты</h2>
 			<meta content="Descending" itemprop="itemListOrder">
 			
-				<c:forEach items="${items}" var="item">
+				<c:forEach items="${items}"  varStatus="loop" var="item">
+				
+					<c:if test="${empty unvisible  && loop.index == 1} ">
+							<c:choose>
+						    <c:when test="${empty category.ads_horizont1}">
+						    	<%@include file="/common/ad_horizont.jsp"%>
+						    </c:when>
+						    <c:otherwise>
+						     ${category.ads_horizont1}
+						    </c:otherwise>
+						</c:choose>
+				    </c:if>
 					<div itemprop="itemListElement" class="item_list_element thumbnail col-xs-12 col-sm-6 col-md-6 col-lg-3">
 							<c:if test="${!empty item.thumbnailUrl}">
 							 <a href="/recipe/${item.slug}"> <img alt="${item.alt}"

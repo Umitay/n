@@ -7,18 +7,14 @@
 	<div class="jumbotron">
 		<h1>${category.name}</h1>
 		 <c:if test="${empty unvisible}">
-			<div class="panel">
 			${category.ads_jumbotron}
-			</div>
 		</c:if>
 		${category.description}
 	</div>
 	<%@include file="/item/item_list.jsp"%>
 	
 	<c:if test="${empty unvisible}">
-		<div class="panel">
 			${category.ads_horizont1}
-		</div>
 	 </c:if>
 </div>
 <%@include file="/common/bottom.jsp"%>
