@@ -14,7 +14,7 @@
 <!-- Latest compiled and minified JavaScript -->
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>
-<script>tinymce.init({selector:'textarea',plugins: [
+<script>tinymce.init({selector:'#textarea',plugins: [
                                                     "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak spellchecker",
                                                     "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
                                                     "table contextmenu template textcolor paste  textcolor"

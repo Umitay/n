@@ -19,19 +19,59 @@
 		
 		<div class="bg-warning ads">
 				<c:if test="${empty unvisible}">
-					<%@include file="ad_horizont.jsp"%>
+				 	<c:when test="${empty article.ads_horizont1}">
+				    	<%@include file="ad_horizont.jsp"%>
+				    </c:when>
+				    <c:otherwise>
+				        ${article.ads_horizont1}
+				    </c:otherwise>
+				
 			    </c:if>
 		</div>
 		
 		<div itemprop="articleBody"> ${article.description}</div>
+		
 		</div>
+		
+		<div class="bg-warning ads">
+				<c:if test="${empty unvisible}">
+				 	<c:when test="${empty article.ads_horizont2}">
+				    	<%@include file="ad_horizont.jsp"%>
+				    </c:when>
+				    <c:otherwise>
+				        ${article.ads_horizont2}
+				    </c:otherwise>
+			    </c:if>
+		</div>
+		
 		</div>
 		<!-- /.col-xs-12 col-sm-8 col-md-8 -->
 		<div class="col-sm-4 col-md-4">
-		 <%@include file="item_side_list.jsp"%>
-			<c:if test="${empty unvisible}">
-				<%@include file="ad_side.jsp"%>
+		
+		<c:if test="${empty unvisible}">
+				<c:choose>
+				    <c:when test="${empty article.ads_side1}">
+				    	<%@include file="ad_side.jsp"%>
+				    </c:when>
+				    <c:otherwise>
+				        ${article.ads_side1}
+				    </c:otherwise>
+				</c:choose>
 			</c:if>
+			
+		 <%@include file="item_side_list.jsp"%>
+		 
+			<c:if test="${empty unvisible}">
+				<c:choose>
+				    <c:when test="${empty article.ads_side2}">
+				    	<%@include file="ad_side.jsp"%>
+				    </c:when>
+				    <c:otherwise>
+				        ${article.ads_side2}
+				    </c:otherwise>
+				</c:choose>
+			</c:if>
+			
 		<!-- /.col-sm-4 col-md-4 -->
 		</div>
 	</div>

@@ -8,20 +8,17 @@
 		<h1>${category.name}</h1>
 		 <c:if test="${empty unvisible}">
 			<div class="panel">
-				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-				<!-- recipes -->
-				<ins class="adsbygoogle"
-				     style="display:block"
-				     data-ad-client="ca-pub-2604632423420713"
-				     data-ad-slot="6041146216"
-				     data-ad-format="auto"></ins>
-				<script>
-				(adsbygoogle = window.adsbygoogle || []).push({});
-				</script>
+			${category.ads_jumbotron}
 			</div>
 		</c:if>
 		${category.description}
 	</div>
 	<%@include file="item_list.jsp"%>
+	
+	<c:if test="${empty unvisible}">
+		<div class="panel">
+			${category.ads_horizont1}
+		</div>
+	 </c:if>
 </div>
 <%@include file="bottom.jsp"%>

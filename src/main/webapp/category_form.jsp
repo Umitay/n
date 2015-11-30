@@ -24,27 +24,27 @@
 		</div>
 		<div class="form-group">
 		<label>Meta Keywords</label>
-		<input type="text" value="${category.meta_keywords}" name="meta_keywords" class="form-control">
+		<textarea  name="meta_keywords" class="form-control">${category.meta_keywords}</textarea>
 		</div>
 		<div class="form-group">
 		<label>Meta Description</label>
-		<input type="text" value="${category.meta_description}" name="meta_description" class="form-control">
+		<textarea name="meta_description" class="form-control">${category.meta_description}</textarea>
 		</div>
 		<div class="form-group">
 		<label>Ads jumbotron</label>
-		<input type="text" value="${category.ads_jumbotron}" name="ads_jumbotron" class="form-control">
+		<textarea  name="ads_jumbotron" class="form-control"> ${category.ads_jumbotron}</textarea>
 		</div>
 		<div class="form-group">
 		<label>ads_horizont1</label>
-		<input type="text" value="${category.ads_horizont1}" name="ads_horizont1" class="form-control">
+		<textarea  name="ads_horizont1" class="form-control">${category.ads_horizont1}</textarea>
 		</div>
 		<div class="form-group">
 		<label>ads_horizont2</label>
-		<input type="text" value="${category.ads_horizont2}" name="ads_horizont2" class="form-control">
+		<textarea  name="ads_horizont2" class="form-control">${category.ads_horizont2}</textarea>
 		</div>
 		<div class="form-group">
 		<label>Description*</label>
-		<textarea name="description" class="form-control" type="text">${category.description}</textarea>
+		<textarea id="textarea" name="description" class="form-control">${category.description}</textarea>
 		</div>
 		<div class="form-group">
 		<label>Priority</label>
