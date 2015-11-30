@@ -51,6 +51,10 @@ public class CategoryService  extends DBService{
 			category.setMeta_title(newcategory.getMeta_title());
 			category.setMeta_keywords(newcategory.getMeta_keywords());
 			category.setMeta_description(newcategory.getMeta_description());
+			category.setAds_jumbotron(newcategory.getAds_jumbotron());
+			category.setAds_horizont1(newcategory.getAds_horizont1());
+			category.setAds_horizont2(newcategory.getAds_horizont2());
+			
 			category = save(category);
 			
 			SitemapIndex sitemap = load(SitemapIndex.class, "1");

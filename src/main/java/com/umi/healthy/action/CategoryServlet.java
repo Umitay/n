@@ -215,7 +215,10 @@ public class CategoryServlet {
 			 @DefaultValue("") @FormParam("link_title") String link_title, 
 			 @DefaultValue("") @FormParam("meta_title") String meta_title,
 			 @DefaultValue("") @FormParam("meta_keywords") String meta_keywords, 
-			 @DefaultValue("") @FormParam("meta_description") String meta_description
+			 @DefaultValue("") @FormParam("meta_description") String meta_description,
+			 @DefaultValue("") @FormParam("ads_jumbotron") String ads_jumbotron,
+			 @DefaultValue("") @FormParam("ads_horizont1") String ads_horizont1, 
+			 @DefaultValue("") @FormParam("ads_horizont2") String ads_horizont2
 			) throws IOException {
 		
 		log.info("Start save ");
@@ -242,6 +245,10 @@ public class CategoryServlet {
 		newCategory.setMeta_title(meta_title);
 		newCategory.setMeta_keywords(meta_keywords);
 		newCategory.setMeta_description(meta_description);
+		newCategory.setAds_jumbotron(ads_jumbotron);
+		newCategory.setAds_horizont1(ads_horizont1);
+		newCategory.setAds_horizont2(ads_horizont2);
+		
 		categoryService.saveCategory(newCategory);
 		
 		response.sendRedirect("/category/e/"+slug);

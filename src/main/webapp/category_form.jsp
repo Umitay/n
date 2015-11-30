@@ -15,21 +15,33 @@
 		<input type="text" value="${category.name}" name="name" class="form-control">
 		</div>
 		<div class="form-group">
-				<label>Link title</label>
-				<input type="text" value="${category.link_title}" name="link_title" class="form-control">
-				</div>
-				<div class="form-group">
-				<label>Meta title</label>
-				<input type="text" value="${category.meta_title}" name="meta_title" class="form-control">
-				</div>
-				<div class="form-group">
-				<label>Meta Keywords</label>
-				<input type="text" value="${category.meta_keywords}" name="meta_keywords" class="form-control">
-				</div>
-				<div class="form-group">
-				<label>Meta Description</label>
-				<input type="text" value="${category.meta_description}" name="meta_description" class="form-control">
-				</div>
+		<label>Link title</label>
+		<input type="text" value="${category.link_title}" name="link_title" class="form-control">
+		</div>
+		<div class="form-group">
+		<label>Meta title</label>
+		<input type="text" value="${category.meta_title}" name="meta_title" class="form-control">
+		</div>
+		<div class="form-group">
+		<label>Meta Keywords</label>
+		<input type="text" value="${category.meta_keywords}" name="meta_keywords" class="form-control">
+		</div>
+		<div class="form-group">
+		<label>Meta Description</label>
+		<input type="text" value="${category.meta_description}" name="meta_description" class="form-control">
+		</div>
+		<div class="form-group">
+		<label>Ads jumbotron</label>
+		<input type="text" value="${category.ads_jumbotron}" name="ads_jumbotron" class="form-control">
+		</div>
+		<div class="form-group">
+		<label>ads_horizont1</label>
+		<input type="text" value="${category.ads_horizont1}" name="ads_horizont1" class="form-control">
+		</div>
+		<div class="form-group">
+		<label>ads_horizont2</label>
+		<input type="text" value="${category.ads_horizont2}" name="ads_horizont2" class="form-control">
+		</div>
 		<div class="form-group">
 		<label>Description*</label>
 		<textarea name="description" class="form-control" type="text">${category.description}</textarea>

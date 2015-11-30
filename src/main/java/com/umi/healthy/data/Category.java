@@ -74,4 +74,18 @@ public class Category {
 	@Setter
 	public String  meta_description;
 	
+	@Index
+	@Getter
+	@Setter
+	public String ads_jumbotron; 
+	
+	@Index
+	@Getter
+	@Setter
+	public String ads_horizont1;
+	
+	@Index
+	@Getter
+	@Setter
+	public String ads_horizont2;
 }

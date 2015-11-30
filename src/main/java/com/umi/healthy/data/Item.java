@@ -138,6 +138,28 @@ public class Item {
 	@Getter
 	@Setter
 	public String  meta_description;
+	
+	@Index
+	@Getter
+	@Setter
+	public String ads_horizont1;
+	
+	@Index
+	@Getter
+	@Setter
+	public String ads_horizont2;
+	
+	@Index
+	@Getter
+	@Setter
+	public String ads_side1;
+	
+	@Index
+	@Getter
+	@Setter
+	public String ads_side2;
+	
+	
 	@Override
 	public Item clone() throws CloneNotSupportedException {
 		// TODO Auto-generated method stub
