@@ -9,6 +9,14 @@
         <property name="active" direction="asc"/>
         <property name="datePublished" direction="desc"/>
     </datastore-index>
+     <datastore-index kind="Article" ancestor="false" source="manual">
+        <property name="active" direction="asc"/>
+        <property name="dateModified" direction="asc"/>
+    </datastore-index>
+         <datastore-index kind="Article" ancestor="false" source="manual">
+        <property name="active" direction="asc"/>
+        <property name="dateModified" direction="desc"/>
+    </datastore-index>
      <datastore-index kind="Category" ancestor="false" source="manual">
         <property name="parent" direction="asc"/>
         <property name="priority" direction="asc"/>

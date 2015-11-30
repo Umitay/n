@@ -122,12 +122,29 @@ public class CategoryServlet {
 		 
 		ArticleService articleService = new ArticleService(); 
 		List<Article> articles =  articleService.loadArticles(true);
+
+		String meta_description=category.getMeta_description();
+		if(meta_description == null || meta_description.length() <=0){
+			meta_description = "Откройте для себя полезные, легкие и вкусные рецепты. Вкусно ✓ Полезно ✓ Легко ✓";
+		}
+		
+		String meta_title = category.getMeta_title();
+		if(meta_title == null || meta_title.length() <= 0 ){
+			meta_title = category.getName();
+		}
+		String meta_keywords = category.getMeta_keywords();
+		if(meta_keywords == null || meta_keywords.length() <= 0 ){
+			meta_keywords = category.getName() +" Вкусно ✓ Полезно ✓ Легко ✓";
+		}
 		
 		try {
 			request.setAttribute("articles", articles);
 			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
 			request.setAttribute("items", items);
+			request.setAttribute("meta_title",  meta_title );
+			request.setAttribute("meta_keywords", meta_keywords );
+			request.setAttribute("meta_description", meta_description);
 			request.getRequestDispatcher("/category/category.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {

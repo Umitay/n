@@ -100,16 +100,16 @@ public class ItemServlet {
 		}
 		
 		String meta_description=item.getMeta_description();
-		if(meta_description.length() <=0){
+		if(meta_description == null || meta_description.length() <=0){
 			meta_description =  item.getAbout() +" Вкусно ✓ Полезно ✓ Легко ✓";
 		}
 		
 		String meta_title = item.getMeta_title();
-		if(meta_title.length() <= 0 ){
+		if(meta_title == null || meta_title.length() <= 0 ){
 			meta_title = item.getName();
 		}
 		String meta_keywords = item.getMeta_keywords();
-		if(meta_keywords.length() <= 0 ){
+		if(meta_keywords == null || meta_keywords.length() <= 0 ){
 			meta_keywords = item.getName() +" Вкусно ✓ Полезно ✓ Легко ✓";
 		}
 		
@@ -152,8 +152,6 @@ public class ItemServlet {
 		
 		CategoryService categoryService = new CategoryService(); 
 		List<Category> all_categories =  categoryService.loadAllCategories(); 
-		
-	
 		
 		try {
 			request.setAttribute("categories", all_categories);

@@ -75,16 +75,16 @@ public class ArticleServlet {
 		Collections.shuffle(items);
 		
 		String meta_description=article.getMeta_description();
-		if(meta_description.length() <=0){
+		if(meta_description == null || meta_description.length() <=0){
 			meta_description =  article.getAbout() +" Вкусно ✓ Полезно ✓ Легко ✓";
 		}
 		
 		String meta_title = article.getMeta_title();
-		if(meta_title.length() <= 0 ){
+		if(meta_title == null || meta_title.length() <= 0 ){
 			meta_title = article.getName();
 		}
 		String meta_keywords = article.getMeta_keywords();
-		if(meta_keywords.length() <= 0 ){
+		if(meta_keywords == null || meta_keywords.length() <= 0 ){
 			meta_keywords = article.getName() +" Вкусно ✓ Полезно ✓ Легко ✓";
 		}
 		
