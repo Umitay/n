@@ -129,7 +129,7 @@ public class ItemServlet {
 			request.setAttribute("meta_keywords", meta_keywords);
 			request.setAttribute("meta_description", meta_description);
 			
-			request.getRequestDispatcher("/item.jsp").forward(request, response);
+			request.getRequestDispatcher("/item/item.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
@@ -162,7 +162,7 @@ public class ItemServlet {
 			if(request.getServerName().contains("appspot.com")){
 				request.setAttribute("is_admin", true);
 			}
-			request.getRequestDispatcher("/item_form.jsp").forward(request, response);
+			request.getRequestDispatcher("/n/item_form.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());

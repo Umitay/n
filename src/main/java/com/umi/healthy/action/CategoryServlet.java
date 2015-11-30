@@ -60,7 +60,7 @@ public class CategoryServlet {
 		try {
 			request.setAttribute("articles", articles);
 			request.setAttribute("categories", categories);
-			request.getRequestDispatcher("/category_list.jsp").forward(request, response);
+			request.getRequestDispatcher("/category/category_list.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
@@ -128,7 +128,7 @@ public class CategoryServlet {
 			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
 			request.setAttribute("items", items);
-			request.getRequestDispatcher("/category.jsp").forward(request, response);
+			request.getRequestDispatcher("/category/category.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
@@ -169,7 +169,7 @@ public class CategoryServlet {
 			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
 			request.setAttribute("items", items);
-			request.getRequestDispatcher("/n_category.jsp").forward(request, response);
+			request.getRequestDispatcher("/n/n_category.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
@@ -193,7 +193,7 @@ public class CategoryServlet {
 			
 			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
-			request.getRequestDispatcher("/category_form.jsp").forward(request, response);
+			request.getRequestDispatcher("/n/category_form.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());

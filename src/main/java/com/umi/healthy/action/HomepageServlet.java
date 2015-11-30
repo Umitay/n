@@ -95,7 +95,7 @@ public class HomepageServlet{
 			request.setAttribute("categories", categories);
 			request.setAttribute("items", items);
 			request.setAttribute("articles", articles);
-			request.getRequestDispatcher("/n.jsp").forward(request, response);
+			request.getRequestDispatcher("/n/n.jsp").forward(request, response);
 		} catch (Exception e) {
 			throw new CustomException(Status.INTERNAL_SERVER_ERROR, e.getMessage());
 		}

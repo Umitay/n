@@ -46,7 +46,7 @@ public class CSVServlet  {
 			CategoryService categoryService = new CategoryService(); 
 			List<Category> categories =  categoryService.loadAllCategories(); 
 			request.setAttribute("categories", categories);
-			request.getRequestDispatcher("/csv_loader.jsp").forward(request, response);
+			request.getRequestDispatcher("/n/csv_loader.jsp").forward(request, response);
 		} catch (ServletException | IOException e) {
 			throw new CustomException(Status.INTERNAL_SERVER_ERROR,  e.getMessage() );
 		}

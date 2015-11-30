@@ -193,7 +193,11 @@ public class ArticleServlet {
 			 @DefaultValue("") @FormParam("link_title") String link_title, 
 			 @DefaultValue("") @FormParam("meta_title") String meta_title,
 			 @DefaultValue("") @FormParam("meta_keywords") String meta_keywords, 
-			 @DefaultValue("") @FormParam("meta_description") String meta_description
+			 @DefaultValue("") @FormParam("meta_description") String meta_description,
+			 @DefaultValue("") @FormParam("ads_horizont1") String ads_horizont1, 
+			 @DefaultValue("") @FormParam("ads_horizont2") String ads_horizont2,
+			 @DefaultValue("") @FormParam("ads_side1") String ads_side1, 
+			 @DefaultValue("") @FormParam("ads_side2") String ads_side2
 			) throws IOException {
 		
 		log.info("Start save ");
@@ -232,6 +236,11 @@ public class ArticleServlet {
 		newarticle.setMeta_title(meta_title.trim());
 		newarticle.setMeta_keywords(meta_keywords.trim());
 		newarticle.setMeta_description(meta_description.trim());
+		newarticle.setAds_horizont1(ads_horizont1);
+		newarticle.setAds_horizont2(ads_horizont2);
+		newarticle.setAds_side1(ads_side1);
+		newarticle.setAds_side2(ads_side2);
+		
 		articleService.saveArticle(newarticle);
 		
 		response.sendRedirect("/article/l");

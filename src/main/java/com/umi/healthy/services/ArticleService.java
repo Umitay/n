@@ -52,6 +52,10 @@ public class ArticleService extends DBService{
 			article.setMeta_title(newarticle.getMeta_title());
 			article.setMeta_keywords(newarticle.getMeta_keywords());
 			article.setMeta_description(newarticle.getMeta_description());
+			article.setAds_horizont1(newarticle.getAds_horizont1());
+			article.setAds_horizont2(newarticle.getAds_horizont2());
+			article.setAds_side1(newarticle.getAds_side1());
+			article.setAds_side2(newarticle.getAds_side2());
 			
 			article = save(article);
 			
