@@ -1,9 +1,0 @@
-User-agent: *
-Disallow: /n
-Allow: /
-
-Sitemap: http://www.ur-recipe.com/sitemap_index.xml
-Sitemap: http://www.ur-recipe.com/recipes-sitemap.xml
-Sitemap: http://www.ur-recipe.com/categories-sitemap.xml
-Sitemap: http://www.ur-recipe.com/articles-sitemap.xml
-Host: www.ur-recipe.com

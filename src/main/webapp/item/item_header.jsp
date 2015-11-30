@@ -23,16 +23,16 @@
 <link rel="shortcut icon" href="/static/logo.png" type="image/x-icon" />
 <!-- Latest compiled and minified JavaScript -->
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<title>${article.name} | Полезные рецепты</title>
+<title>${item.name} | Полезные рецепты</title>
 <meta name="description" content="${meta_description}"/>
 <meta name="keywords" content="${meta_keywords}">
 <link rel="publisher" href="https://plus.google.com/+Urrecipe1/posts"/>
 <meta property="og:locale" content="ru_RU" />
-<meta property="og:image" content="${empty article.thumbnailUrl2 ? article.thumbnailUrl: article.thumbnailUrl2}" />
+<meta property="og:image" content="${empty item.thumbnailUrl2 ? item.thumbnailUrl: item.thumbnailUrl2}" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="${meta_title}" />
 <meta property="og:description" content="${meta_description}" />
-<meta property="og:url" content="http://www.ur-recipe.com/article/${article.slug}" />
+<meta property="og:url" content="http://www.ur-recipe.com/recipe/${item.slug}" />
 <meta property="og:site_name" content="Полезные рецепты" />
 <meta property="fb:app_id" content="1659668160945449" /> 
 <meta property="article:publisher" content="https://www.facebook.com/tut.recipe" />
@@ -48,7 +48,7 @@
 	  {lang: 'ru'}
 	</script>
 </head>
-<body>
+<body onload="setTimeout(function(){loadPage('desktop','fb');},0);">
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -58,4 +58,4 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-<%@include file="top_nav.jsp" %>
+<%@include file="/common/top_nav.jsp" %>

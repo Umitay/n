@@ -14,7 +14,7 @@ import com.umi.healthy.utils.StringUtil;
 public class ArticleService extends DBService{
 	public List<Article> loadArticles(Boolean active, Integer limit, Integer offset ) {
 		if(active){
-			return ofy().load().type(Article.class).filter( "active ==",active).limit(limit).offset(offset).list();
+			return ofy().load().type(Article.class).filter( "active ==",active).limit(limit).offset(offset).order("dateModified").list();
 		}else{
 			return loadAll(Article.class);
 		}

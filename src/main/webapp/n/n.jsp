@@ -102,4 +102,4 @@
 			<!--/ row of columns -->
 	</c:if>
 </div>	<!--/.container -->
-<%@include file="bottom.jsp" %>
+<%@include file="n_bottom.jsp" %>

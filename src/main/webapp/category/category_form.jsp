@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@include file="n_header.jsp" %>
+<%@include file="/n/n_header.jsp" %>
 	<div class="container">
 	<form action="/category/save" method="post">
 		<div class="form-group">

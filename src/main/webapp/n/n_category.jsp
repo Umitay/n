@@ -25,4 +25,4 @@
     </div>
 	</c:if>
 </div>
-<%@include file="bottom.jsp"%>
+<%@include file="n_bottom.jsp"%>

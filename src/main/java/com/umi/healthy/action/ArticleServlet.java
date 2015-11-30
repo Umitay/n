@@ -97,7 +97,7 @@ public class ArticleServlet {
 			request.setAttribute("meta_keywords", meta_keywords );
 			request.setAttribute("meta_description", meta_description);
 		
-			request.getRequestDispatcher("/article.jsp").forward(request, response);
+			request.getRequestDispatcher("/article/article.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
@@ -122,7 +122,7 @@ public class ArticleServlet {
 			request.setAttribute("category", category);
 			request.setAttribute("articles", articles);
 			request.setAttribute("categories", categories);
-			request.getRequestDispatcher("/article_list.jsp").forward(request, response);
+			request.getRequestDispatcher("/article/article_list.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
@@ -145,7 +145,7 @@ public class ArticleServlet {
 		try {
 			request.setAttribute("articles", articles);
 			request.setAttribute("categories", categories);
-			request.getRequestDispatcher("/n_article.jsp").forward(request, response);
+			request.getRequestDispatcher("/n/n_article.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
@@ -169,7 +169,7 @@ public class ArticleServlet {
 		try {
 			request.setAttribute("article", article);
 			request.setAttribute("categories", categories);
-			request.getRequestDispatcher("/article_form.jsp").forward(request, response);
+			request.getRequestDispatcher("/n/article_form.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());

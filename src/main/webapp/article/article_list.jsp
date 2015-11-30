@@ -2,13 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@include file="header.jsp"%>
+<%@include file="/common/header.jsp"%>
 <div class="container">
    <c:if test="${!empty category.description}">
 	<div class="jumbotron">
 		<h1>${category.name}</h1>
 		<c:if test="${empty unvisible}">
-			<%@include file="ad_horizont.jsp"%>
+			<%@include file="/common/ad_horizont.jsp"%>
 	    </c:if>
 		${category.description}
 	</div>
@@ -44,4 +44,4 @@ function open_article(slug){
 }
 //]]>
 </script> 
-<%@include file="bottom.jsp"%>
+<%@include file="/common/bottom.jsp"%>

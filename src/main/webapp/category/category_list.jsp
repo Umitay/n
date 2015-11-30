@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@include file="header.jsp"%>
+<%@include file="/common/header.jsp"%>
 <div class="container">
 		<h1> categories </h1>
 		<c:if test="${empty unvisible}">
@@ -40,4 +40,4 @@
 					</div>
 				</c:forEach>
 </div>
-<%@include file="bottom.jsp"%>
+<%@include file="/common/bottom.jsp"%>
