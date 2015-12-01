@@ -47,18 +47,13 @@ h2 {
 .navbar-default .navbar-nav > li > a:hover,.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .current-menu-item>a {
 	text-decoration: none;
 	color: #FD7802;
-	
 }
 .navbar-nav > li > a {
 	display: inline;
 }
 .navbar-nav > li::before {
-	
     content: "|";
 }
-
-
-
 ul.nav li.dropdown:hover ul.dropdown-menu {
 	display: block;
 }
@@ -69,16 +64,11 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .navbar-nav > li::before {
     content: "|";
 }
-
-
 .jumbotron{
-	 background-color: #d4f2c7;
+	background-color: #d4f2c7;
     color: #36523f;
     margin-bottom: 0;
-     padding-bottom: 15px;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-    padding-top: 15px !important;
+    padding:20px !important;
 }
 .jumbotron h1, .jumbotron .h1 {
     font-size: 25px;
