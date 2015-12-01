@@ -47,6 +47,12 @@
 	<script src="https://apis.google.com/js/platform.js" async defer>
 	  {lang: 'ru'}
 	</script>
+	<!-- Put this script tag to the <head> of your page -->
+<script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
+
+<script type="text/javascript">
+  VK.init({apiId: 5170105, onlyWidgets: true});
+</script>
 </head>
 <body onload="setTimeout(function(){loadPage('desktop','fb');},0);">
 <div id="fb-root"></div>
