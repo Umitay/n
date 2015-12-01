@@ -20,12 +20,32 @@
 </div><!-- /.modal -->
 
 <script type="text/javascript">
+function getPageLang()
+{
+    // First try to get the 'lang' attribute from the <html> node
+    var pageLanguage = getDocument().documentElement.getAttribute('lang');
+    if(!pageLanguage) {
+        // Look for the language in the meta tag instead
+        pageLanguage = $('head').children('meta[http-equiv=Content-Language]').attr("content");
+        if(!pageLanguage) {
+            pageLanguage = "en"; // Default language
+        }
+    }
+    return pageLanguage;
+}
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+} 
 function loadPage() {
 	
 	console.log('start timeout');
 	
 	setTimeout(function(){
        $('#myModal').modal('show');
+       
     },10000);
 }
 window.onload= loadPage;
