@@ -13,7 +13,7 @@
 		
 			<div class="caption">
 				<h3 itemprop="name">
-					<a href="/article/e/${article.slug}" itemprop="url">${article.name}</a>
+					<a href="/n/article/e/${article.slug}" itemprop="url">${article.name}</a>
 				</h3>
 				<p> Status: ${empty article.datePublished ? 'Still unpublished': 'published' }, ${ article.active ?'active': 'Still inactive' }
 			</div>

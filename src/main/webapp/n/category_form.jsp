@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@include file="/n/header.jsp" %>
 	<div class="container">
-	<form action="/category/save" method="post">
+	<form action="/n/category/save" method="post">
 		<div class="form-group">
 		<label>Slug*</label>
 		<input type="text" value="${category.slug}" name="slug" class="form-control" >

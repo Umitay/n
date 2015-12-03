@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@include file="/n/header.jsp" %>
 	<div class="container">
-	<form action="/recipe/save" method="post">
+	<form action="/n/item/save" method="post">
 		<div class="row">
 			<div  class="col-sm-6 col-lg-6">
 				<div class="form-group">

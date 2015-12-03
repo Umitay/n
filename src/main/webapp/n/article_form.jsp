@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@include file="/n/header.jsp" %>
 	<div class="container">
-	<form action="/article/save" method="post">
+	<form action="/n/article/save" method="post">
 		<div class="form-group">
 		<label>Slug*</label>
 		<input type="text" value="${article.slug}" name="slug" class="form-control" readonly>

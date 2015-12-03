@@ -72,7 +72,7 @@ public class HomepageServlet{
 		try {
 			if(StringUtil.is_rus(slug) ){
 				slug = StringUtil.generateSlug(slug);
-				response.sendRedirect("/recipe/"+slug);
+				response.sendRedirect("/"+EnvironmentConfig.getInstance().getItem_type()+"/"+slug);
 			}else{
 				response.sendRedirect("/");
 				throw new CustomException(Status.NOT_FOUND, "404");
