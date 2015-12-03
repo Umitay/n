@@ -23,22 +23,22 @@
 <link rel="shortcut icon" href="/static/logo.png" type="image/x-icon" />
 <!-- Latest compiled and minified JavaScript -->
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<title>${article.name} | Полезные рецепты</title>
-<meta name="description" content="${meta_description} Вкусно ✓ Полезно ✓ Легко ✓"/>
+<title>★ ${article.name} | Полезные рецепты</title>
+<meta name="description" content="★ ${meta_description} Вкусно ✓ Полезно ✓ Легко ✓"/>
 <meta name="keywords" content="${meta_keywords}">
 <link rel="publisher" href="https://plus.google.com/+Urrecipe1/posts"/>
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:image" content="${empty article.thumbnailUrl2 ? article.thumbnailUrl: article.thumbnailUrl2}" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="${meta_title} | Полезные рецепты" />
-<meta property="og:description" content="${meta_description} Вкусно ✓ Полезно ✓ Легко ✓" />
+<meta property="og:title" content="★ ${meta_title} | Полезные рецепты" />
+<meta property="og:description" content="★ ${meta_description}" />
 <meta property="og:url" content="http://www.ur-recipe.com/article/${article.slug}" />
 <meta property="og:site_name" content="Полезные рецепты" />
 <meta property="fb:app_id" content="1659668160945449" /> 
 <meta property="article:publisher" content="https://www.facebook.com/tut.recipe" />
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:description" content="${meta_description} Вкусно ✓ Полезно ✓ Легко ✓"/>
-<meta name="twitter:title" content="${meta_title} | Полезные рецепты"/>
+<meta name="twitter:description" content="★ ${meta_description}"/>
+<meta name="twitter:title" content="★ ${meta_title} | Полезные рецепты"/>
 <meta name="twitter:site" content="@umitay"/>
 <meta name="twitter:domain" content="www.ur-recipe.com"/>
 <meta name='yandex-verification' content='6952aca4a0d06474' />

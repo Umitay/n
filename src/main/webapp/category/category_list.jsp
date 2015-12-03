@@ -7,16 +7,9 @@
 		<h1> categories </h1>
 		<c:if test="${empty unvisible}">
 			<div class="panel">
-				<script
-					src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-					async=""></script>
-				<!-- jumbotron-recipe-hp-h1 -->
-				<ins data-ad-format="auto" data-ad-slot="9173826618"
-					data-ad-client="ca-pub-2604632423420713" style="display: block"
-					class="adsbygoogle" data-adsbygoogle-status="done"></ins>
-				<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
-				</script>
+			<c:if test="${empty unvisible}">
+				${category.ads_jumbotron}
+			</c:if>
 			</div>
 	    </c:if>
 	    

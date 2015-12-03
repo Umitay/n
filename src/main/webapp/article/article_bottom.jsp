@@ -13,7 +13,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Мне уже нравится «Полезные рецепты»</button>
+      	 <button type="button" class="btn btn-default" data-dismiss="modal">Мне уже нравится «Полезные рецепты»</button>
+      </div>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
@@ -28,25 +29,46 @@ function getPageLang()
         // Look for the language in the meta tag instead
         pageLanguage = $('head').children('meta[http-equiv=Content-Language]').attr("content");
         if(!pageLanguage) {
-            pageLanguage = "en"; // Default language
+            pageLanguage = "ru"; // Default language
         }
     }
     return pageLanguage;
 }
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
-} 
+function createCookie(name,value,days) {
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+    }
+    else var expires = "";
+    document.cookie = name+"="+value+expires+"; path=/";
+}
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+function eraseCookie(name) {
+    createCookie(name,"",-1);
+}
+
 function loadPage() {
 	
 	console.log('start timeout');
+	var x = readCookie('ppkcookie');
 	
-	setTimeout(function(){
-       $('#myModal').modal('show');
-       
-    },10000);
+	if (!x) {
+		setTimeout(function(){
+			createCookie('ppkcookie','testcookie',7);
+	       $('#myModal').modal('show');
+	       
+	    },10000);
+	}
 }
 window.onload= loadPage;
 </script>

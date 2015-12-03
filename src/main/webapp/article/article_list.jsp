@@ -19,7 +19,7 @@
 				<meta content="Descending" itemprop="itemListOrder">
 				
 				<c:forEach items="${articles}" var="article">
-					<div itemprop="itemListElement" class="article thumbnail col-xs-12 col-sm-6 col-md-6 col-lg-5-5" onclick="open_article('${article.slug}')">
+					<div itemprop="itemListElement" class="article thumbnail col-xs-12 col-sm-6 col-md-6 col-lg-5-5" onclick="opearticle('${article.slug}')">
 					   <c:if test="${!empty article.thumbnailUrl}">
 					    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" >
 					      <a href="/article/${article.slug}">
@@ -39,7 +39,7 @@
 
 <script type="text/javascript">
 //<![CDATA[
-function open_article(slug){
+function opearticle(slug){
 	location.href="/article/"+slug;
 }
 //]]>

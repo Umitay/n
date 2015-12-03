@@ -10,11 +10,11 @@
         <!-- Register resources and providers under com.vogella.jersey.first package. -->
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>com.umi.healthy.action; com.fasterxml.jackson.jaxrs.json;com.umi.healthy.provider </param-value>
+            <param-value>com.umi.common.action; com.fasterxml.jackson.jaxrs.json;com.umi.common.provider </param-value>
         </init-param>
           <init-param>
             <param-name>jersey.config.server.provider.classnames</param-name>
-            <param-value>com.umi.healthy.filter.CharsetResponseFilter</param-value>
+            <param-value>com.umi.common.filter.CharsetResponseFilter</param-value>
         </init-param>
         <init-param>
             <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>

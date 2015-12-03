@@ -19,7 +19,7 @@
         
          <c:if test="${!empty categories}">
 		    <c:forEach items="${categories}" var="category">
-		    <c:if test="${category.slug != 'recipes' && category.slug != 'articles'}">
+		    <c:if test="${category.slug != 'hp' && category.slug != 'articles'}">
 		       <li><a class="capitalize"  
 		       href="/category/${category.slug}">${category.name}</a>
 		       </li>
@@ -27,7 +27,7 @@
 		    </c:forEach>
 		    </c:if>
  			<li><a class="capitalize"  
-		       href="/article/list">Полезные советы</a>
+		       href="/article/list">Интересно и Полезно</a>
 		     </li>
       </ul>
      </div><!-- /.navbar-collapse -->

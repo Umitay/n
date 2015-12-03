@@ -13,9 +13,13 @@
         <property name="active" direction="asc"/>
         <property name="dateModified" direction="asc"/>
     </datastore-index>
-         <datastore-index kind="Article" ancestor="false" source="manual">
+    <datastore-index kind="Article" ancestor="false" source="manual">
         <property name="active" direction="asc"/>
         <property name="dateModified" direction="desc"/>
+    </datastore-index>
+    <datastore-index kind="Article" ancestor="false" source="manual">
+        <property name="active" direction="asc"/>
+        <property name="dateCreated" direction="desc"/>
     </datastore-index>
      <datastore-index kind="Category" ancestor="false" source="manual">
         <property name="parent" direction="asc"/>

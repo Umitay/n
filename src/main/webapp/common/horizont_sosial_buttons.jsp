@@ -60,7 +60,7 @@
 
 	</div>
 	<div class="col-xs-3 col-md-3">
-		<a target="_blank" class="mrc__plugin_uber_like_button" href="http://connect.mail.ru/share" data-mrc-config="{'cm' : '1', 'sz' : '20', 'st' : '2', 'tp' : 'mm'}">Нравится</a>
+		<a target="_blank" class="mrc__plugiuber_like_button" href="http://connect.mail.ru/share" data-mrc-config="{'cm' : '1', 'sz' : '20', 'st' : '2', 'tp' : 'mm'}">Нравится</a>
 		<script src="https:/connect.mail.ru/js/loader.js" type="text/javascript" charset="UTF-8"></script>
 	</div>
 </div> 

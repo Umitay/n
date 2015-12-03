@@ -23,8 +23,8 @@
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-8">
-						<div itemprop="description">${item.about}
-							<br>
+						<div itemprop="description"  style="margin-bottom: 10px;">
+							${item.about}
 						</div>
 						<div>
 							Время приготовления:
@@ -50,7 +50,7 @@
 								<c:forEach items="${item_categories}" var="category">
 									<a href="http://www.ur-recipe.com/category/${category.slug}"
 										itemprop="recipeCategory">${category.name}</a>&nbsp;
-					</c:forEach>
+					            </c:forEach>
 							</div>
 						</c:if>
 						<div>

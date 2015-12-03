@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<%@include file="n_header.jsp" %>
+<%@include file="header.jsp" %>
 <div class="container">
 	
 	<c:if test="${!empty items}">
@@ -13,7 +13,7 @@
 					<div class="col-sm-6 col-lg-3">
 						<div class="thumbnail">
 							<c:if test="${!empty item.thumbnailUrl}">
-							 <a href="/recipe/e/${item.slug}"> 
+							 <a href="/items/e/${item.slug}"> 
 							  <img alt="${item.alt}"
 								width="300" height="225"  
 								src="${item.thumbnailUrl}">
@@ -21,7 +21,7 @@
 							 </c:if>
 							<div class="caption">
 								<h3>
-									<a href="/recipe/e/${item.slug}">${item.name}</a>
+									<a href="/items/e/${item.slug}">${item.name}</a>
 								</h3>
 								<p>Status: ${empty item.datePublished ? 'Still unpublished': 'Published' }, ${ item.active ?'Active': 'Still inactive' }</p>
 							</div>
@@ -37,7 +37,7 @@
 					<div class="col-sm-6 col-lg-3">
 						<div class="thumbnail">
 							<c:if test="${!empty item.thumbnailUrl}">
-							 <a href="/recipe/e/${item.slug}"> 
+							 <a href="/items/e/${item.slug}"> 
 							  <img alt="${item.alt}"
 								width="300" height="225"  
 								src="${item.thumbnailUrl}">
@@ -45,7 +45,7 @@
 							 </c:if>
 							<div class="caption">
 								<h3>
-									<a href="/recipe/e/${item.slug}">${item.name}</a>
+									<a href="/items/e/${item.slug}">${item.name}</a>
 								</h3>
 								<p>Status: ${empty item.datePublished ? 'Still unpublished': 'Published' }, ${ item.active ?'Active': 'Still inactive' }</p>
 							</div>
@@ -60,7 +60,7 @@
 					<div class="col-sm-6 col-lg-3">
 						<div class="thumbnail">
 							<c:if test="${!empty item.thumbnailUrl}">
-							 <a href="/recipe/e/${item.slug}"> 
+							 <a href="/items/e/${item.slug}"> 
 							  <img alt="${item.alt}"
 								width="300" height="225"  
 								src="${item.thumbnailUrl}">
@@ -68,7 +68,7 @@
 							 </c:if>
 							<div class="caption">
 								<h3>
-									<a href="/recipe/e/${item.slug}">${item.name}</a>
+									<a href="/items/e/${item.slug}">${item.name}</a>
 								</h3>
 								<p>Status: ${empty item.datePublished ? 'Still unpublished': 'Published' }, ${ item.active ?'Active': 'Still inactive' }</p>
 							</div>
@@ -83,7 +83,7 @@
 					<div class="col-sm-6 col-lg-3">
 						<div class="thumbnail">
 							<c:if test="${!empty item.thumbnailUrl}">
-							 <a href="/recipe/e/${item.slug}"> 
+							 <a href="/items/e/${item.slug}"> 
 							  <img alt="${item.alt}"
 								width="300" height="225"  
 								src="${item.thumbnailUrl}">
@@ -91,7 +91,7 @@
 							 </c:if>
 							<div class="caption">
 								<h3>
-									<a href="/recipe/e/${item.slug}">${item.name}</a>
+									<a href="/items/e/${item.slug}">${item.name}</a>
 								</h3>
 								<p>Status: ${empty item.datePublished ? 'Still unpublished': 'Published' }, ${ item.active ?'Active': 'Still inactive' }</p>
 							</div>
@@ -102,4 +102,4 @@
 			<!--/ row of columns -->
 	</c:if>
 </div>	<!--/.container -->
-<%@include file="n_bottom.jsp" %>
+<%@include file="bottom.jsp" %>
