@@ -98,20 +98,6 @@ public class ItemServlet {
 			}
 		}
 		
-		String meta_description=item.getMeta_description();
-		if(meta_description == null || meta_description.length() <=0){
-			meta_description =  item.getAbout();
-		}
-		
-		String meta_title = item.getMeta_title();
-		if(meta_title == null || meta_title.length() <= 0 ){
-			meta_title = item.getName();
-		}
-		String meta_keywords = item.getMeta_keywords();
-		if(meta_keywords == null || meta_keywords.length() <= 0 ){
-			meta_keywords = item.getName();
-		}
-		
 		try {
 			Date d = new Date( item.getDatePublished() );
 			request.setAttribute("item_datePublished", DateFormatUtils.format(d,"dd.MM.yyyy"));
@@ -124,9 +110,9 @@ public class ItemServlet {
 			request.setAttribute("item", item);
 			request.setAttribute("articles", articles);
 			request.setAttribute("items", items);
-			request.setAttribute("meta_title", meta_title);
-			request.setAttribute("meta_keywords", meta_keywords);
-			request.setAttribute("meta_description", meta_description);
+			request.setAttribute("meta_title", item.getMeta_title());
+			request.setAttribute("meta_keywords", item.getMeta_keywords());
+			request.setAttribute("meta_description", item.getMeta_description());
 			
 			request.getRequestDispatcher("/item/item.jsp").forward(request, response);
 			

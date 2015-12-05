@@ -50,11 +50,10 @@ body{ padding-top: 10%}
 		    	<li><a  style="display: inline;" href="/n">${category.name}</a><a style="display: inline;" href="/category/e/${category.slug}">(edit)</a></li>
 			   </c:if>
 			   <c:if test="${category.slug == 'articles'}">
-			   <li><a  style="display: inline;" href="/article/l">${category.name}</a><a style="display: inline;"href="/category/e/${category.slug}">(edit)</a></li>
-			
+			   <li><a  style="display: inline;" href="/n/article/list">${category.name}</a><a style="display: inline;"href="/category/e/${category.slug}">(edit)</a></li>
 			   </c:if>
 			   <c:if test="${category.slug != 'recipes' && category.slug != 'articles'}">
-			   <li><a  style="display: inline;" href="/category/l/${category.slug}">${category.name}</a><a style="display: inline;"href="/category/e/${category.slug}">(edit)</a></li>
+			   <li><a  style="display: inline;" href="/n/category/${category.slug}">${category.name}</a><a style="display: inline;"href="/n/category/e/${category.slug}">(edit)</a></li>
 			   </c:if>
 		    </c:forEach>
 		   </c:if>

@@ -41,6 +41,7 @@ import com.umi.common.services.CategoryService;
 import com.umi.common.services.ItemService;
 import com.umi.common.utils.CustomException;
 import com.umi.common.utils.StringUtil;
+import com.umi.common.data.persist.EnvironmentConfig;
 
 @Path("/n/item")
 @Log
@@ -160,5 +161,23 @@ public class ItemAdminServlet {
 		response.sendRedirect("/n");
 		log.info("End save ");
 	}
-
+	@Path("/update")
+	@GET
+	@RolesAllowed({"ADMIN", "API"})
+	public void edit( ) {
+		
+		List<Item> items =  itemService.loadAll(Item.class);
+		
+		for(Item item:items){
+			item.setMeta_title(EnvironmentConfig.getInstance().getMeta_link_title()+ item.getName());
+			item.setAlt(EnvironmentConfig.getInstance().getMeta_icon() + item.getName() );
+			item.setMeta_title(item.getName()+EnvironmentConfig.getInstance().getMeta_title());
+			item.setMeta_keywords(EnvironmentConfig.getInstance().getMeta_keywords()+ item.getName() );
+			item.setMeta_description(item.getAbout());
+		}
+		itemService.save(items);
+	
+		
+	}
+	
 }

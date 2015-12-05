@@ -20,8 +20,8 @@
 				<input type="text" value="${item.thumbnailUrl}" name="thumbnailUrl" class="form-control">
 				</div>
 				<div class="form-group">
-				<label>recipeCategory*</label>
-				<input type="text" value="${item_categories}" name="recipeCategory" class="form-control">
+				<label>Categories*</label>
+				<input type="text" value="${item_categories}" name="categories" class="form-control">
 				</div>
 				<div class="form-group">
 				<label>totalTime*</label>
