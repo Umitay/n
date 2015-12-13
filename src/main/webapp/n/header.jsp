@@ -44,6 +44,8 @@ body{ padding-top: 10%}
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
       <li><a href="/csv"><b>Upload Csv</b></a>  </li>
+      <li><a href="/n/article/e/new"><b>Article +</b></a>  </li>
+      <li><a href="/n/item/e/new"><b>Recipe +</b></a>  </li>
          <c:if test="${!empty categories}">
 		    <c:forEach items="${categories}" var="category">
 		     <c:if test="${category.slug == 'recipes'}">

@@ -7,11 +7,17 @@
 	<div class="row">
 		<div class="col-xs-12 col-sm-8 col-md-8">
 		<div itemscope itemtype="http://schema.org/Article">
-		<h1 itemprop="name">${article.name} 
-		<br>
-		<small> Автор: <a href="https://plus.google.com/+Urrecipe1/posts"><span
-								itemprop="name">Умитай Турдыкулова</span></a></small></h1>
-				
+		<meta itemprop="dateModified" content="${article_dateModified}">
+		<h1 itemprop="name">${article.name} </h1>
+		<div itemprop="author" itemscope=""  itemtype="http://schema.org/Person">
+			 Автор: <a href="https://plus.google.com/+Urrecipe1/posts"><span itemprop="name">Умитай Турдыкулова</span></a> 
+		 </div>
+		<div> Опубликовано: <time datetime="${article_datePublished}" itemprop="datePublished">${article_datePublished}</time></div>
+		<c:if test="${empty article.thumbnailUrl}">
+		<div class="thumbnail" id="output_field" >
+			<img  src="${article.thumbnailUrl}"  itemprop="image"/>
+		</div>
+		</c:if>
 		<div itemprop="description">${article.about}</div>
 		
 		<c:set var="share_url" value="http://www.ur-recipe.com/article/${article.slug}" scope="request"/>

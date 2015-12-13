@@ -33,7 +33,6 @@
 <meta property="og:description" content="${meta_description}" />
 <meta property="og:url" content="http://www.ur-recipe.com" />
 <meta property="og:site_name" content="Полезные рецепты" />
-<meta property="article:publisher" content="https://www.facebook.com/tut.recipe" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:description" content="${meta_description}"/>
 <meta name="twitter:title" content="${meta_title} | Полезные рецепты"/>

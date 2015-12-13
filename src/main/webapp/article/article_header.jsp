@@ -35,7 +35,6 @@
 <meta property="og:url" content="http://www.ur-recipe.com/article/${article.slug}" />
 <meta property="og:site_name" content="Полезные рецепты" />
 <meta property="fb:app_id" content="1659668160945449" /> 
-<meta property="article:publisher" content="https://www.facebook.com/tut.recipe" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:description" content="★ ${meta_description}"/>
 <meta name="twitter:title" content="${meta_title} | Полезные рецепты"/>

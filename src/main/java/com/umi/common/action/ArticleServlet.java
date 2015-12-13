@@ -2,6 +2,7 @@ package com.umi.common.action;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -20,6 +21,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
+
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 import lombok.extern.java.Log;
 
@@ -67,6 +70,8 @@ public class ArticleServlet {
 			}
 		}
 		
+	
+		
 		List<Article> articles =  articleService.loadArticles(true);
 		CategoryService categoryService = new CategoryService(); 
 		List<Category> categories =  categoryService.loadTopCategories(); 
@@ -75,6 +80,12 @@ public class ArticleServlet {
 		Collections.shuffle(items);
 		
 		try {
+			Date d = new Date( article.getDatePublished() );
+			request.setAttribute("item_datePublished", DateFormatUtils.format(d,"yyyy-MM-dd"));
+			
+			Date dm = new Date( article.getDateModified() );
+			request.setAttribute("item_dateModified", DateFormatUtils.format(dm,"yyyy-MM-dd"));
+			
 			request.setAttribute("articles", articles);
 			request.setAttribute("article", article);
 			request.setAttribute("items", items);

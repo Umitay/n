@@ -16,7 +16,7 @@ public class ArticleService extends DBService{
 		if(active){
 			return ofy().load().type(Article.class).filter( "active ==",active).limit(limit).offset(offset).order("-dateCreated").list();
 		}else{
-			return loadAll(Article.class);
+			return ofy().load().type(Article.class).limit(limit).offset(offset).order("-dateCreated").list();
 		}
 	}
 	public List<Article> loadArticles(Boolean active) {
