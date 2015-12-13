@@ -100,10 +100,10 @@ public class ItemServlet {
 		
 		try {
 			Date d = new Date( item.getDatePublished() );
-			request.setAttribute("item_datePublished", DateFormatUtils.format(d,"dd.MM.yyyy"));
+			request.setAttribute("item_datePublished", DateFormatUtils.format(d,"yyyy-MM-dd"));
 			
 			Date dm = new Date( item.getDateModified() );
-			request.setAttribute("item_dateModified", DateFormatUtils.format(dm,"dd.MM.yyyy"));
+			request.setAttribute("item_dateModified", DateFormatUtils.format(dm,"yyyy-MM-dd"));
 			
 			request.setAttribute("categories", categories);
 			request.setAttribute("item_categories", item_categories);

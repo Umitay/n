@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 	<c:if test="${!empty articles}">
 			<section itemscope="" itemtype="http://schema.org/ItemList" style="margin-top: 20px;">
-				<meta content=true itemprop="mainContentOfPage">
 				<meta content="Descending" itemprop="itemListOrder">
 				
 				<c:forEach items="${articles}" var="article" varStatus="loop" begin="0" end="2">

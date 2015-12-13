@@ -29,13 +29,14 @@
 <link rel="publisher" href="https://plus.google.com/+Urrecipe1/posts"/>
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:image" content="${empty item.thumbnailUrl2 ? item.thumbnailUrl: item.thumbnailUrl2}" />
+<meta content="64" property="og:image:width" />
+<meta content="64" property="og:image:height" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="${meta_title} | Полезные рецепты" />
 <meta property="og:description" content="★ ${meta_description}" />
 <meta property="og:url" content="http://www.ur-recipe.com/recipe/${item.slug}" />
 <meta property="og:site_name" content="Полезные рецепты" />
 <meta property="fb:app_id" content="1659668160945449" /> 
-<meta property="article:publisher" content="https://www.facebook.com/tut.recipe" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:description" content="★ ${meta_description}"/>
 <meta name="twitter:title" content="${meta_title} | Полезные рецепты"/>

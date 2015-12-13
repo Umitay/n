@@ -168,13 +168,13 @@ public class ItemAdminServlet {
 		
 		List<Item> items =  itemService.loadAll(Item.class);
 		
-		for(Item item:items){
+		/*for(Item item:items){
 			item.setMeta_title(EnvironmentConfig.getInstance().getMeta_link_title()+ item.getName());
 			item.setAlt(EnvironmentConfig.getInstance().getMeta_icon() + item.getName() );
 			item.setMeta_title(item.getName()+EnvironmentConfig.getInstance().getMeta_title());
 			item.setMeta_keywords(EnvironmentConfig.getInstance().getMeta_keywords()+ item.getName() );
 			item.setMeta_description(item.getAbout());
-		}
+		}*/
 		itemService.save(items);
 	
 		

@@ -33,12 +33,12 @@
 <meta property="og:description" content="${meta_description}" />
 <meta property="og:url" content="http://www.ur-recipe.com" />
 <meta property="og:site_name" content="Полезные рецепты" />
-<meta property="article:publisher" content="https://www.facebook.com/tut.recipe" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:description" content="${meta_description}"/>
 <meta name="twitter:title" content="${meta_title} | Полезные рецепты"/>
 <meta name="twitter:site" content="@umitay"/>
 <meta name="twitter:domain" content="www.ur-recipe.com"/>
 <meta name='yandex-verification' content='6952aca4a0d06474' />
+<meta name='wmail-verification' content='6032dd231f4e6a70e1d5e7388fc18f86' />
 </head>
 <%@include file="top_nav.jsp" %>

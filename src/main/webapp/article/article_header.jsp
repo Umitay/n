@@ -35,7 +35,6 @@
 <meta property="og:url" content="http://www.ur-recipe.com/article/${article.slug}" />
 <meta property="og:site_name" content="Полезные рецепты" />
 <meta property="fb:app_id" content="1659668160945449" /> 
-<meta property="article:publisher" content="https://www.facebook.com/tut.recipe" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:description" content="★ ${meta_description}"/>
 <meta name="twitter:title" content="${meta_title} | Полезные рецепты"/>
@@ -48,6 +47,12 @@
 	  {lang: 'ru'}
 	</script>
 </head>
+	<!-- Put this script tag to the <head> of your page -->
+<script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
+
+<script type="text/javascript">
+  VK.init({apiId: 5170105, onlyWidgets: true});
+</script>
 <body>
 <div id="fb-root"></div>
 <script>(function(d, s, id) {

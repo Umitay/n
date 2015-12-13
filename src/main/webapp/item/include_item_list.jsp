@@ -4,8 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:if test="${!empty items}">
 		<section itemscope="" itemtype="http://schema.org/ItemList">
-			<meta content=true itemprop="mainContentOfPage">
-
 			<h2 itemprop="name">Полезные рецепты для гурманов</h2>
 			<meta content="Descending" itemprop="itemListOrder">
 			

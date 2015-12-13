@@ -17,9 +17,8 @@
 				<div class="row">
 					<div class="col-xs-12 col-md-4">
 						<div class="thumbnail" id="output_field"
-							style="height: 180px; background-color: #F1FCEC;"
-							itemprop="image">
-							<img width="230" height="230" src="${item.thumbnailUrl}" />
+							style="height: 180px; background-color: #F1FCEC;" >
+							<img width="230" height="230" src="${item.thumbnailUrl}"  itemprop="image"/>
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-8">
@@ -100,6 +99,8 @@
 				</div>
 				<!-- / row -->
 				<hr>
+				<div class="fb-comments" data-href="http://www.ur-recipe.com/recipe/${item.slug}" data-numposts="5"></div>
+				
 				<%@include file="include_item_list.jsp"%>
 
 				<div class="bg-warning ads">

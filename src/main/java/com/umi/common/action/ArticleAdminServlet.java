@@ -165,13 +165,13 @@ public class ArticleAdminServlet {
 		
 		List<Article> articles =  articleService.loadAll(Article.class);
 		
-		for(Article article:articles){
+		/*for(Article article:articles){
 			article.setMeta_title(EnvironmentConfig.getInstance().getMeta_link_title()+ article.getName());
 			article.setAlt(EnvironmentConfig.getInstance().getMeta_icon() + article.getName() );
 			article.setMeta_title(article.getName()+EnvironmentConfig.getInstance().getMeta_title());
 			article.setMeta_keywords(EnvironmentConfig.getInstance().getMeta_keywords()+ article.getName() );
 			article.setMeta_description(article.getAbout() + EnvironmentConfig.getInstance().getMeta_description());
-		}
+		}*/
 		
 		articleService.save(articles);
 	
