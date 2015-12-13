@@ -13,7 +13,7 @@
 			 Автор: <a href="https://plus.google.com/+Urrecipe1/posts"><span itemprop="name">Умитай Турдыкулова</span></a> 
 		 </div>
 		<div> Опубликовано: <time datetime="${article_datePublished}" itemprop="datePublished">${article_datePublished}</time></div>
-		<c:if test="${empty article.thumbnailUrl}">
+		<c:if test="${!empty article.thumbnailUrl}">
 		<div class="thumbnail" id="output_field" >
 			<img  src="${article.thumbnailUrl}"  itemprop="image"/>
 		</div>
