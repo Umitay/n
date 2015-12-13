@@ -81,10 +81,10 @@ public class ArticleServlet {
 		
 		try {
 			Date d = new Date( article.getDatePublished() );
-			request.setAttribute("item_datePublished", DateFormatUtils.format(d,"yyyy-MM-dd"));
+			request.setAttribute("article_datePublished", DateFormatUtils.format(d,"yyyy-MM-dd"));
 			
 			Date dm = new Date( article.getDateModified() );
-			request.setAttribute("item_dateModified", DateFormatUtils.format(dm,"yyyy-MM-dd"));
+			request.setAttribute("article_dateModified", DateFormatUtils.format(dm,"yyyy-MM-dd"));
 			
 			request.setAttribute("articles", articles);
 			request.setAttribute("article", article);
