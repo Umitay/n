@@ -144,10 +144,12 @@ public class HomepageServlet{
 				
 		for(Category category:categories){
 			Date dCategory = new Date( category.getDateModified() );
+			if(!category.getSlug().equals("hp") && !category.getSlug().equals("articles")){
 			xml = xml +"<url>"
-				  +"<loc>"+ "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/category/"+category.getSlug() + "</loc>"
+				  +"<loc>"+ "http://"+EnvironmentConfig.getInstance().getPublicDomain()+ "/category/"+category.getSlug() + "</loc>"
 				  +"<lastmod>"+ DateFormatUtils.format(dCategory,"yyyy-MM-dd'T'HH:mm:ssZZ") + "</lastmod>"
 				  +"</url>";
+			}
 		}
 				
 	  	
