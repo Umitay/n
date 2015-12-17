@@ -1,9 +1,18 @@
 package com.umi.common.data;
 
+import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
+
 import lombok.Getter;
 import lombok.Setter;
 
 public class User {
+	
+	@Id
+	@Getter
+	@Setter
+	public String  identifier;
+	
 	@Getter
 	@Setter
 	protected String email;
@@ -11,10 +20,25 @@ public class User {
 	@Getter
 	@Setter
 	protected String password;
-
-	public User(String email, String password) {
+	
+	@Index
+	@Getter
+	@Setter
+	protected Boolean active;
+	
+	@Index
+	@Getter
+	@Setter
+	protected Long dateCreated;
+	
+	@Index
+	@Getter
+	@Setter
+	protected Long dateModified;
+	
+	public User(String identifier, String password) {
 		super();
-		this.email = email;
+		this.identifier = identifier;
 		this.password = password;
 	}
 	
