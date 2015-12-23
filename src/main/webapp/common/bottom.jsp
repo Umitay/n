@@ -1,6 +1,6 @@
 <!-- Rating@Mail.ru wot-logo -->
-<a href="http://top.mail.ru/wot?id=2725217">
-<img src="//top-fwz1.mail.ru/wot-logo?id=2725217" style="border:0;" height="87" width="214" alt="Рейтинг@Mail.ru" /></a>
+<a href="http://top.mail.ru/wot?id=2725217" title="Рейтинг сайта Полезные рецепты на  Рейтинг@Mail.ru">
+<img src="//top-fwz1.mail.ru/wot-logo?id=2725217" style="border:0;" height="87" width="214" alt="Рейтинг сайта www.ur-recipe.com на  Рейтинг@Mail.ru" /></a>
 <!-- //Rating@Mail.ru wot-logo -->
 
 <script>
