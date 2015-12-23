@@ -211,6 +211,15 @@ public class HomepageServlet{
 	public String images(  ) {
 		return "";
 	}	
+	@Path("BingSiteAuth.xml")
+	@GET
+	@Produces(MediaType.APPLICATION_XML)
+	public String bing(  ) {
+		return "<?xml version='1.0'?>"
+				+"<users>"
+				+"<user>61115CAA93C618E0C823FFD5262EDD80</user>"
+				+"</users>";
+	}	
 	
 	@Path("robots.txt")
 	@GET
