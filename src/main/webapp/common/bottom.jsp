@@ -1,3 +1,8 @@
+<!-- Rating@Mail.ru wot-logo -->
+<a href="http://top.mail.ru/wot?id=2725217">
+<img src="//top-fwz1.mail.ru/wot-logo?id=2725217" style="border:0;" height="87" width="214" alt="Рейтинг@Mail.ru" /></a>
+<!-- //Rating@Mail.ru wot-logo -->
+
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -9,6 +14,8 @@
   ga('send', 'pageview');
 
 </script>
+
+
 
 </body>
 </html>
