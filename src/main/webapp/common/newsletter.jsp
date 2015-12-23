@@ -1,3 +1,4 @@
+<div>
 <form action="/newsletter/add" method="post">
 		<div class="form-group">
 			<label>Email*</label>
@@ -9,3 +10,4 @@
 		</div>
 	<input type="submit" class="btn btn-primary"> 
 </form>
+</div>
