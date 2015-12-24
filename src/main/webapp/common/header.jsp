@@ -40,6 +40,7 @@
 <meta name="twitter:domain" content="www.ur-recipe.com"/>
 <meta name='yandex-verification' content='6952aca4a0d06474' />
 <meta name='wmail-verification' content='6032dd231f4e6a70e1d5e7388fc18f86' />
+
 </head>
 
 <%@include file="top_nav.jsp" %>

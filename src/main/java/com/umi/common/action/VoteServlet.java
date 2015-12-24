@@ -27,10 +27,10 @@ import com.umi.common.services.ItemService;
 import com.umi.common.services.UserService;
 import com.umi.common.utils.CustomException;
 
-@Path("/newsletter")
+@Path("/vote")
 @Log
 @PermitAll
-public class NewsletterServlet {
+public class VoteServlet {
 
 	@Context HttpServletRequest request;
 	@Context HttpServletResponse response;
@@ -51,7 +51,7 @@ public class NewsletterServlet {
 		return Response.ok().build();
 	}
 	
-	@Path("/subscribe")
+	@Path("/add")
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	public void save (	
@@ -65,14 +65,13 @@ public class NewsletterServlet {
 			UserService us = new UserService();
 			User user = us.load(email);
 			
-			if(user == null){
+			if( user == null ){
 				user= new User();
 				user.setEmail(email);
 			}
 			
 			user.setIs_subscribed(true);
 			us.save(user);
-			
 		}
 		
 		log.info("End save ");

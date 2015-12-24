@@ -36,11 +36,9 @@ public class User {
 	@Setter
 	protected Long dateModified;
 	
-	public User(String identifier, String password) {
-		super();
-		this.identifier = identifier;
-		this.password = password;
-	}
-	
+	@Index
+	@Getter
+	@Setter
+	protected Boolean is_subscribed = false;
 	
 }
