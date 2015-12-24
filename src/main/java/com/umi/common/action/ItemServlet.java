@@ -45,66 +45,55 @@ import com.umi.common.utils.StringUtil;
 @Path("/recipe")
 @Log
 @PermitAll
-public class ItemServlet {
+public class ItemServlet extends BaseServlet {
 
-	@Context HttpServletRequest request;
-	@Context HttpServletResponse response;
-	
-	ItemService itemService = new ItemService(); 
+
+	@GET
+	@Produces(MediaType.TEXT_HTML)
+	public Response index()throws IOException, ServletException{
+		log.info("1");
+		response.setStatus(Response.Status.BAD_REQUEST.getStatusCode());
+		request.getRequestDispatcher("/404.jsp").forward(request, response);
+		return Response.status(Response.Status.BAD_REQUEST.getStatusCode()).build();
+	}
 	
 	@Path("/{slug}")
 	@GET
 	@Produces(MediaType.TEXT_HTML)
-	public Response view( @DefaultValue("") @PathParam("slug") String slug ) throws IOException, URISyntaxException {
-		
-		if(slug.length() <=0 ){
-			throw new CustomException(Status.BAD_REQUEST, "Field 'slug' is missing.");
-		}
-		
+	public Response view(@PathParam("slug") String slug ) throws IOException, URISyntaxException, ServletException {
+		log.info("slug"+slug);
 		Item item =  itemService.loadItem(slug); 
-		
-		if( item == null ){
-			if(StringUtil.is_rus(slug) ){
-				
-				slug = StringUtil.generateSlug(slug);
-				return Response.status(Response.Status.MOVED_PERMANENTLY).location(new URI("/recipe/"+slug)).build();
-			}else{
-				response.sendRedirect("/404.jsp");
-				throw new CustomException(Status.NOT_FOUND, "404");
-			}
-		}
 		
 		if(request.getServerName().contains("appspot.com")){
 			request.setAttribute("unvisible", true);
 		}
+		log.info("item"+item);
 		
-		ItemService itemService = new ItemService(); 
-		List<Item>  items = itemService.loadItems(100,0);
-		Collections.shuffle(items);
-		
-		CategoryService categoryService = new CategoryService(); 
-		ArticleService articleService = new ArticleService(); 
-		
-		List<Article> articles = articleService.loadArticles(true);
-		Collections.shuffle(articles);
-		
-		List<Category> categories =  categoryService.loadTopCategories(); 
-		List<Category> all_categories =  categoryService.loadAllCategories(); 
-		List<Category> item_categories =  Lists.newArrayList();
-		
-		for (Category cat : all_categories) {
-			if(item.getCategories().contains( cat.getSlug() )){
-				item_categories.add(cat);
+		if( item == null ){
+			if(StringUtil.is_rus(slug) ){
+				slug = StringUtil.generateSlug(slug);
+				return Response.status(Response.Status.MOVED_PERMANENTLY).location(new URI("/recipe/"+slug)).build();
 			}
+			response.setStatus(Response.Status.NOT_FOUND.getStatusCode());
+			request.getRequestDispatcher("/404.jsp").forward(request, response);
+			return Response.status(Response.Status.NOT_FOUND.getStatusCode()).build();
 		}
 		
 		try {
+			List<Category> all_categories =  categoryService.loadAllCategories(); 
+			List<Category> item_categories =  Lists.newArrayList();
+			
+			for (Category cat : all_categories) {
+				if(item.getCategories().contains( cat.getSlug() )){
+					item_categories.add(cat);
+				}
+			}
+			
 			Date d = new Date( item.getDatePublished() );
 			request.setAttribute("item_datePublished", DateFormatUtils.format(d,"yyyy-MM-dd"));
 			
 			Date dm = new Date( item.getDateModified() );
 			request.setAttribute("item_dateModified", DateFormatUtils.format(dm,"yyyy-MM-dd"));
-			
 			request.setAttribute("categories", categories);
 			request.setAttribute("item_categories", item_categories);
 			request.setAttribute("item", item);

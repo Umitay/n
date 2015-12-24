@@ -3,6 +3,7 @@ package com.umi.common.action;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -38,50 +39,29 @@ import com.umi.common.utils.StringUtil;
 @Path("/category")
 @Log
 @PermitAll
-public class CategoryServlet{
+public class CategoryServlet extends BaseServlet {
 
-	@Context HttpServletRequest request;
-	@Context HttpServletResponse response;
-	
-	CategoryService categoryService = new CategoryService(); 
-	
 	@GET
-	public Response category_list( ) throws IOException {
-		log.info("Start view");
-		if(request.getServerName().contains("appspot.com")){
-			request.setAttribute("unvisible", true);
-		}
-	
-		List<Category> categories =  categoryService.loadTopCategories();
-		 
-		ArticleService articleService = new ArticleService(); 
-		List<Article> articles =  articleService.loadArticles(true);
-		
-		try {
-			request.setAttribute("articles", articles);
-			request.setAttribute("categories", categories);
-			request.getRequestDispatcher("/category/category_list.jsp").forward(request, response);
-			
-		} catch (ServletException | IOException e) {
-			log.severe(e.getMessage());
-			response.sendRedirect("/");
-			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
-		}
-		log.info("End view");
-		return Response.ok().build();
+	@Produces(MediaType.TEXT_HTML)
+	public Response index()throws IOException, ServletException{
+		log.info("1");
+		response.setStatus(Response.Status.BAD_REQUEST.getStatusCode());
+		request.getRequestDispatcher("/404.jsp").forward(request, response);
+		return Response.status(Response.Status.BAD_REQUEST.getStatusCode()).build();
 	}
+	
 	
 	@Path("/{slug}")
 	@GET
-	public Response view( @DefaultValue("") @PathParam("slug") String slug ) throws IOException, URISyntaxException {
+	public Response view(@PathParam("slug") String slug ) throws IOException, URISyntaxException, ServletException {
 		log.info("Start view");
-
 
 		if(request.getServerName().contains("appspot.com")){
 			request.setAttribute("unvisible", true);
 		}
 		
 		Category category =  categoryService.loadCategory(slug); 
+		
 		if( category == null ){
 			if(StringUtil.is_rus(slug) ){
 				String s = StringUtil.generateSlug(slug);
@@ -108,24 +88,19 @@ public class CategoryServlet{
 				}
 				
 				return Response.status(Response.Status.MOVED_PERMANENTLY).location(new URI("/category/"+slug)).build();
-			}else{
-				response.sendRedirect("/404.jsp");
-				throw new CustomException(Status.NOT_FOUND, "404");
 			}
-		
+
+			response.setStatus(Response.Status.NOT_FOUND.getStatusCode());
+			request.getRequestDispatcher("/404.jsp").forward(request, response);
+			return Response.status(Response.Status.NOT_FOUND.getStatusCode()).build();
 		}
 		
-		List<Category> categories =  categoryService.loadTopCategories();
-		
-		ItemService itemService = new ItemService(); 
 		List<Item>  items = itemService.loadItemsByCategory(slug,20,0,true);
-		 
-		ArticleService articleService = new ArticleService(); 
-		List<Article> articles =  articleService.loadArticles(true);
+		Collections.shuffle(items);
 
 		String meta_description=category.getMeta_description();
 		if(meta_description == null || meta_description.length() <=0){
-			meta_description = "Откройте для себя полезные, легкие и вкусные рецепты.";
+			meta_description = category.getName()+" - Откройте для себя полезные, легкие и вкусные рецепты.";
 		}
 		
 		String meta_title = category.getMeta_title();
@@ -149,8 +124,9 @@ public class CategoryServlet{
 			
 		} catch (ServletException | IOException e) {
 			log.severe(e.getMessage());
-			response.sendRedirect("/");
-			throw new CustomException(Status.NOT_FOUND, "Something went wrong.");
+			response.setStatus(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+			request.getRequestDispatcher("/404.jsp").forward(request, response);
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode()).build();
 		}
 		log.info("End view");
 		return Response.ok().build();

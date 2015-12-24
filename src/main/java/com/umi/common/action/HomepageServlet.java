@@ -217,7 +217,7 @@ public class HomepageServlet{
 	@Produces(MediaType.TEXT_PLAIN )
 	public String robots(  ) {
 
-		String txt ="User-agent: *\nDisallow: /n\nAllow: /\nHost: "+EnvironmentConfig.getInstance().getPublicDomain()+"\nSitemap: http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/sitemap_index.xml";
+		String txt ="User-agent: *\nDisallow: /n\nDisallow:  /2015\n Disallow: /autor\nDisallow: /tag\nDisallow: /page\nDisallow: /comments\nAllow: /\nHost: "+EnvironmentConfig.getInstance().getPublicDomain()+"\nSitemap: http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/sitemap_index.xml";
 		
 		return txt;
 	}	
