@@ -83,7 +83,7 @@ public class LoginServlet {
 			NetworkUtils.writeCookie(response, "p1","offer");
 			log.info("the user in the session");
 			Date d = new Date( System.currentTimeMillis() );
-			NetworkUtils.sendMail("umitay.turdykulov@gmail.com", email+" in the session, time: "+DateFormatUtils.format(d,"dd.MM.yyyy"));
+			//NetworkUtils.sendMail("umitay.turdykulov@gmail.com", email+" in the session, time: "+DateFormatUtils.format(d,"dd.MM.yyyy"));
 			response.sendRedirect("/n");
 			
 		}else{

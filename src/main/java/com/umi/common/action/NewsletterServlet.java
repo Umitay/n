@@ -63,7 +63,7 @@ public class NewsletterServlet {
 	
 		if(email.length() > 0 ){
 			UserService us = new UserService();
-			User user = us.load(email);
+			User user = us.loadUser(email);
 			
 			if(user == null){
 				user= new User();

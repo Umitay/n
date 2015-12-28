@@ -5,11 +5,24 @@
 <%@include file="item_header.jsp"%>
 
 <div class="container">
+<%@include file="breadcrumb.jsp"%>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-8">
 			<div id="item" itemtype="http://schema.org/Recipe" itemscope="">
 				<meta itemprop="dateModified" content="${item_dateModified}">
 				<div class="page-header">
+					<div class="rates-block">
+					<div class="rating">
+						<span>☆</span>
+						<span>☆</span>
+						<span>☆</span>
+						<span class="active-rate">☆</span>
+						<span class="active-rate">☆</span>
+					</div>
+		       		<div class="all-rates">
+		       			<a class="btn btn-danger like"><span>Нравится!</span> <span class="badge">42</span></a>
+		       		</div>
+		       		
 					<h1 itemprop="name">${item.name}</h1>
 				</div>
 

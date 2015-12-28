@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@include file="/common/header.jsp"%>
+
 <div class="container">
+<%@include file="breadcrumb.jsp"%>
 	<div class="jumbotron">
 		<h1>${category.name}</h1>
 		<c:if test="${empty unvisible}">

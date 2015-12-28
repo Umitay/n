@@ -27,7 +27,7 @@ import com.umi.common.services.ItemService;
 import com.umi.common.services.UserService;
 import com.umi.common.utils.CustomException;
 
-@Path("/vote")
+@Path("/c")
 @Log
 @PermitAll
 public class VoteServlet {
@@ -51,7 +51,7 @@ public class VoteServlet {
 		return Response.ok().build();
 	}
 	
-	@Path("/add")
+	@Path("/rate")
 	@POST
 	@Consumes("application/x-www-form-urlencoded")
 	public void save (	
@@ -63,7 +63,7 @@ public class VoteServlet {
 	
 		if(email.length() > 0 ){
 			UserService us = new UserService();
-			User user = us.load(email);
+			User user = us.loadUser(email);
 			
 			if( user == null ){
 				user= new User();

@@ -96,6 +96,7 @@ public class ItemServlet extends BaseServlet {
 			request.setAttribute("item_dateModified", DateFormatUtils.format(dm,"yyyy-MM-dd"));
 			request.setAttribute("categories", categories);
 			request.setAttribute("item_categories", item_categories);
+			request.setAttribute("category", item_categories.get(0));
 			request.setAttribute("item", item);
 			request.setAttribute("articles", articles);
 			request.setAttribute("items", items);

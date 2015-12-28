@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@include file="article_header.jsp"%>
+
 <div class="container">
+<%@include file="breadcrumb.jsp"%>
 	<div class="row">
 		<div class="col-xs-12 col-sm-8 col-md-8">
 		<div itemscope itemtype="http://schema.org/Article">
