@@ -11,17 +11,7 @@
 			<div id="item" itemtype="http://schema.org/Recipe" itemscope="">
 				<meta itemprop="dateModified" content="${item_dateModified}">
 				<div class="page-header">
-					<div class="rates-block">
-					<div class="rating">
-						<span>☆</span>
-						<span>☆</span>
-						<span>☆</span>
-						<span class="active-rate">☆</span>
-						<span class="active-rate">☆</span>
-					</div>
-		       		<div class="all-rates">
-		       			<a class="btn btn-danger like"><span>Нравится!</span> <span class="badge">42</span></a>
-		       		</div>
+					
 		       		
 					<h1 itemprop="name">${item.name}</h1>
 				</div>
@@ -74,6 +64,18 @@
 							Автор: <a href="https://plus.google.com/+Urrecipe1/posts"><span
 								itemprop="name">Умитай Турдыкулова</span></a>
 						</div>
+						
+						<div class="rates-block">
+					<div class="rating">
+						<span>☆</span>
+						<span>☆</span>
+						<span>☆</span>
+						<span class="active-rate">☆</span>
+						<span class="active-rate">☆</span>
+					</div>
+		       		<div class="all-rates">
+		       			<a class="btn btn-danger like"><span>Нравится!</span> <span class="badge">42</span></a>
+		       		</div>
 					</div>
 				</div>
 				<!-- / row -->
