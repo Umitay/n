@@ -5,14 +5,14 @@
 <%@include file="item_header.jsp"%>
 
 <div class="container">
-<%@include file="breadcrumb.jsp"%>
+	<%@include file="breadcrumb.jsp"%>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-8">
 			<div id="item" itemtype="http://schema.org/Recipe" itemscope="">
 				<meta itemprop="dateModified" content="${item_dateModified}">
 				<div class="page-header">
-					
-		       		
+
+
 					<h1 itemprop="name">${item.name}</h1>
 				</div>
 
@@ -20,14 +20,26 @@
 				<div class="row">
 					<div class="col-xs-12 col-md-4">
 						<div class="thumbnail" id="output_field"
-							style="height: 180px; background-color: #F1FCEC;" >
-							<img width="230" height="230" src="${item.thumbnailUrl}"  itemprop="image"/>
+							style="height: 180px; background-color: #F1FCEC;">
+							<img width="230" height="230" src="${item.thumbnailUrl}"
+								itemprop="image" />
+						</div>
+						<div class="rates-block">
+
+							<div class="title dilog-box-msg">Насколько понравилось
+								блюдо?</div>
+							<div class="rating">
+								<span data-rating="5">☆</span> <span data-rating="4">☆</span> <span
+									data-rating="3">☆</span> <span class="active-rate"
+									data-rating="2">★</span> <span class="active-rate"
+									data-rating="1">★</span>
+							</div>
+
 						</div>
 					</div>
 					<div class="col-xs-12 col-md-8">
-						<div itemprop="description"  style="margin-bottom: 10px;">
-							${item.about}
-						</div>
+						<div itemprop="description" style="margin-bottom: 10px;">
+							${item.about}</div>
 						<div>
 							Время приготовления:
 							<time content="PT${item.totalTime} min" itemprop="totalTime">${item.totalTime}
@@ -64,94 +76,84 @@
 							Автор: <a href="https://plus.google.com/+Urrecipe1/posts"><span
 								itemprop="name">Умитай Турдыкулова</span></a>
 						</div>
-						
-						<div class="rates-block">
-					<div class="rating">
-						<span>☆</span>
-						<span>☆</span>
-						<span>☆</span>
-						<span class="active-rate">☆</span>
-						<span class="active-rate">☆</span>
-					</div>
-		       		<div class="all-rates">
-		       			<a class="btn btn-danger like"><span>Нравится!</span> <span class="badge">42</span></a>
-		       		</div>
-					</div>
-				</div>
-				<!-- / row -->
-				<c:set var="share_url"
-					value="http://www.ur-recipe.com/recipe/${item.slug}"
-					scope="request" />
-				<%@include file="/common/horizont_sosial_buttons.jsp"%>
+						<c:set var="share_url"
+							value="http://www.ur-recipe.com/recipe/${item.slug}"
+							scope="request" />
+						<%@include file="/common/horizont_sosial_buttons.jsp"%>
 
-				<div class="bg-warning ads">
-					<c:if test="${empty unvisible }">
-						<c:choose>
-							<c:when test="${empty item.ads_horizont1}">
-								<%@include file="/common/ad_horizont.jsp"%>
-							</c:when>
-							<c:otherwise>
+					</div>
+					<!-- / row -->
+
+					<div class="bg-warning ads col-md-12">
+						<c:if test="${empty unvisible }">
+							<c:choose>
+								<c:when test="${empty item.ads_horizont1}">
+									<%@include file="/common/ad_horizont.jsp"%>
+								</c:when>
+								<c:otherwise>
 						        ${item.ads_horizont1}
 						    </c:otherwise>
-						</c:choose>
-					</c:if>
-					<br>
-				</div>
-				<!--  row -->
-				<div class="row">
-					<div class="col-xs-12 col-md-8">
-						<div>
-							<h2>Как приготовить</h2>
-							<div itemprop="recipeInstructions">${item.description}</div>
+							</c:choose>
+						</c:if>
+						<br>
+					</div>
+					<!--  row -->
+					<div class="row">
+						<div class="col-xs-12 col-md-8">
+							<div>
+								<h2>Как приготовить</h2>
+								<div itemprop="recipeInstructions">${item.description}</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-4">
+							<div itemprop="ingredients">
+								<h2>Ингредиенты</h2>
+								${item.ingredients}
+							</div>
 						</div>
 					</div>
-					<div class="col-xs-12 col-md-4">
-						<div itemprop="ingredients">
-							<h2>Ингредиенты</h2>
-							${item.ingredients}
-						</div>
-					</div>
-				</div>
-				<!-- / row -->
-				<hr>
-				<div class="fb-comments" data-href="http://www.ur-recipe.com/recipe/${item.slug}" data-numposts="5"></div>
-				
-				<%@include file="include_item_list.jsp"%>
+					<!-- / row -->
+					<hr>
+					<div class="fb-comments"
+						data-href="http://www.ur-recipe.com/recipe/${item.slug}"
+						data-numposts="5"></div>
 
-				<div class="bg-warning ads">
-					<c:if test="${empty unvisible }">
-						<c:choose>
-							<c:when test="${empty item.ads_horizont2}">
-								<%@include file="/common/ad_horizont.jsp"%>
-							</c:when>
-							<c:otherwise>
+					<%@include file="include_item_list.jsp"%>
+
+					<div class="bg-warning ads">
+						<c:if test="${empty unvisible }">
+							<c:choose>
+								<c:when test="${empty item.ads_horizont2}">
+									<%@include file="/common/ad_horizont.jsp"%>
+								</c:when>
+								<c:otherwise>
 						        ${item.ads_horizont2}
 						    </c:otherwise>
-						</c:choose>
-					</c:if>
+							</c:choose>
+						</c:if>
+					</div>
 				</div>
-			</div>
-			<!-- /itemscope  -->
-		</div>
-		<!-- /.col-xs-12 col-sm-8 col-md-8 -->
-		<div class="col-xs-12 col-sm-12 col-md-4">
-			<c:if test="${empty unvisible}">
-				<c:choose>
-					<c:when test="${empty item.ads_side1}">
-						<%@include file="/common/ad_side.jsp"%>
-					</c:when>
-					<c:otherwise>
+				<!-- /itemscope  -->
+			</div></div>
+			<!-- /.col-xs-12 col-sm-8 col-md-8 -->
+			<div class="col-xs-12 col-sm-12 col-md-4">
+				<c:if test="${empty unvisible}">
+					<c:choose>
+						<c:when test="${empty item.ads_side1}">
+							<%@include file="/common/ad_side.jsp"%>
+						</c:when>
+						<c:otherwise>
 						        ${item.ads_side1}
 						    </c:otherwise>
-				</c:choose>
-			</c:if>
+					</c:choose>
+				</c:if>
 
-			<%@include file="/article/article_side_list.jsp"%>
+				<%@include file="/article/article_side_list.jsp"%>
 
+			</div>
+			<!-- /.col-sm-4 col-md-4 -->
 		</div>
-		<!-- /.col-sm-4 col-md-4 -->
+		<!-- /.row -->
 	</div>
-	<!-- /.row -->
-</div>
-<!-- /.container -->
-<%@include file="item_bottom.jsp"%>
+	<!-- /.container -->
+	<%@include file="item_bottom.jsp"%>

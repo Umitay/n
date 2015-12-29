@@ -87,17 +87,7 @@ window.onload= loadPage;
 <script type="text/javascript">
 $( document ).ready(function() {
 	console.log( "ready!" );
-	  $("body").on("click",".all-rates a", function(event) {
-		var position = $(".rates-block").position();
-		$(".dilog-box-rating").css( "top", position.top );
-		$(".dilog-box-rating").css( "left", position.left );
-		$(".dilog-box-rating").removeClass("hidden");
-		$(".dilog-box-rating").addClass("show");
-      });
-	  $("body").on("click",".dilog-box-rating a.close", function(event) {
-			$(".dilog-box-rating").removeClass("show");
-			$(".dilog-box-rating").addClass("hidden");
-	   });
+	 
 	  $("body").on("click",".rating span", function(event) {
 		  onClickAddVote(event);
 	   });
@@ -107,16 +97,11 @@ $( document ).ready(function() {
 		var slug = "${item.slug}";
 		$.post( "/rating/", { "slug": slug , rating: $(event.target).data('rating') })
 		 .always(function() { 
-			 $(".dilog-box-rating").removeClass("show");
-			 $(".dilog-box-rating").addClass("hidden"); 
-			 
-			 $(".dilog-box-msg").removeClass("hidden");
-			 $(".dilog-box-msg").addClass("show");
+			
 			 setTimeout(function(){ 
-				 $(".dilog-box-msg p").html("Спасибо за активность.");
-				 $(".dilog-box-msg").addClass("hidden");
-			 	 $(".dilog-box-msg").removeClass("show");
-			 }, 3000);
+				 $(".dilog-box-msg").html("Спасибо за активность.");
+		
+			 }, 2000);
 			});
 		
 	

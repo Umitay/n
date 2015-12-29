@@ -160,16 +160,7 @@ section h2 {
 }
 
 .rates-block {
-    float: right;
-}
-.all-rates {
-	float: right;
-}
-
-.all-rates .like {
-    height: 29px;
-    line-height: 10px;
-     margin-top: 5px;
+    float: left;
 }
 
 .rating {
@@ -189,7 +180,9 @@ section h2 {
 }
 .rating  span.active-rate{
 	width: 1.1em;
-	color:#e15d35;
+	color:gold;
+	content: "\2605";
+	
 }
 .rating > span:hover,
 .rating > span:hover ~ span {
