@@ -11,6 +11,8 @@ public class OfyService
 {
 	static {
 		factory().register(Item.class);
+		factory().register(ItemRating.class);
+		
 		factory().register(Category.class);
 		factory().register(Article.class);
 		factory().register(X_CategoryItem.class);

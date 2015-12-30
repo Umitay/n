@@ -10,15 +10,14 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
-@Cache
 @Entity(name = "ItemRating")
 public class ItemRating {
+
 	
 	@Id
 	@Getter
 	@Setter
-	public String  id;
-	
+	public Long  id;
 	@Index
 	@Getter
 	@Setter

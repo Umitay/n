@@ -46,7 +46,7 @@ public class RatingServlet {
 		TaskOptions ops = withUrl("/rating/calc/"+slug); 
 	/*	ops.param("slug", slug ); 
 		ops.param("rating", rating );     */
-		QueueFactory.getQueue("calculate_item_rating");//.add(ops);
+		QueueFactory.getQueue("calculateitemrating").add(ops);
 		
 		}catch(Exception e){
 			log.severe(StringUtil.exceptionFormat( e ));
@@ -57,7 +57,7 @@ public class RatingServlet {
     }
 	
 	@Path("/calc/{slug}")
-	@GET
+	@POST
 	@Produces("text/html")
     public Response set( @DefaultValue("") @PathParam("slug") String slug) {
 		log.info("Start RatingServlet.set" );
