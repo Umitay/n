@@ -159,6 +159,10 @@ public class Item {
 	@Setter
 	public String ads_side2;
 	
+	@Index
+	@Getter
+	@Setter
+	public Integer rating;
 	
 	@Override
 	public Item clone() throws CloneNotSupportedException {
