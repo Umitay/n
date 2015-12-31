@@ -10,8 +10,8 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
-@Entity(name = "ItemRating")
-public class ItemRating {
+@Entity(name = "Rating")
+public class Rating {
 
 	
 	@Id
@@ -22,6 +22,10 @@ public class ItemRating {
 	@Getter
 	@Setter
 	public String slug;
+	@Index
+	@Getter
+	@Setter
+	public String type;
 	
 	@Index
 	@Getter

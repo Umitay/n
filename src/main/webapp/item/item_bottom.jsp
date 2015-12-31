@@ -81,7 +81,7 @@ $( document ).ready(function() {
 	});
 	function onClickAddVote(event){
 		var slug = "${item.slug}";
-		$.post( "/rating/", { "slug": slug , rating: $(event.target).data('rating') })
+		$.post( "/rating/", { "type": article ,"slug": slug , rating: $(event.target).data('rating') })
 		 .always(function() { 
 			
 			 setTimeout(function(){ 

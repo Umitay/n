@@ -15,10 +15,14 @@ import lombok.extern.java.Log;
 
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.TaskOptions;
+import com.umi.common.data.Article;
 import com.umi.common.data.Item;
-import com.umi.common.data.ItemRating;
-import com.umi.common.services.ItemRatingService;
+import com.umi.common.data.Rating;
+import com.umi.common.data.Rating;
+import com.umi.common.services.ArticleService;
+import com.umi.common.services.RatingService;
 import com.umi.common.services.ItemService;
+import com.umi.common.services.RatingService;
 import com.umi.common.utils.StringUtil;
 
 import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
@@ -26,27 +30,30 @@ import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
 @Log
 @Path("/rating")
 public class RatingServlet {
+	
 	@POST
 	@Produces("text/html")
-    public Response post(@FormParam("slug") String slug  ,@FormParam("rating") Integer rating) {
+    public Response post(@FormParam("slug") String slug  , @FormParam("rating") Integer rating, @FormParam("type") Integer type) {
 		log.info("Start RatingServlet.post" );
 		log.info("slug: " +slug );
 		log.info("rating: " +rating );
+		log.info("type: " +type );
+		
 		try{
-		ItemRatingService irs = new ItemRatingService();
-		ItemRating itemRating = new ItemRating();
 		
-		itemRating.setRating(rating);
-		itemRating.setSlug(slug);
-		itemRating.setTimestamp(System.currentTimeMillis());
+		RatingService irs = new RatingService();
+		Rating Rating = new Rating();
 		
-		irs.save(itemRating);
+		Rating.setRating(rating);
+		Rating.setSlug(slug);
+		Rating.setTimestamp(System.currentTimeMillis());
 		
+		irs.save(Rating);
 		
-		TaskOptions ops = withUrl("/rating/calc/"+slug); 
+		TaskOptions ops = withUrl("/rating/"+type+"/calc/"+slug); 
 	/*	ops.param("slug", slug ); 
 		ops.param("rating", rating );     */
-		QueueFactory.getQueue("calculateitemrating").add(ops);
+		QueueFactory.getQueue("calculateRating").add(ops);
 		
 		}catch(Exception e){
 			log.severe(StringUtil.exceptionFormat( e ));
@@ -55,63 +62,72 @@ public class RatingServlet {
 		log.info("End RatingServlet.post");
 		return Response.ok().build();
     }
+
 	
-	@Path("/calc/{slug}")
+	@Path("/calc/{type}/{slug}")
 	@POST
 	@Produces("text/html")
-    public Response set( @DefaultValue("") @PathParam("slug") String slug) {
+    public Response set( @DefaultValue("") @PathParam("slug") String slug, @DefaultValue("") @PathParam("type") String type) {
 		log.info("Start RatingServlet.set" );
 		log.info("slug: " +slug );
 		Integer sum = 0;
 		Integer amount = 0;
 		Integer itemRate = 0;
 		try{
-			ItemRatingService irs = new ItemRatingService();
-			ItemService itemService = new ItemService(); 
-			Item  item = itemService.loadItem(slug);
+			RatingService irs = new RatingService();
+			List<Rating> RatingList1 = irs.loadByRateSlug( slug, 1 );
+			List<Rating> RatingList2 = irs.loadByRateSlug( slug, 2 );
+			List<Rating> RatingList3 = irs.loadByRateSlug( slug, 3 );
+			List<Rating> RatingList4 = irs.loadByRateSlug( slug, 4 );
+			List<Rating> RatingList5 = irs.loadByRateSlug( slug, 5 );
 			
-			List<ItemRating> itemRatingList1 = irs.loadByRateSlug( slug, 1 );
-			List<ItemRating> itemRatingList2 = irs.loadByRateSlug( slug, 2 );
-			List<ItemRating> itemRatingList3 = irs.loadByRateSlug( slug, 3 );
-			List<ItemRating> itemRatingList4 = irs.loadByRateSlug( slug, 4 );
-			List<ItemRating> itemRatingList5 = irs.loadByRateSlug( slug, 5 );
-			
-			if(itemRatingList1 != null && itemRatingList1.size() >0){
-				for( ItemRating rate:itemRatingList1){
+			if(RatingList1 != null && RatingList1.size() >0){
+				for( Rating rate:RatingList1){
 					sum+=rate.getRating();
 				}
-				 amount += itemRatingList1.size();
+				 amount += RatingList1.size();
 			}
-			if(itemRatingList2 != null && itemRatingList2.size() >0){
-				for( ItemRating rate:itemRatingList2){
+			if(RatingList2 != null && RatingList2.size() >0){
+				for( Rating rate:RatingList2){
 					sum+=rate.getRating();
 				}
-				 amount += itemRatingList2.size();
+				 amount += RatingList2.size();
 			}
-			if(itemRatingList3 != null && itemRatingList3.size() >0){
-				for( ItemRating rate:itemRatingList3){
+			if(RatingList3 != null && RatingList3.size() >0){
+				for( Rating rate:RatingList3){
 					sum+=rate.getRating();
 				}
-				 amount += itemRatingList3.size();
+				 amount += RatingList3.size();
 			}
-			if(itemRatingList4 != null && itemRatingList4.size() >0){
-				for( ItemRating rate:itemRatingList4){
+			if(RatingList4 != null && RatingList4.size() >0){
+				for( Rating rate:RatingList4){
 					sum+=rate.getRating();
 				}
-				 amount += itemRatingList4.size();
+				 amount += RatingList4.size();
 			}
-			if(itemRatingList5 != null && itemRatingList5.size() >0){
-				for( ItemRating rate:itemRatingList5){
+			if(RatingList5 != null && RatingList5.size() >0){
+				for( Rating rate:RatingList5){
 					sum+=rate.getRating();
 				}
-				 amount += itemRatingList5.size();
+				 amount += RatingList5.size();
 			}
 			
 			if(amount > 0 && sum >0 ){
 				itemRate = sum/amount;
-				item.setRating(itemRate);
-				item.setDateModified(System.currentTimeMillis());
-				itemService.save(item);
+				
+				if("item".equals(type)){
+					ItemService itemService = new ItemService(); 
+					Item  item = itemService.loadItem(slug);
+					item.setRating(itemRate);
+					item.setDateModified(System.currentTimeMillis());
+					itemService.save(item);
+				}else if("article".equals(type)){
+					ArticleService articleService = new ArticleService(); 
+					Article  article = articleService.loadArticle(slug);
+					article.setRating(itemRate);
+					article.setDateModified(System.currentTimeMillis());
+					articleService.save(article);
+				}
 			}
 			
 		}catch(Exception e){

@@ -101,4 +101,8 @@ public class Article {
 	@Getter
 	@Setter
 	public String ads_side2;
+	@Index
+	@Getter
+	@Setter
+	public Integer rating;
 }
