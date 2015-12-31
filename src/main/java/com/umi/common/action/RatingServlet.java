@@ -62,22 +62,52 @@ public class RatingServlet {
     public Response set( @DefaultValue("") @PathParam("slug") String slug) {
 		log.info("Start RatingServlet.set" );
 		log.info("slug: " +slug );
-	
+		Integer sum = 0;
+		Integer amount = 0;
+		Integer itemRate = 0;
 		try{
 			ItemRatingService irs = new ItemRatingService();
 			ItemService itemService = new ItemService(); 
-			
-			List<ItemRating> itemRatingList = irs.loadBySlug(slug);
 			Item  item = itemService.loadItem(slug);
 			
-			Integer amount = itemRatingList.size();
+			List<ItemRating> itemRatingList1 = irs.loadByRateSlug( slug, 1 );
+			List<ItemRating> itemRatingList2 = irs.loadByRateSlug( slug, 2 );
+			List<ItemRating> itemRatingList3 = irs.loadByRateSlug( slug, 3 );
+			List<ItemRating> itemRatingList4 = irs.loadByRateSlug( slug, 4 );
+			List<ItemRating> itemRatingList5 = irs.loadByRateSlug( slug, 5 );
 			
-			if(amount>0){
-				Integer sum = 0;
-				Integer itemRate = 0;
-				for( ItemRating rate:itemRatingList){
+			if(itemRatingList1 != null && itemRatingList1.size() >0){
+				for( ItemRating rate:itemRatingList1){
 					sum+=rate.getRating();
 				}
+				 amount += itemRatingList1.size();
+			}
+			if(itemRatingList2 != null && itemRatingList2.size() >0){
+				for( ItemRating rate:itemRatingList2){
+					sum+=rate.getRating();
+				}
+				 amount += itemRatingList2.size();
+			}
+			if(itemRatingList3 != null && itemRatingList3.size() >0){
+				for( ItemRating rate:itemRatingList3){
+					sum+=rate.getRating();
+				}
+				 amount += itemRatingList3.size();
+			}
+			if(itemRatingList4 != null && itemRatingList4.size() >0){
+				for( ItemRating rate:itemRatingList4){
+					sum+=rate.getRating();
+				}
+				 amount += itemRatingList4.size();
+			}
+			if(itemRatingList5 != null && itemRatingList5.size() >0){
+				for( ItemRating rate:itemRatingList5){
+					sum+=rate.getRating();
+				}
+				 amount += itemRatingList5.size();
+			}
+			
+			if(amount > 0 && sum >0 ){
 				itemRate = sum/amount;
 				item.setRating(itemRate);
 				item.setDateModified(System.currentTimeMillis());

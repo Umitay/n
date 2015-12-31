@@ -25,14 +25,18 @@
 								itemprop="image" />
 						</div>
 						<div class="rates-block">
-
-							<div class="title dilog-box-msg">Насколько понравилось
-								блюдо?</div>
+							<div class="title dilog-box-msg">Насколько понравилось блюдо?</div>
 							<div class="rating">
-								<span data-rating="5">☆</span> <span data-rating="4">☆</span> <span
-									data-rating="3">☆</span> <span class="active-rate"
-									data-rating="2">★</span> <span class="active-rate"
-									data-rating="1">★</span>
+								<c:forEach var="i" begin="1" end="5" varStatus="loop">
+									<c:choose>
+										<c:when test="${loop.index < item.rating}">
+											<span class="active-rate" data-rating="${loop.index}">★</span>
+										</c:when>
+										<c:otherwise>
+								       		<span data-rating="${loop.index}">☆</span> 
+								    	</c:otherwise>
+									</c:choose>
+								</c:forEach>
 							</div>
 
 						</div>

@@ -5,7 +5,7 @@
     <name>default</name>
     <rate>1/s</rate>
   </queue>
-<queue>
+   <queue>
     <name>calculateitemrating</name>
     <rate>1/s</rate>
     <retry-parameters>
@@ -13,5 +13,16 @@
       <task-age-limit>2d</task-age-limit>
     </retry-parameters>
   </queue>
-
+  <queue>
+		<name>rate-tasks</name>
+		<rate>10/s</rate>
+		<bucket-size>40</bucket-size>
+		<max-concurrent-requests>1</max-concurrent-requests>
+		<retry-parameters>
+			<task-retry-limit>0</task-retry-limit>
+			<min-backoff-seconds>10</min-backoff-seconds>
+			<max-backoff-seconds>30</max-backoff-seconds>
+			<!-- 24 hours -->
+		</retry-parameters>
+	</queue>
 </queue-entries>

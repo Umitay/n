@@ -39,6 +39,19 @@ public class ItemRatingService extends DBService{
 		
 		return itemRatingList;
 	}
-
 	
+	
+	public List<ItemRating> loadByRateSlug( String slug, Integer rating ){
+
+		List<ItemRating>  itemRatingList = null;
+		
+		try{
+			itemRatingList = ofy().load().type(ItemRating.class).filter("slug", slug).filter("rating", rating).list();
+		
+		}catch(Exception e ) {
+			log.severe(StringUtil.exceptionFormat( e ));
+		}
+		
+		return itemRatingList;
+	}
 	}
