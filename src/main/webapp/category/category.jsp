@@ -6,12 +6,12 @@
 
 <div class="container">
 <%@include file="breadcrumb.jsp"%>
-	<div class="jumbotron">
-		<h1>${category.name}</h1>
+	<div class="jumbotron"  itemtype="http://schema.org/recipeCategory" itemscope="">
+		<h1 itemprop="name">${category.name}</h1>
 		<c:if test="${empty unvisible}">
 				${category.ads_jumbotron}
 	    </c:if>
-		${category.description}
+		<div itemprop="description">${category.description}</div>  
 	</div>
     
 	<%@include file="/item/item_list.jsp"%>
