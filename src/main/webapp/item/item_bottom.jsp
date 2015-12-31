@@ -2,20 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<div class="dilog-box-msg hidden" >
-	<p></p>
-</div>
-<div class="dilog-box-rating hidden" >
-	<div class="title">Насколько понравилось блюдо?<a class="close icon icon-close-small"></a></div>
-		<div class="rating">
-			<span data-rating="5" class="active">☆</span>
-			<span data-rating="4" class="active">☆</span>
-			<span data-rating="3">☆</span>
-			<span data-rating="2">☆</span>
-			<span data-rating="1">☆</span>
-		</div>
-	</div>
-</div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -103,14 +89,8 @@ $( document ).ready(function() {
 		
 			 }, 2000);
 			});
-		
-	
-	
-	
 	}
-<!--
 
-//-->
 </script>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 

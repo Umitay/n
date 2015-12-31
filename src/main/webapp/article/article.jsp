@@ -11,20 +11,26 @@
 		<div itemscope itemtype="http://schema.org/Article">
 		<meta itemprop="dateModified" content="${article_dateModified}">
 		<h1 itemprop="name">${article.name} </h1>
-		<div itemprop="author" itemscope=""  itemtype="http://schema.org/Person">
-			 Автор: <a href="https://plus.google.com/+Urrecipe1/posts"><span itemprop="name">Умитай Турдыкулова</span></a> 
-		 </div>
-		<div> Опубликовано: <time datetime="${article_datePublished}" itemprop="datePublished">${article_datePublished}</time></div>
-		<c:if test="${!empty article.thumbnailUrl}">
-		<div class="thumbnail" id="output_field" >
-			<img  src="${article.thumbnailUrl}"  itemprop="image"/>
+		<div class="row">
+		  <div class="col-xs-12 col-md-4">
+		   <c:if test="${!empty article.thumbnailUrl}">
+			<div class="thumbnail" id="output_field" >
+				<img  src="${article.thumbnailUrl}"  itemprop="image"/>
+			</div>
+		   </c:if>
+			<%@include file="/common/rating.jsp"%>
+			</div>
+			<div class="col-xs-12 col-md-8">
+				<div itemprop="author" itemscope=""  itemtype="http://schema.org/Person">
+					 Автор: <a href="https://plus.google.com/+Urrecipe1/posts"><span itemprop="name">Умитай Турдыкулова</span></a> 
+				 </div>
+				<div> Опубликовано: <time datetime="${article_datePublished}" itemprop="datePublished">${article_datePublished}</time></div>
+				<div itemprop="description">${article.about}</div>
+		
+				<c:set var="share_url" value="http://www.ur-recipe.com/article/${article.slug}" scope="request"/>
+				<%@include file="/common/horizont_sosial_buttons.jsp"%>
+			</div>
 		</div>
-		</c:if>
-		<div itemprop="description">${article.about}</div>
-		
-		<c:set var="share_url" value="http://www.ur-recipe.com/article/${article.slug}" scope="request"/>
-		<%@include file="/common/horizont_sosial_buttons.jsp"%>
-		
 		<div class="bg-warning ads">
 				<c:if test="${empty unvisible}">
 				<c:choose>

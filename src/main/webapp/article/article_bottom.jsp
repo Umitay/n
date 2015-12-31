@@ -72,6 +72,28 @@ function loadPage() {
 }
 window.onload= loadPage;
 </script>
+<script type="text/javascript">
+$( document ).ready(function() {
+	console.log( "ready!" );
+	 
+	  $("body").on("click",".rating span", function(event) {
+		  onClickAddVote(event);
+	   });
+	  
+	});
+	function onClickAddVote(event){
+		var slug = "${item.slug}";
+		$.post( "/rating/", { "slug": slug , rating: $(event.target).data('rating') })
+		 .always(function() { 
+			
+			 setTimeout(function(){ 
+				 $(".dilog-box-msg").html("Спасибо за активность.");
+		
+			 }, 2000);
+			});
+	}
+
+</script>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 </body>
