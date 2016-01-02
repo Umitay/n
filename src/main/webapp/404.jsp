@@ -82,7 +82,10 @@
 </nav>
         <div class="container">
 	<div class="alert alert-warning">
-		<h1>Ошибка: страница, которую Вы запрашиваете временно не доступна, либо не существует.</h1>
+		<h1>Страница, которую вы запросили, не существует.</h1>
+		<p>Адрес не существует или страница была удалена.</p>
+		
+		
 	</div>
 	
 	
@@ -90,9 +93,9 @@
 
 
 		<section itemscope="" itemtype="http://schema.org/ItemList">
-			<meta content=true itemprop="mainContentOfPage">
+			<meta content=false itemprop="mainContentOfPage">
 
-			<h2 itemprop="name">Все рецепты</h2>
+			<h2 >Вы можете выйти на <a  href="/">главную страницу</a> и найти рецепты, у нас есть то, что вам нужно:</h2>
 			<meta content="Descending" itemprop="itemListOrder">
 			
 				
