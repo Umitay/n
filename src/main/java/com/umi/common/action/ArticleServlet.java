@@ -107,7 +107,7 @@ public class ArticleServlet extends BaseServlet {
 		}
 		
 		Category category =  categoryService.loadCategory("articles"); 
-		
+		articles   =  articleService.loadArticles(true);
 		try {
 			request.setAttribute("category", category);
 			request.setAttribute("articles", articles);

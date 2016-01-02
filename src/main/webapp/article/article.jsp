@@ -18,6 +18,7 @@
 				<img  src="${article.thumbnailUrl}"  itemprop="image"/>
 			</div>
 		   </c:if>
+		   <c:set var="rating" value="${article.rating}" scope="request"/>
 			<%@include file="/common/rating.jsp"%>
 			</div>
 			<div class="col-xs-12 col-md-8">
@@ -61,11 +62,7 @@
 				    </c:choose>
 			    </c:if>
 		</div>
-		<!-- Put this div tag to the place, where the Comments block will be -->
-<div id="vk_comments"></div>
-<script type="text/javascript">
-VK.Widgets.Comments("vk_comments", {limit: 5, width: "750", attach: "*"});
-</script>
+		<%@include file="/common/comments.jsp"%>
 		</div>
 		<!-- /.col-xs-12 col-sm-8 col-md-8 -->
 		<div class="col-sm-4 col-md-4">
@@ -87,4 +84,4 @@ VK.Widgets.Comments("vk_comments", {limit: 5, width: "750", attach: "*"});
 		</div>
 	</div>
 
-<%@include file="/common/bottom.jsp"%>
+<%@include file="article_bottom.jsp"%>

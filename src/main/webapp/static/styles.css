@@ -197,25 +197,6 @@ color: gold;
 } 
 
 
-.dilog-box-rating {
-    background-color: #fff;
-    border: 1px solid #459561;
-    color: #e15d35;
-    font-size: 14px;
-    font-weight: bold;
-    height: 45px;
-    padding: 2px 5px;
-    position: absolute;
-    text-align: center;
-    width: 268px;
-    z-index: 1;
-}
-.dilog-box-rating .rating {
-   font-size: 9px;
-    line-height: 15px;
-    margin: 0 15%;
-}
-
 .cl {
 	clear: both;
 }

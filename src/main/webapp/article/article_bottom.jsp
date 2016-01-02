@@ -58,7 +58,7 @@ function eraseCookie(name) {
 }
 
 function loadPage() {
-	
+	$('#myTabs a[href="#fb"]').tab('show');
 	console.log('start timeout');
 	var x = readCookie('ppkcookie');
 	
@@ -82,8 +82,8 @@ $( document ).ready(function() {
 	  
 	});
 	function onClickAddVote(event){
-		var slug = "${item.slug}";
-		$.post( "/rating/", { "type": article , "slug": slug , rating: $(event.target).data('rating') })
+		var slug = "${article.slug}";
+		$.post( "/rating/", { "type": "article" , "slug": slug , rating: $(event.target).data('rating') })
 		 .always(function() { 
 			
 			 setTimeout(function(){ 

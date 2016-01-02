@@ -33,7 +33,7 @@ public class RatingServlet {
 	
 	@POST
 	@Produces("text/html")
-    public Response post(@FormParam("slug") String slug  , @FormParam("rating") Integer rating, @FormParam("type") Integer type) {
+    public Response post(@FormParam("slug") String slug  , @FormParam("rating") Integer rating, @FormParam("type") String type) {
 		log.info("Start RatingServlet.post" );
 		log.info("slug: " +slug );
 		log.info("rating: " +rating );
@@ -42,15 +42,16 @@ public class RatingServlet {
 		try{
 		
 		RatingService irs = new RatingService();
-		Rating Rating = new Rating();
+		Rating objRating = new Rating();
 		
-		Rating.setRating(rating);
-		Rating.setSlug(slug);
-		Rating.setTimestamp(System.currentTimeMillis());
+		objRating.setRating(rating);
+		objRating.setSlug(slug);
+		objRating.setType(type);
+		objRating.setTimestamp(System.currentTimeMillis());
 		
-		irs.save(Rating);
+		irs.save(objRating);
 		
-		TaskOptions ops = withUrl("/rating/"+type+"/calc/"+slug); 
+		TaskOptions ops = withUrl("/rating/calc/"+type+"/"+slug); 
 	/*	ops.param("slug", slug ); 
 		ops.param("rating", rating );     */
 		QueueFactory.getQueue("calculateRating").add(ops);

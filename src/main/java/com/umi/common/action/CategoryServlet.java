@@ -95,7 +95,7 @@ public class CategoryServlet extends BaseServlet {
 			return Response.status(Response.Status.NOT_FOUND.getStatusCode()).build();
 		}
 		
-		List<Item>  items = itemService.loadItemsByCategory(slug,20,0,true);
+		List<Item>  items = itemService.loadItemsByCategory(slug,40,0,true);
 		Collections.shuffle(items);
 
 		String meta_description=category.getMeta_description();

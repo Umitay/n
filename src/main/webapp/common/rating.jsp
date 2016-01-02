@@ -7,11 +7,14 @@
 					<div class="rating">
 						<c:forEach var="i" begin="1" end="5" varStatus="loop">
 							<c:choose>
-								<c:when test="${loop.index < item.rating}">
-					<span class="active-rate" data-rating="${loop.index}">★</span>
+								<c:when test="${(loop.end - loop.count + 1) < rating}">
+					<span class="active-rate" data-rating="${loop.end - loop.count + 1}">★</span>
+				</c:when>
+				<c:when test="${(loop.end - loop.count + 1) == rating}">
+					<span class="active-rate" data-rating="${loop.end - loop.count + 1}">✰</span>
 				</c:when>
 				<c:otherwise>
-		       		<span data-rating="${loop.index}">☆</span> 
+		       		<span data-rating="${loop.end - loop.count + 1}">☆</span> 
 		    	</c:otherwise>
 			</c:choose>
 		</c:forEach>

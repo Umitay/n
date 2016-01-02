@@ -24,6 +24,8 @@
 							<img width="230" height="230" src="${item.thumbnailUrl}"
 								itemprop="image" />
 						</div>
+						
+						 <c:set var="rating" value="${item.rating}" scope="request"/>
 						<%@include file="/common/rating.jsp"%>
 					</div>
 					<div class="col-xs-12 col-md-8">
@@ -103,9 +105,7 @@
 					</div>
 					<!-- / row -->
 					<hr>
-					<div class="fb-comments"
-						data-href="http://www.ur-recipe.com/recipe/${item.slug}"
-						data-numposts="5"></div>
+					<%@include file="/common/comments.jsp"%>
 
 					<%@include file="include_item_list.jsp"%>
 
