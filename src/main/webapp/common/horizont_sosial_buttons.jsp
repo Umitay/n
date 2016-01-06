@@ -6,7 +6,7 @@
 <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
 	<div class="col-xs-2 col-md-2">
 		<!-- Your send button code -->
-		<div class="g-plusone" data-size="medium"></div>
+		<div class="g-plusone" data-size="small" data-annotation="none" data-href="${share_url}" ></div>
 	</div>
 
 	<div class="col-xs-3 col-md-3">
@@ -25,17 +25,16 @@
 		    }
 		  }};
 		  d.documentElement.appendChild(js);
-		}(document,"ok_shareWidget","http://www.ur-recipe.com/","{width:30,height:35,st:'rounded',sz:30,nt:1,nc:1}");
+		}(document,"ok_shareWidget","${share_url}","{width:11,height:11,st:'rounded',sz:11,nt:1,nc:1}");
 		</script>
 	</div>
 	<div class="col-xs-2 col-md-2">
-		<a href="https://twitter.com/share" class="twitter-share-button"
-			data-via="www.ur-recipe.com">Tweet</a>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="www.ur-recipe.com">Tweet</a>
 	</div>
 </div>
 <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
 	<div class="col-xs-3 col-md-3">
-		<div class="fb-share-button" data-href="${share_url}" data-layout="box_count"></div>
+		<div class="fb-share-button" data-href="${share_url}" data-width="30" data-layout="icon"></div>
 	</div>
 	<div class="col-xs-3 col-md-3">
 		<!-- Put this div tag to the place, where the Like block will be -->
@@ -45,7 +44,7 @@
 		</script>
 	</div>
 	<div class="col-xs-3 col-md-3">
-			<a target="_blank" class="mrc__plugin_uber_like_button" href="http://connect.mail.ru/share?url=${share_url}" data-mrc-config="{'nc' : '1', 'nt' : '1', 'cm' : '1', 'sz' : '30', 'st' : '1', 'tp' : 'mm'}">Нравится mail.ru</a>
+			<a target="_blank" class="mrc__plugin_uber_like_button" href="http://connect.mail.ru/share?url=${share_url}" data-mrc-config="{'nc' : '1', 'nt' : '1', 'cm' : '1', 'sz' : '11', 'st' : '1', 'tp' : 'mm'}">Нравится mail.ru</a>
 			<script src="https:/connect.mail.ru/js/loader.js" type="text/javascript" charset="UTF-8"></script>
 	</div>
 </div>
