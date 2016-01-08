@@ -91,7 +91,9 @@ h1,.jumbotron a {
 section h2 {
     font-size: 23px;
 }
-
+.pluginCountButton{
+	display: none;
+}
 .list-article-border {
     background-color: #fff;
     border: 1px solid #d4f2c7;
@@ -231,30 +233,7 @@ color: gold;
   .text-danger{
 	color:#e15d35;
   }
-  .social-link-ok {
-    background: url("/static/icons/ok.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    display: inline-block;
-    height: 28px;
-    margin-right: 3px;
-    vertical-align: top;
-    width: 28px;
-	}
-  .social-link-vk {
-    background: url("/static/icons/vk.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    display: inline-block;
-    height: 28px;
-    margin-right: 3px;
-    vertical-align: top;
-    width: 28px;
-	}
-  .social-link-fb {
-    background: url("/static/icons/fb.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-    display: inline-block;
-    height: 28px;
-    margin-right: 3px;
-    vertical-align: top;
-    width: 28px;
-	}
+
 
 .file_input .upload{
 	position: absolute;

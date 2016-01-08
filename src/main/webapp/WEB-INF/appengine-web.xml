@@ -20,6 +20,7 @@
 	  <include path="/static/**.png" expiration="4d 5h" />
 	  <include path="/static/**.css" expiration="4d 5h"/>
 	   <include path="/favicon.ico" expiration="4d 5h"/>
+	  <include path="/static/**.js" expiration="4d 5h"/>
 	</static-files>
 	
 </appengine-web-app>

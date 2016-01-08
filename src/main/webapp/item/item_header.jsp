@@ -44,6 +44,7 @@
 <meta name="twitter:domain" content="www.ur-recipe.com"/>
 <meta name='yandex-verification' content='6952aca4a0d06474' />
 <meta name="robots" value="index, follow" />
+<script	src="/static/share.js"></script>
 <!-- Вставьте этот тег в заголовке страницы или непосредственно перед закрывающим тегом основной части. -->
 	<script src="https://apis.google.com/js/platform.js" async defer>
 	  {lang: 'ru'}
@@ -64,4 +65,5 @@
   js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.5&appId=1659668160945449";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
 <%@include file="/common/top_nav.jsp" %>

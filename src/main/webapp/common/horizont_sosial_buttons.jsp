@@ -2,49 +2,66 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-Поделиться
-<div class="row" style="margin-top: 20px; margin-bottom: 20px;">
-	<div class="col-xs-2 col-md-2">
-		<!-- Your send button code -->
-		<div class="g-plusone" data-size="small" data-annotation="none" data-href="${share_url}" ></div>
-	</div>
-
-	<div class="col-xs-3 col-md-3">
-		<div id="ok_shareWidget"></div>
-		<script>
-		!function (d, id, did, st) {
-		  var js = d.createElement("script");
-		  js.src = "https://connect.ok.ru/connect.js";
-		  js.onload = js.onreadystatechange = function () {
-		  if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
-		    if (!this.executed) {
-		      this.executed = true;
-		      setTimeout(function () {
-		        OK.CONNECT.insertShareWidget(id,did,st);
-		      }, 0);
-		    }
-		  }};
-		  d.documentElement.appendChild(js);
-		}(document,"ok_shareWidget","${share_url}","{width:11,height:11,st:'rounded',sz:11,nt:1,nc:1}");
-		</script>
-	</div>
-	<div class="col-xs-2 col-md-2">
-		<a href="https://twitter.com/share" class="twitter-share-button" data-via="www.ur-recipe.com">Tweet</a>
-	</div>
-</div>
-<div class="row" style="margin-top: 20px; margin-bottom: 20px;">
-	<div class="col-xs-3 col-md-3">
-		<div class="fb-share-button" data-href="${share_url}" data-width="30" data-layout="icon"></div>
-	</div>
-	<div class="col-xs-3 col-md-3">
-		<!-- Put this div tag to the place, where the Like block will be -->
-		<div id="vk_like"></div>
-		<script type="text/javascript">
-		VK.Widgets.Like("vk_like", {type: "vertical"});
-		</script>
-	</div>
-	<div class="col-xs-3 col-md-3">
-			<a target="_blank" class="mrc__plugin_uber_like_button" href="http://connect.mail.ru/share?url=${share_url}" data-mrc-config="{'nc' : '1', 'nt' : '1', 'cm' : '1', 'sz' : '11', 'st' : '1', 'tp' : 'mm'}">Нравится mail.ru</a>
-			<script src="https:/connect.mail.ru/js/loader.js" type="text/javascript" charset="UTF-8"></script>
-	</div>
-</div>
+<p class="social-buttons" >Поделиться:
+	<button class="btn btn-success social_share icon-gp" data-type="gp">G+</button>
+    <button class="btn btn-success social_share icon-vk" data-type="vk">ВК</button>
+    <button class="btn btn-success social_share icon-fb" data-type="fb">FB</button>
+    <button class="btn btn-success social_share icon-tw" data-type="tw">TW</button>
+    <button class="btn btn-success social_share icon-lj" data-type="lj">LJ</button>
+    <button class="btn btn-success social_share icon-ok" data-type="ok">ОK</button>
+    <button class="btn btn-success social_share icon-mr" data-type="mr">MR</button>
+</p>
+<style>
+.social_share{
+ 	background-color: rgba(255, 255, 255, 0);
+    color: #000;
+    height: 25px;
+    width: 40px;
+ }
+/*
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon.eot?bvycj8');
+    src:    url('fonts/icomoon.eot?bvycj8#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?bvycj8') format('truetype'),
+        url('fonts/icomoon.woff?bvycj8') format('woff'),
+        url('fonts/icomoon.svg?bvycj8#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+ .social_share{
+ 	background-color:rgba(255, 255, 255, 0);
+    color: #ffffff;
+    height: 30px;
+    width: 30px;
+ }
+.social-buttons .icon-vk::before {
+	background-color: #51749c !important;
+    content: "\e603";
+}
+.social-buttons .icon-fb::before {
+	background-color: #45639e !important;
+    content: "\e619";
+}
+.social-buttons .icon-tw::before {
+	background-color: #23b9eb !important;
+    content: "\e604";
+}
+.social-buttons .icon-ok::before {
+	background-color: #fa890f !important;
+    content: "\e604";
+}
+.social-buttons .icon-lj::before {
+	background-color: #fa890f !important;
+    content: "\e604";
+}
+.social-buttons .icon-mr::before {
+	background-color: #fa890f !important;
+    content: "\e604";
+}
+.social-buttons .icon-gp::before {
+	background-color: #FFF !important;
+    content: "\e618";
+}
+*/
+</style>
