@@ -18,9 +18,11 @@
 	<static-files>
 	 <include path="/static/logo.png" expiration="4d 5h" />
 	  <include path="/static/**.png" expiration="4d 5h" />
+	  <include path="/static/**.gif" expiration="4d 5h" />
 	  <include path="/static/**.css" expiration="4d 5h"/>
-	   <include path="/favicon.ico" expiration="4d 5h"/>
+	  <include path="/static/favicon.ico" expiration="4d 5h"/>
 	  <include path="/static/**.js" expiration="4d 5h"/>
+	  <include path="/static/*" expiration="4d 5h"/>
 	</static-files>
 	
 </appengine-web-app>

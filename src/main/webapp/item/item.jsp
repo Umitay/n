@@ -67,9 +67,7 @@
 							Автор: <a href="https://plus.google.com/+Urrecipe1/posts"><span
 								itemprop="name">Умитай Турдыкулова</span></a>
 						</div>
-						<c:set var="share_url"
-							value="http://www.ur-recipe.com/recipe/${item.slug}"
-							scope="request" />
+						
 						<%@include file="/common/horizont_sosial_buttons.jsp"%>
 
 					</div>

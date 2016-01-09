@@ -28,7 +28,6 @@
 				<div> Опубликовано: <time datetime="${article_datePublished}" itemprop="datePublished">${article_datePublished}</time></div>
 				<div itemprop="description">${article.about}</div>
 		
-				<c:set var="share_url" value="http://www.ur-recipe.com/article/${article.slug}" scope="request"/>
 				<%@include file="/common/horizont_sosial_buttons.jsp"%>
 			</div>
 		</div>

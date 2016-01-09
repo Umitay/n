@@ -2,66 +2,45 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<p class="social-buttons" >Поделиться:
-	<button class="btn btn-success social_share icon-gp" data-type="gp">G+</button>
-    <button class="btn btn-success social_share icon-vk" data-type="vk">ВК</button>
-    <button class="btn btn-success social_share icon-fb" data-type="fb">FB</button>
-    <button class="btn btn-success social_share icon-tw" data-type="tw">TW</button>
-    <button class="btn btn-success social_share icon-lj" data-type="lj">LJ</button>
-    <button class="btn btn-success social_share icon-ok" data-type="ok">ОK</button>
-    <button class="btn btn-success social_share icon-mr" data-type="mr">MR</button>
+<p class="social-buttons" >
+	<button class="btn social_share icon-google-plus" data-type="gp"></button>
+    <button class="btn social_share icon-vk" data-type="vk"></button>
+    <button class="btn social_share icon-facebook" data-type="fb"></button>
+    <button class="btn social_share icon-twitter" data-type="tw"></button>
+    <button class="btn social_share icon-ok" data-type="ok"></button>
+    <button class="btn social_share icon-mr" data-type="mr">@</button>
 </p>
 <style>
 .social_share{
- 	background-color: rgba(255, 255, 255, 0);
-    color: #000;
+	background-image: url("/static/social.png");
+	background-repeat: no-repeat;
+ 	padding: 0;
     height: 25px;
-    width: 40px;
+    width: 25px;
  }
-/*
-@font-face {
-    font-family: 'icomoon';
-    src:    url('fonts/icomoon.eot?bvycj8');
-    src:    url('fonts/icomoon.eot?bvycj8#iefix') format('embedded-opentype'),
-        url('fonts/icomoon.ttf?bvycj8') format('truetype'),
-        url('fonts/icomoon.woff?bvycj8') format('woff'),
-        url('fonts/icomoon.svg?bvycj8#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
+
+.icon-google-plus  {
+	background-position: -36px -122px;
 }
- .social_share{
- 	background-color:rgba(255, 255, 255, 0);
-    color: #ffffff;
-    height: 30px;
-    width: 30px;
- }
-.social-buttons .icon-vk::before {
-	background-color: #51749c !important;
-    content: "\e603";
+.icon-facebook {
+	background-position: -36px 0;
 }
-.social-buttons .icon-fb::before {
-	background-color: #45639e !important;
-    content: "\e619";
+.icon-twitter {
+	background-position: -36px -62px;
 }
-.social-buttons .icon-tw::before {
-	background-color: #23b9eb !important;
-    content: "\e604";
+.icon-vk {
+	background-position: -36px -32px;
 }
-.social-buttons .icon-ok::before {
-	background-color: #fa890f !important;
-    content: "\e604";
+.icon-ok {
+	background-position: -36px -92px;
 }
-.social-buttons .icon-lj::before {
-	background-color: #fa890f !important;
-    content: "\e604";
+.icon-mr{
+    color: #FFBB14;
+    background-color: #004A87;
+    height: 25px;
+    width: 25px;
+    background-position: 500px 500px;
+    font-size: 22px;
+    font-weight: bold;
 }
-.social-buttons .icon-mr::before {
-	background-color: #fa890f !important;
-    content: "\e604";
-}
-.social-buttons .icon-gp::before {
-	background-color: #FFF !important;
-    content: "\e618";
-}
-*/
 </style>
