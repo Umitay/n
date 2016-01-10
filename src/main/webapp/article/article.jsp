@@ -32,7 +32,7 @@
 			</div>
 		</div>
 		<div class="bg-warning ads">
-				<c:if test="${empty unvisible}">
+			<%--	<c:if test="${empty unvisible}">
 				<c:choose>
 				 	<c:when test="${empty article.ads_horizont1}">
 				    	<%@include file="/common/ad_horizont.jsp"%>
@@ -41,7 +41,7 @@
 				        ${article.ads_horizont1}
 				    </c:otherwise>
 				</c:choose>
-			    </c:if>
+			    </c:if>--%>
 			    <br>
 		</div>
 		
@@ -50,7 +50,7 @@
 		</div>
 		
 		<div class="bg-warning ads">
-				<c:if test="${empty unvisible}">
+			<%--	<c:if test="${empty unvisible}">
 				<c:choose>
 				 	<c:when test="${empty article.ads_horizont2}">
 				    	<%@include file="/common/ad_horizont.jsp"%>
@@ -59,7 +59,7 @@
 				        ${article.ads_horizont2}
 				    </c:otherwise>
 				    </c:choose>
-			    </c:if>
+			    </c:if>--%>
 		</div>
 		<%@include file="/common/comments.jsp"%>
 		</div>

@@ -29,6 +29,8 @@
 <link rel="publisher" href="https://plus.google.com/+Urrecipe1/posts"/>
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:image" content="${article.thumbnailUrl}" />
+<meta content="500" property="og:image:width" />
+<meta content="333" property="og:image:height" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="${meta_title} | Полезные рецепты" />
 <meta property="og:description" content="★ ${meta_description}" />
@@ -42,6 +44,7 @@
 <meta name="twitter:domain" content="www.ur-recipe.com"/>
 <meta name='yandex-verification' content='6952aca4a0d06474' />
 <meta name="robots" value="index, follow" />
+<script	src="/static/share.js"></script>
 <!-- Вставьте этот тег в заголовке страницы или непосредственно перед закрывающим тегом основной части. -->
 	<script src="https://apis.google.com/js/platform.js" async defer>
 	  {lang: 'ru'}

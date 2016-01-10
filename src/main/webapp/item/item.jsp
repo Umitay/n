@@ -74,7 +74,7 @@
 					<!-- / row -->
 
 					<div class="bg-warning ads col-md-12">
-						<c:if test="${empty unvisible }">
+						<%-- <c:if test="${empty unvisible }">
 							<c:choose>
 								<c:when test="${empty item.ads_horizont1}">
 									<%@include file="/common/ad_horizont.jsp"%>
@@ -83,7 +83,7 @@
 						        ${item.ads_horizont1}
 						    </c:otherwise>
 							</c:choose>
-						</c:if>
+						</c:if> --%>
 						<br>
 					</div>
 					<!--  row -->
@@ -108,7 +108,7 @@
 					<%@include file="include_item_list.jsp"%>
 
 					<div class="bg-warning ads">
-						<c:if test="${empty unvisible }">
+						<%--<c:if test="${empty unvisible }">
 							<c:choose>
 								<c:when test="${empty item.ads_horizont2}">
 									<%@include file="/common/ad_horizont.jsp"%>
@@ -117,7 +117,7 @@
 						        ${item.ads_horizont2}
 						    </c:otherwise>
 							</c:choose>
-						</c:if>
+						</c:if>--%>
 					</div>
 				</div>
 				<!-- /itemscope  -->

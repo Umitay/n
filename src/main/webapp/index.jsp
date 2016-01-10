@@ -6,15 +6,15 @@
 <div class="container">
 	<div class="jumbotron">
 		<h1>${category.name}</h1>
-		 <c:if test="${empty unvisible}">
+		<%-- <c:if test="${empty unvisible}">
 			${category.ads_jumbotron}
-		</c:if>
+		</c:if>--%>
 		${category.description}
 	</div>
 	<%@include file="/item/item_list.jsp"%>
-	
+	<%--
 	<c:if test="${empty unvisible}">
 			${category.ads_horizont1}
-	 </c:if>
+	 </c:if>--%>
 </div>
 <%@include file="/common/bottom.jsp"%>

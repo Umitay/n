@@ -25,12 +25,12 @@
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <title>${item.name} | Полезные рецепты</title>
 <meta name="description" content="★ ${meta_description}"/>
-<meta name="keywords" content="★ ${meta_keywords}">
+<meta name="keywords" content="${meta_keywords}">
 <link rel="publisher" href="https://plus.google.com/+Urrecipe1/posts"/>
 <meta property="og:locale" content="ru_RU" />
-<meta property="og:image" content="${empty item.thumbnailUrl2 ? item.thumbnailUrl: item.thumbnailUrl2}" />
-<meta content="64" property="og:image:width" />
-<meta content="64" property="og:image:height" />
+<meta property="og:image" content="${item.thumbnailUrl}" />
+<meta content="500" property="og:image:width" />
+<meta content="333" property="og:image:height" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="${meta_title} | Полезные рецепты" />
 <meta property="og:description" content="★ ${meta_description}" />
