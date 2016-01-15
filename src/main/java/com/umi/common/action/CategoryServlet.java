@@ -30,6 +30,7 @@ import com.google.appengine.repackaged.com.google.api.client.util.Lists;
 import com.umi.common.data.Article;
 import com.umi.common.data.Category;
 import com.umi.common.data.Item;
+import com.umi.common.data.persist.EnvironmentConfig;
 import com.umi.common.services.ArticleService;
 import com.umi.common.services.CategoryService;
 import com.umi.common.services.ItemService;
@@ -120,6 +121,12 @@ public class CategoryServlet extends BaseServlet {
 			request.setAttribute("meta_title",  meta_title );
 			request.setAttribute("meta_keywords", meta_keywords );
 			request.setAttribute("meta_description", meta_description);
+			
+			request.setAttribute("site_name", EnvironmentConfig.getInstance().getSite_name() );
+			request.setAttribute("domain_url", "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/" );
+			request.setAttribute("domain", EnvironmentConfig.getInstance().getPublicDomain());
+			request.setAttribute("share_url", "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/category/"+category.getSlug() );
+			
 			request.getRequestDispatcher("/category/category.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {

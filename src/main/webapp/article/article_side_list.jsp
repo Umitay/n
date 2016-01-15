@@ -6,13 +6,13 @@
 				<meta content="Descending" itemprop="itemListOrder">
 				
 				<c:forEach items="${articles}" var="article" varStatus="loop" begin="0" end="2">
-					 <a href="/article/${article.slug}">
+					 <a href="${domain_url}article/${article.slug}">
 						<div itemprop="itemListElement" class="thumbnail">
 						   	<c:if test="${!empty article.thumbnailUrl}">
 						        <img itemprop="image" class="img-responsive" src="${article.thumbnailUrl}" >
 						    </c:if>
 						    <div>
-						     <h4  itemprop="name"> <a href="/article/${article.slug}" itemprop="url">${article.name}</a></h4>
+						     <h4  itemprop="name">${article.name}</h4>
 						     <div id="description" itemprop="description">${article.about}</div>
 						    </div>	
 					 	</div>

@@ -31,7 +31,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="${meta_title} | Полезные рецепты" />
 <meta property="og:description" content="${meta_description}" />
-<meta property="og:url" content="http://www.ur-recipe.com" />
+<meta property="og:url" content="${share_url}" />
 <meta property="og:site_name" content="Полезные рецепты" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:description" content="${meta_description}"/>

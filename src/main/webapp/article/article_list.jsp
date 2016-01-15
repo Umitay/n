@@ -22,13 +22,13 @@
 					<div itemprop="itemListElement" class="article thumbnail col-xs-12 col-sm-6 col-md-6 col-lg-5-5" onclick="opearticle('${article.slug}')">
 					   <c:if test="${!empty article.thumbnailUrl}">
 					    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" >
-					      <a href="/article/${article.slug}">
+					      <a href="${domain_url}article/${article.slug}">
 					        <img itemprop="image" class="img-responsive" src="${article.thumbnailUrl}" >
 					      </a>
 					    </div>
 					    </c:if>
 					    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8" >
-					     <h4  itemprop="name"> <a href="/article/${article.slug}" itemprop="url">${article.name}</a></h4>
+					     <h4  itemprop="name"> <a href="${domain_url}article/${article.slug}" itemprop="url">${article.name}</a></h4>
 					     <div id="description" itemprop="description">${article.about}</div>
 					    </div>
 					 </div>

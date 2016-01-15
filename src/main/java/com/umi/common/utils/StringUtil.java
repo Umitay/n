@@ -218,7 +218,9 @@ public class StringUtil
 		slug = slug.replace(".", "");
 		slug = slug.replace(" ", "-");
 		slug = slug.replace("--", "-");
-		
+		slug = slug.replace("?", "");
+		slug = slug.replace("«", "");
+		slug = slug.replace("»", "");
 		return slug;
 	}
 	

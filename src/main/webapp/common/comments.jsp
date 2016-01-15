@@ -19,6 +19,7 @@
 		<div aria-labelledby="fb-tab" id="fb"
 			class="tab-pane fade active in" role="tabpanel">
 			<div class="fb-comments"
+						data-width="750"
 						data-href="${share_url}"
 						data-numposts="5"></div>
 		</div>

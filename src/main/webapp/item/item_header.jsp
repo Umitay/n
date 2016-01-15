@@ -34,14 +34,14 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="${meta_title} | Полезные рецепты" />
 <meta property="og:description" content="★ ${meta_description}" />
-<meta property="og:url" content="http://www.ur-recipe.com/recipe/${item.slug}" />
+<meta property="og:url" content="${share_url}" />
 <meta property="og:site_name" content="Полезные рецепты" />
 <meta property="fb:app_id" content="1659668160945449" /> 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:description" content="★ ${meta_description}"/>
 <meta name="twitter:title" content="${meta_title} | Полезные рецепты"/>
 <meta name="twitter:site" content="@umitay"/>
-<meta name="twitter:domain" content="www.ur-recipe.com"/>
+<meta name="twitter:domain" content="${domain}"/>
 <meta name='yandex-verification' content='6952aca4a0d06474' />
 <meta name="robots" value="index, follow" />
 <script	src="/static/share.js"></script>

@@ -17,14 +17,14 @@
 					<div itemprop="itemListElement" class="col-sm-6 col-lg-3" style="width:15%">
 						<div class="thumbnail">
 							<c:if test="${!empty category.thumbnailUrl}">
-							 <a href="/category/${category.slug}"> <img alt="${category.alt}"
+							 <a href="${domain_url}category/${category.slug}"> <img alt="${category.alt}"
 								width="300" height="225" itemprop="image"
 								src="${category.thumbnailUrl}">
 							 </a>
 							 </c:if>
 							<div class="caption">
 								<h3 itemprop="name">
-									<a href="/category/${category.slug}" title="${category.link_title}"
+									<a href="${domain_url}category/${category.slug}" title="${category.link_title}"
 										itemprop="url">${category.name}</a>
 								</h3>
 								<p itemprop="description">${category.about}</p>

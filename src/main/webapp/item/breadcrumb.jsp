@@ -3,17 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <div class="breadcrumb">
 <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-  <a href="/" itemprop="url">
+  <a href="${domain_url}" itemprop="url">
     <span itemprop="title" class="glyphicon glyphicon-home" >Рецепты</span>
   </a> ›
 </div>  
 <div  itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-  <a href="/category/${category.slug}" itemprop="url" class="capitalize" >
+  <a href="${domain_url}category/${category.slug}" itemprop="url" class="capitalize" >
     <span itemprop="title">${category.name}</span>
   </a> ›
 </div>
 <div  itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-    <meta itemprop="url" content="/recipe/${item.slug}">
+    <meta itemprop="url" content="${domain_url}recipe/${item.slug}">
     <span itemprop="title">${item.name}</span>
 </div>
 </div>

@@ -11,11 +11,8 @@
 			<div id="item" itemtype="http://schema.org/Recipe" itemscope="">
 				<meta itemprop="dateModified" content="${item_dateModified}">
 				<div class="page-header">
-
-
 					<h1 itemprop="name">${item.name}</h1>
 				</div>
-
 				<!-- row -->
 				<div class="row">
 					<div class="col-xs-12 col-md-4">
@@ -24,7 +21,6 @@
 							<img width="230" height="230" src="${item.thumbnailUrl}"
 								itemprop="image" />
 						</div>
-						
 						 <c:set var="rating" value="${item.rating}" scope="request"/>
 						<%@include file="/common/rating.jsp"%>
 					</div>
@@ -53,7 +49,7 @@
 							<div>
 								Категорий:
 								<c:forEach items="${item_categories}" var="category">
-									<a href="http://www.ur-recipe.com/category/${category.slug}"
+									<a href="${domain_url}category/${category.slug}"
 										itemprop="recipeCategory">${category.name}</a>&nbsp;
 					            </c:forEach>
 							</div>

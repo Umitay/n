@@ -10,37 +10,3 @@
     <button class="btn social_share icon-ok" data-type="ok"></button>
     <button class="btn social_share icon-mr" data-type="mr">@</button>
 </p>
-<style>
-.social_share{
-	background-image: url("/static/social.png");
-	background-repeat: no-repeat;
- 	padding: 0;
-    height: 25px;
-    width: 25px;
- }
-
-.icon-google-plus  {
-	background-position: -36px -122px;
-}
-.icon-facebook {
-	background-position: -36px 0;
-}
-.icon-twitter {
-	background-position: -36px -62px;
-}
-.icon-vk {
-	background-position: -36px -32px;
-}
-.icon-ok {
-	background-position: -36px -92px;
-}
-.icon-mr{
-    color: #FFBB14;
-    background-color: #004A87;
-    height: 25px;
-    width: 25px;
-    background-position: 500px 500px;
-    font-size: 22px;
-    font-weight: bold;
-}
-</style>

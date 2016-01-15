@@ -8,21 +8,19 @@
 			<meta content="Descending" itemprop="itemListOrder">
 			
 				<c:forEach items="${items}" var="item" varStatus="loop" begin="0" end="2">
-					<div itemprop="itemListElement" class="item_list_element thumbnail">
+				 <a href="${domain_url}recipe/${item.slug}" title="${item.link_title}"	itemprop="url">
+					  <div itemprop="itemListElement" class="item_list_element thumbnail">
 							<c:if test="${!empty item.thumbnailUrl}">
-							 <a href="/recipe/${item.slug}"> <img alt="${item.alt}"
+							 <img alt="${item.alt}"
 								width="300" height="225" itemprop="image"
 								src="${item.thumbnailUrl}">
-							 </a>
 							 </c:if>
 							<div class="caption">
-								<h3 itemprop="name">
-									<a href="/recipe/${item.slug}" title="${item.link_title}"
-										itemprop="url">${item.name}</a>
-								</h3>
+								<h3 itemprop="name">${item.name}</h3>
 								<p itemprop="description">${item.about}</p>
 							</div>
 						</div>
+					</a>
 				</c:forEach>
 		</section>
 	</c:if>

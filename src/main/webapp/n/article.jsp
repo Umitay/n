@@ -8,7 +8,7 @@
 	<!-- row of columns -->
 	<div class="row">
 	 <c:forEach items="${articles}" var="article">
-	 <div class="col-sm-6 col-lg-3">
+	 <div class="col-sm-6 col-lg-3" ${ article.active? '':'style="background-color:red;"' } ">
 		 <div class="thumbnail" style="${empty article.datePublished ? 'background-color:#e15d35;':''}">
 		
 			<div class="caption">

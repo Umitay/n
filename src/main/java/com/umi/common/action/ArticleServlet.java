@@ -34,6 +34,7 @@ import com.umi.common.data.Article;
 import com.umi.common.data.Category;
 import com.umi.common.data.Item;
 import com.umi.common.data.X_CategoryItem;
+import com.umi.common.data.persist.EnvironmentConfig;
 import com.umi.common.services.ArticleService;
 import com.umi.common.services.CategoryService;
 import com.umi.common.services.ItemService;
@@ -89,6 +90,13 @@ public class ArticleServlet extends BaseServlet {
 			request.setAttribute("meta_title",   article.getMeta_title() );
 			request.setAttribute("meta_keywords", article.getMeta_keywords() );
 			request.setAttribute("meta_description", article.getMeta_description());
+			
+			request.setAttribute("site_name", EnvironmentConfig.getInstance().getSite_name() );
+			request.setAttribute("domain_url", "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/" );
+			request.setAttribute("domain", EnvironmentConfig.getInstance().getPublicDomain());
+			request.setAttribute("share_url", "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/article/"+article.getSlug() );
+			
+			
 			request.getRequestDispatcher("/article/article.jsp").forward(request, response);
 			
 		} catch (ServletException | IOException e) {
