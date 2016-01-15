@@ -4,7 +4,7 @@
 <div class="breadcrumb">
 <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
   <a href="${domain_url}" itemprop="url">
-    <span itemprop="title" class="glyphicon glyphicon-home" >Рецепты</span>
+    <span itemprop="title" class="glyphicon glyphicon-home" >${site_name}</span>
   </a> ›
 </div>  
 <div  itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
@@ -13,7 +13,7 @@
   </a> ›
 </div>
 <div  itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-    <meta itemprop="url" content="${domain_url}article/${article.slug}">
+    <meta itemprop="url" content="${share_url}">
     <span itemprop="title">${article.name}</span>
 </div>
 </div>
