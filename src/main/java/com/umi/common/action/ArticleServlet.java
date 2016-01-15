@@ -82,7 +82,7 @@ public class ArticleServlet extends BaseServlet {
 		
 		String meta_description=article.getMeta_description();
 		if(meta_description == null || meta_description.length() <=0){
-			meta_description = article.getName()+" - Откройте для себя полезные, легкие и вкусные рецепты.";
+			meta_description = article.getName()+ EnvironmentConfig.getInstance().getMeta_description();
 		}
 		
 		String meta_title = article.getMeta_title();

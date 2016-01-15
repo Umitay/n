@@ -22,7 +22,7 @@
 					<div itemprop="itemListElement" class="article thumbnail col-xs-12 col-sm-6 col-md-6 col-lg-5-5">
 					   <c:if test="${!empty article.thumbnailUrl}">
 					    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" >
-					      <a href="${domain_url}article/${article.slug}" title="Рекомендуем ${article.name}">
+					      <a href="${domain_url}article/${article.slug}" title="Интересно и Полезно - ${article.name}">
 					        <img itemprop="image" class="img-responsive" src="${article.thumbnailUrl}" >
 					      </a>
 					    </div>

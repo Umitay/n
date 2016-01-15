@@ -24,14 +24,14 @@
 						<div class="thumbnail">
 							<c:if test="${!empty item.thumbnailUrl}">
 							 <a href="${domain_url}recipe/${item.slug}" title="Дивный рецепт ${ empty item.link_title ? item.name:item.link_title}" > 
-							 <img alt="${item.alt}"
+							 <img alt="Полезный рецепт ${item.name}"
 								width="300" height="225" itemprop="image"
 								src="${item.thumbnailUrl}">
 							 </a>
 							 </c:if>
 							<div class="caption">
 								<h3 itemprop="name">
-									<a href="${domain_url}recipe/${item.slug}" title="Рекомендуем ${ empty item.link_title ? item.name:item.link_title}"
+									<a href="${domain_url}recipe/${item.slug}" title="Рекомендуем рецепт ${ empty item.link_title ? item.name:item.link_title}"
 										itemprop="url">${item.name}</a>
 								</h3>
 								<p itemprop="description">${item.about}</p>

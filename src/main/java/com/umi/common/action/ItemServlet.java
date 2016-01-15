@@ -96,7 +96,7 @@ public class ItemServlet extends BaseServlet {
 			
 			String meta_description=item.getMeta_description();
 			if(meta_description == null || meta_description.length() <=0){
-				meta_description = item.getName()+" - Откройте для себя полезные, легкие и вкусные рецепты.";
+				meta_description = item.getName()+ EnvironmentConfig.getInstance().getMeta_description();
 			}
 			
 			String meta_title = item.getMeta_title();

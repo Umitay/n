@@ -104,7 +104,7 @@ public class CategoryServlet extends BaseServlet {
 
 		String meta_description=category.getMeta_description();
 		if(meta_description == null || meta_description.length() <=0){
-			meta_description = category.getName()+" - Откройте для себя полезные, легкие и вкусные рецепты.";
+			meta_description = category.getName()+ EnvironmentConfig.getInstance().getMeta_description();
 		}
 		
 		String meta_title = category.getMeta_title();

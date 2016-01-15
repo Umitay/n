@@ -19,7 +19,7 @@
 					<div class="col-xs-12 col-md-4">
 						<div class="thumbnail" id="output_field"
 							style="height: 180px; background-color: #F1FCEC;">
-							<img width="230" height="230" src="${item.thumbnailUrl}"
+							<img width="230" height="230" src="${item.thumbnailUrl}" alt="рецепт ${item.name}"
 								itemprop="image" />
 						</div>
 						 <c:set var="rating" value="${item.rating}" scope="request"/>
