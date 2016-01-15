@@ -63,7 +63,11 @@ public class ArticleServlet extends BaseServlet {
 		if(request.getServerName().contains("appspot.com")){
 			request.setAttribute("unvisible", true);
 		}
-		Article article =  articleService.loadArticle(slug); 
+		Article article =  articleService.loadArticle(slug);
+
+		request.setAttribute("site_name", EnvironmentConfig.getInstance().getSite_name() );
+		request.setAttribute("domain_url", "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/" );
+		request.setAttribute("domain", EnvironmentConfig.getInstance().getPublicDomain());
 		
 		if( article == null ){
 			if(StringUtil.is_rus(slug) ){
@@ -74,6 +78,20 @@ public class ArticleServlet extends BaseServlet {
 			response.setStatus(Response.Status.NOT_FOUND.getStatusCode());
 			request.getRequestDispatcher("/404.jsp").forward(request, response);
 			return Response.status(Response.Status.NOT_FOUND.getStatusCode()).build();
+		}
+		
+		String meta_description=article.getMeta_description();
+		if(meta_description == null || meta_description.length() <=0){
+			meta_description = article.getName()+" - Откройте для себя полезные, легкие и вкусные рецепты.";
+		}
+		
+		String meta_title = article.getMeta_title();
+		if(meta_title == null || meta_title.length() <= 0 ){
+			meta_title = article.getName();
+		}
+		String meta_keywords = article.getMeta_keywords();
+		if(meta_keywords == null || meta_keywords.length() <= 0 ){
+			meta_keywords = article.getName();
 		}
 		
 		try {
@@ -87,13 +105,11 @@ public class ArticleServlet extends BaseServlet {
 			request.setAttribute("article", article);
 			request.setAttribute("items", items);
 			request.setAttribute("categories", categories);
-			request.setAttribute("meta_title",   article.getMeta_title() );
-			request.setAttribute("meta_keywords", article.getMeta_keywords() );
-			request.setAttribute("meta_description", article.getMeta_description());
 			
-			request.setAttribute("site_name", EnvironmentConfig.getInstance().getSite_name() );
-			request.setAttribute("domain_url", "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/" );
-			request.setAttribute("domain", EnvironmentConfig.getInstance().getPublicDomain());
+			request.setAttribute("meta_title",  meta_title +" | "+EnvironmentConfig.getInstance().getSite_name());
+			request.setAttribute("meta_keywords", meta_keywords );
+			request.setAttribute("meta_description", meta_description);
+			request.setAttribute("thumbnailUrl", article.getThumbnailUrl());
 			request.setAttribute("share_url", "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/article/"+article.getSlug() );
 			
 			
@@ -113,6 +129,9 @@ public class ArticleServlet extends BaseServlet {
 		if(request.getServerName().contains("appspot.com")){
 			request.setAttribute("unvisible", true);
 		}
+		request.setAttribute("site_name", EnvironmentConfig.getInstance().getSite_name() );
+		request.setAttribute("domain_url", "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/" );
+		request.setAttribute("domain", EnvironmentConfig.getInstance().getPublicDomain());
 		
 		Category category =  categoryService.loadCategory("articles"); 
 		articles   =  articleService.loadArticles(true);

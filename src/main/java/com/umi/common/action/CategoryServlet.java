@@ -60,7 +60,10 @@ public class CategoryServlet extends BaseServlet {
 		if(request.getServerName().contains("appspot.com")){
 			request.setAttribute("unvisible", true);
 		}
-		
+		request.setAttribute("site_name", EnvironmentConfig.getInstance().getSite_name() );
+		request.setAttribute("domain_url", "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/" );
+		request.setAttribute("domain", EnvironmentConfig.getInstance().getPublicDomain());
+	
 		Category category =  categoryService.loadCategory(slug); 
 		
 		if( category == null ){
@@ -118,13 +121,11 @@ public class CategoryServlet extends BaseServlet {
 			request.setAttribute("category", category);
 			request.setAttribute("categories", categories);
 			request.setAttribute("items", items);
-			request.setAttribute("meta_title",  meta_title );
+			
+			request.setAttribute("meta_title",  meta_title +" | "+EnvironmentConfig.getInstance().getSite_name());
 			request.setAttribute("meta_keywords", meta_keywords );
 			request.setAttribute("meta_description", meta_description);
 			
-			request.setAttribute("site_name", EnvironmentConfig.getInstance().getSite_name() );
-			request.setAttribute("domain_url", "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/" );
-			request.setAttribute("domain", EnvironmentConfig.getInstance().getPublicDomain());
 			request.setAttribute("share_url", "http://"+EnvironmentConfig.getInstance().getPublicDomain()+"/category/"+category.getSlug() );
 			
 			request.getRequestDispatcher("/category/category.jsp").forward(request, response);

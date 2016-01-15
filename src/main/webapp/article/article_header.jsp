@@ -23,7 +23,7 @@
 <link rel="shortcut icon" href="/static/logo.png" type="image/x-icon" />
 <!-- Latest compiled and minified JavaScript -->
 <script	src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<title>${article.name} | Полезные рецепты</title>
+<title>${article.name} | ${site_name}</title>
 <meta name="description" content="★ ${meta_description}"/>
 <meta name="keywords" content="${meta_keywords}">
 <link rel="publisher" href="https://plus.google.com/+Urrecipe1/posts"/>
@@ -32,14 +32,14 @@
 <meta content="500" property="og:image:width" />
 <meta content="333" property="og:image:height" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="${meta_title} | Полезные рецепты" />
+<meta property="og:title" content="${meta_title} | ${site_name}" />
 <meta property="og:description" content="★ ${meta_description}" />
 <meta property="og:url" content="${share_url}" />
-<meta property="og:site_name" content="Полезные рецепты" />
+<meta property="og:site_name" content="${site_name}" />
 <meta property="fb:app_id" content="1659668160945449" /> 
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:description" content="★ ${meta_description}"/>
-<meta name="twitter:title" content="${meta_title} | Полезные рецепты"/>
+<meta name="twitter:title" content="${meta_title} | ${site_name}"/>
 <meta name="twitter:site" content="@umitay"/>
 <meta name="twitter:domain" content="${domain}"/>
 <meta name='yandex-verification' content='6952aca4a0d06474' />

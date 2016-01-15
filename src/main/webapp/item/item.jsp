@@ -2,14 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@include file="item_header.jsp"%>
+<%@include file="/common/header.jsp"%>
 
 <div class="container">
 	<%@include file="breadcrumb.jsp"%>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-8">
 			<div id="item" itemtype="http://schema.org/Recipe" itemscope="">
-				<meta itemprop="dateModified" content="${item_dateModified}">
+			 <meta itemprop="url" content="${domain_url}recipe/${item.slug}">
+			<meta itemprop="dateModified" content="${item_dateModified}">
 				<div class="page-header">
 					<h1 itemprop="name">${item.name}</h1>
 				</div>
@@ -49,7 +50,7 @@
 							<div>
 								Категорий:
 								<c:forEach items="${item_categories}" var="category">
-									<a href="${domain_url}category/${category.slug}"
+									<a href="${domain_url}category/${category.slug}" title="Рекомендуем ${ empty category.link_title?ategory.name : category.link_title}"
 										itemprop="recipeCategory">${category.name}</a>&nbsp;
 					            </c:forEach>
 							</div>

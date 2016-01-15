@@ -12,15 +12,18 @@
 				<c:forEach items="${items}" var="item" begin="0" end="3">
 					<div itemprop="itemListElement" class="col-sm-6 col-lg-3">
 						<div class="thumbnail">
-							<c:if test="${!empty item.thumbnailUrl}">
-							 <a href="${domain_url}recipe/${item.slug}"> <img alt="${item.alt}"
+							<c:if test="${!empty item.thumbnailUrl}" >
+							 <a href="${domain_url}recipe/${item.slug}" 
+							 	title="Дивный рецепт ${ empty item.link_title ? item.name:item.link_title}" > 
+							   <img alt="${item.alt}"
 								width="300" height="225" itemprop="image"
 								src="${item.thumbnailUrl}">
 							 </a>
 							 </c:if>
 							<div class="caption">
 								<h3 itemprop="name">
-									<a href="${domain_url}recipe/${item.slug}" title="${item.link_title}"
+									<a href="${domain_url}recipe/${item.slug}" 
+										title="Рекомендуем ${ empty item.link_title ? item.name:item.link_title}"
 										itemprop="url">${item.name}</a>
 								</h3>
 								
@@ -37,15 +40,18 @@
 					<div itemprop="itemListElement" class="col-sm-6 col-lg-3">
 						<div class="thumbnail">
 							<c:if test="${!empty item.thumbnailUrl}">
-							 <a href="${domain_url}recipe/${item.slug}"> <img alt="${item.alt}"
+							 <a href="${domain_url}recipe/${item.slug}"
+							 	title="Дивный рецепт ${ empty item.link_title ? item.name:item.link_title}"> 
+							 	<img alt="${item.alt}"
 								width="300" height="225" itemprop="image"
 								src="${item.thumbnailUrl}">
 							 </a>
 							 </c:if>
 							<div class="caption">
 								<h3 itemprop="name">
-									<a href="${domain_url}recipe/${item.slug}" title="${item.link_title}"
-										itemprop="url">${item.name}</a>
+									<a href="${domain_url}recipe/${item.slug}" 
+									title="Рекомендуем ${ empty item.link_title ? item.name:item.link_title}"
+									itemprop="url">${item.name}</a>
 								</h3>
 							
 							</div>

@@ -8,12 +8,12 @@
   </a> ›
 </div>  
 <div  itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-  <a href="${domain_url}category/${category.slug}" itemprop="url" class="capitalize" >
+  <a href="${domain_url}category/${category.slug}" title="Категория ${ empty category.link_title?ategory.name : category.link_title}" itemprop="url" class="capitalize" >
     <span itemprop="title">${category.name}</span>
   </a> ›
 </div>
 <div  itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-    <meta itemprop="url" content="${domain_url}recipe/${item.slug}">
+    <meta itemprop="url" content="${domain_url}recipe/${item.slug}" title="Рецепт ${ empty item.link_title ? item.name:item.link_title}">
     <span itemprop="title">${item.name}</span>
 </div>
 </div>

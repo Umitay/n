@@ -20,13 +20,13 @@
          <c:if test="${!empty categories}">
 		    <c:forEach items="${categories}" var="category">
 		    <c:if test="${category.slug != 'hp' && category.slug != 'articles'}">
-		       <li><a class="capitalize"  
+		       <li><a class="capitalize"  title="Подборка ${ empty category.link_title? category.name : category.link_title}"
 		       href="${domain_url}category/${category.slug}">${category.name}</a>
 		       </li>
 		       </c:if>
 		    </c:forEach>
 		    </c:if>
- 			<li><a class="capitalize"  
+ 			<li><a class="capitalize"  title="Полезные советы"
 		       href="${domain_url}article/list">Интересно и Полезно</a>
 		     </li>
       </ul>

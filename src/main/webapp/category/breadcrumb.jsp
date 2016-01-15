@@ -8,7 +8,7 @@
   </a> ›
 </div>  
 <div  itemprop="child" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-  <a href="${domain_url}category/${category.slug}" itemprop="url" class="capitalize" >
+  <a href="${domain_url}category/${category.slug}"  title="Категория ${ empty category.link_title? category.name : category.link_title}" itemprop="url" class="capitalize" >
     <span itemprop="title">${category.name}</span>
   </a> ›
 </div>

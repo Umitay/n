@@ -7,6 +7,7 @@
 <div class="container">
 <%@include file="breadcrumb.jsp"%>
 	<div class="jumbotron"  itemtype="http://schema.org/recipeCategory" itemscope="">
+	  <meta itemprop="url" content="${domain_url}category/${category.slug}">
 		<h1 itemprop="name">${category.name}</h1>
 		<%--<c:if test="${empty unvisible}">
 				${category.ads_jumbotron}
